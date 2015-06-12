@@ -6,7 +6,6 @@ iOS9适配系列教程
 
 **Demo1_iOS9适配系列教程一**
 
-> English:
 As the [Apple][1] say :
   [1]: https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13
   
