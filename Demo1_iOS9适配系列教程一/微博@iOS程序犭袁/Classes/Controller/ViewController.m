@@ -2,7 +2,7 @@
 //  ViewController.m
 //  微博@iOS程序犭袁
 //
-//  Created by https://github.com/ChenYilong on 15/6/8.
+//  Created by  https://github.com/ChenYilong/iOS9AdaptationTips/ on 15/6/8.
 //  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
 //
 @import Foundation;
@@ -29,7 +29,7 @@ static NSString *const CYL_HTTP_HOST_URL = @"http://news.coolban.com/Api/Index/n
 /*
  *  从网络获取json数据
  */
-- (void)loadNews{
+- (void)loadNews {
     NSURL *url = [NSURL URLWithString:CYL_HTTP_HOST_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:1 timeoutInterval:15];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -49,18 +49,16 @@ static NSString *const CYL_HTTP_HOST_URL = @"http://news.coolban.com/Api/Index/n
     }];
 }
 
-/*
- *数据源的方法
- */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+#pragma mark - UITableViewDataSource Method
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.news.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CYLNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"news1"];
     CYLNews *news = self.news[indexPath.row];
     cell.news = news;
-    
     return cell;
 }
 

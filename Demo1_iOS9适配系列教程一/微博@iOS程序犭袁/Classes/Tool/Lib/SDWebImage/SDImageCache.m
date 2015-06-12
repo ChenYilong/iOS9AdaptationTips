@@ -227,7 +227,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     BOOL exists = NO;
     
     // this is an exception to access the filemanager on another queue than ioQueue, but we are using the shared instance
-    // from https://github.com/ChenYilong docs on NSFileManager: The methods of the shared NSFileManager object can be called from multiple threads safely.
+    // from  https://github.com/ChenYilong/iOS9AdaptationTips/ docs on NSFileManager: The methods of the shared NSFileManager object can be called from multiple threads safely.
     // 共享的 NSFileManager 对象可以保证在多线程运行时是安全的
     // 检查文件是否存在
     exists = [[NSFileManager defaultManager] fileExistsAtPath:[self defaultCachePathForKey:key]];
