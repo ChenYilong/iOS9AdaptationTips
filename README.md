@@ -1,7 +1,18 @@
 # iOS9-
+
+
+
 iOS9适配系列教程
 
+**Demo1_iOS9适配系列教程一**
 
+> English:
+As the [Apple][1] say :
+  [1]: https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13
+  
+ ![enter image description here][2]
+  [2]: https://i.imgur.com/dCD1fBB.png
+  
 iOS 9 and OSX 10.11 require TLSv1.2 SSL for all hosts you plan to request data from unless you specify exception domains in your app's Info.plist file.
 
 The syntax for the Info.plist configuration looks like this:
