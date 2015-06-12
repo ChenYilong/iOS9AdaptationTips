@@ -47,3 +47,8 @@ If your application (a third-party web browser, for instance) needs to connect t
 If you're having to do this, it's probably best to update your servers to use TLSv1.2 and SSL, if they're not already doing so. This should be considered a temporary workaround.
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
+
+Do like:
+ ![enter image description here][3]
+
+  [3]: https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9适配系列教程一/微博%40iOS程序犭袁/http问题.gif
