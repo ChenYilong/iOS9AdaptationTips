@@ -4,7 +4,12 @@
 
 iOS9适配系列教程
 
-## 1. Demo1_iOS9适配系列教程一
+## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
+
+
+> English
+
+
 
 How to deal with the SSL in iOS9，One solution is to  do like:
  ![enter image description here][3]
@@ -17,6 +22,14 @@ As the [Apple][1] say :
   
  ![enter image description here][2]
   [2]: https://i.imgur.com/dCD1fBB.png
+  
+  
+   ![enter image description here][4]
+
+  [4]: https://i.imgur.com/Tc0fS6p.jpg
+   ![enter image description here][5]
+
+  [5]: https://i.imgur.com/v2Tskwh.jpg
   
 iOS 9 and OSX 10.11 require TLSv1.2 SSL for all hosts you plan to request data from unless you specify exception domains in your app's Info.plist file.
 
@@ -53,6 +66,7 @@ If your application (a third-party web browser, for instance) needs to connect t
 If you're having to do this, it's probably best to update your servers to use TLSv1.2 and SSL, if they're not already doing so. This should be considered a temporary workaround.
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
+
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
 
@@ -113,4 +127,15 @@ Use like:
         _locationManager.allowsBackgroundLocationUpdates = YES;
     }
     [_locationManager startUpdatingLocation];
+
+
+
+
+> 中文
+
+## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
+
+TLS 1.2 协议 强制增强数据访问安全
+系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+
 
