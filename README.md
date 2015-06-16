@@ -4,7 +4,7 @@
 
 iOS9适配系列教程
 
- 1. Demo1_iOS9适配系列教程一
+## 1. Demo1_iOS9适配系列教程一
 
 How to deal with the SSL in iOS9，One solution is to  do like:
  ![enter image description here][3]
@@ -53,3 +53,64 @@ If your application (a third-party web browser, for instance) needs to connect t
 If you're having to do this, it's probably best to update your servers to use TLSv1.2 and SSL, if they're not already doing so. This should be considered a temporary workaround.
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
+##2.Demo2_iOS9新特性_更灵活的后台定位
+If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
+
+This new property is explained in the WWDC session ["What's New in Core Location"][1].
+
+The default value is `NO` if you link against iOS 9.
+
+If your app uses location in the background (without showing the blue status bar) you have to set `allowsBackgroundLocationUpdates` to `YES` in addition to setting the background mode capability in Info.plist. Otherwise location updates are only delivered in foreground. The advantage is that you can now have location managers with background location updates and other location managers with only foreground location updates in the same app. You can also reset the value to `NO` to change the behavior.
+
+The documentation is pretty clear about it:
+ 
+> By default, this is NO for applications linked against iOS 9.0 or
+> later, regardless of minimum deployment target.
+> 
+> With UIBackgroundModes set to include "location" in Info.plist, you
+> must also set this property to YES at runtime whenever calling
+> -startUpdatingLocation with the intent to continue in the background.
+> 
+> Setting this property to YES when UIBackgroundModes does not include
+> "location" is a fatal error.
+> 
+> Resetting this property to NO is equivalent to omitting "location"
+> from the UIBackgroundModes value.  Access to location is still
+> permitted whenever the application is running (ie not suspended), and
+> has sufficient authorization (ie it has WhenInUse authorization and is
+> in use, or it has Always authorization).  However, the app will still
+> be subject to the usual task suspension rules.
+> 
+> See -requestWhenInUseAuthorization and -requestAlwaysAuthorization for
+> more details on possible authorization values.
+
+
+  [1]: https://developer.apple.com/videos/wwdc/2015/?id=714
+Set  Info.plist like：
+ ![enter image description here][4]
+
+  [4]:https://i.imgur.com/MAoKbUe.png
+
+The syntax for the Info.plist configuration looks like this:
+
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>微博@iOS程序犭袁 请求后台定位权限</string>
+    
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
+
+Use like:
+
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+        [_locationManager requestAlwaysAuthorization];
+    }
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+        _locationManager.allowsBackgroundLocationUpdates = YES;
+    }
+    [_locationManager startUpdatingLocation];
+
