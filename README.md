@@ -71,7 +71,9 @@ As of today, the prerelease documentation makes no mention of any of these confi
 If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
 
 This new property is explained in the WWDC session ["What's New in Core Location"][6].
+ ![enter image description here][7]
 
+  [7]: https://i.imgur.com/pvVh1fx.png
 The default value is `NO` if you link against iOS 9.
 
 If your app uses location in the background (without showing the blue status bar) you have to set `allowsBackgroundLocationUpdates` to `YES` in addition to setting the background mode capability in Info.plist. Otherwise location updates are only delivered in foreground. The advantage is that you can now have location managers with background location updates and other location managers with only foreground location updates in the same app. You can also reset the value to `NO` to change the behavior.
@@ -101,9 +103,9 @@ The documentation is pretty clear about it:
 
   [6]: https://developer.apple.com/videos/wwdc/2015/?id=714
 Set  Info.plist like：
- ![enter image description here][7]
+ ![enter image description here][8]
 
-  [7]:https://i.imgur.com/MAoKbUe.png
+  [8]:https://i.imgur.com/MAoKbUe.png
 
 The syntax for the Info.plist configuration looks like this:
 
