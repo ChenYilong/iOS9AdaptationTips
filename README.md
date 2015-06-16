@@ -70,7 +70,7 @@ As of today, the prerelease documentation makes no mention of any of these confi
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
 
-This new property is explained in the WWDC session ["What's New in Core Location"][1].
+This new property is explained in the WWDC session ["What's New in Core Location"][6].
 
 The default value is `NO` if you link against iOS 9.
 
@@ -99,11 +99,11 @@ The documentation is pretty clear about it:
 > more details on possible authorization values.
 
 
-  [1]: https://developer.apple.com/videos/wwdc/2015/?id=714
+  [6]: https://developer.apple.com/videos/wwdc/2015/?id=714
 Set  Info.plist like：
- ![enter image description here][4]
+ ![enter image description here][7]
 
-  [4]:https://i.imgur.com/MAoKbUe.png
+  [7]:https://i.imgur.com/MAoKbUe.png
 
 The syntax for the Info.plist configuration looks like this:
 
