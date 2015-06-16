@@ -14,7 +14,7 @@ iOS9适配系列教程
 How to deal with the SSL in iOS9，One solution is to  do like:
  ![enter image description here][3]
 
-  [3]: https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9适配系列教程一/微博%40iOS程序犭袁/http问题.gif
+  [3]: https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif
 
 
 As the [Apple][1] say :
