@@ -169,4 +169,25 @@ TLS 1.2 协议 强制增强数据访问安全
     // 6. 更新用户位置
     [_locationManager startUpdatingLocation];
 
+但是如果照着这种方式尝试，而没有配置Info.plist，100%你的程序会崩溃掉，并报错：
+
+> *** Assertion failure in -[CLLocationManager setAllowsBackgroundLocationUpdates:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/CoreLocationFramework_Sim/CoreLocation-1808.1.5/Framework/CoreLocation/CLLocationManager.m:593
+
+
+要将  Info.plist 配置如下：
+ ![enter image description here][8]
+
+  [8]:https://i.imgur.com/MAoKbUe.png
+
+对应的 Info.plist 的XML源码是：
+
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>微博@iOS程序犭袁 请求后台定位权限</string>
+    
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
+
+
 
