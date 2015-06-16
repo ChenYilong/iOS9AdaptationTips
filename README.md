@@ -139,5 +139,34 @@ Use like:
 
 TLS 1.2 协议 强制增强数据访问安全
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+##2.Demo2_iOS9新特性_更灵活的后台定位
+
+【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
+
+如果没有请求后台定位的权限，也是可以在后台定位的，不过会带蓝条：
+ ![enter image description here][9]
+  [9]: https://i.imgur.com/UoqGHlG.png
+
+如何偷偷在后台定位：请求后台定位权限：
+
+	 // 1. 实例化定位管理器
+    _locationManager = [[CLLocationManager alloc] init];
+    // 2. 设置代理
+    _locationManager.delegate = self;
+    // 3. 定位精度
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    // 4.请求用户权限：分为：⓵只在前台开启定位⓶在后台也可定位，
+    //注意：建议只请求⓵和⓶中的一个，如果两个权限都需要，只请求⓶即可，
+    //⓵⓶这样的顺序，将导致bug：第一次启动程序后，系统将只请求⓵的权限，⓶的权限系统不会请求，只会在下一次启动应用时请求⓶
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+        //[_locationManager requestWhenInUseAuthorization];//⓵只在前台开启定位
+        [_locationManager requestAlwaysAuthorization];//⓶在后台也可定位
+    }
+    // 5.iOS9新特性：将允许出现这种场景：同一app中多个location manager：一些只能在前台定位，另一些可在后台定位（并可随时禁止其后台定位）。
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+        _locationManager.allowsBackgroundLocationUpdates = YES;
+    }
+    // 6. 更新用户位置
+    [_locationManager startUpdatingLocation];
 
 
