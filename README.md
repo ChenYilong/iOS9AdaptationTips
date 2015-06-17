@@ -194,33 +194,36 @@ Since iOS9 there is no option to trust an enterprise build.
 Before iOS9，it's very easy to use:if you touch the app,it'll apear this :
 
  ![enter image description here][10]
-[10]http://i.stack.imgur.com/WwF76.png
+
+  [10]: http://i.stack.imgur.com/WwF76.png
 
 You have to let the user  do like:
 Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
 
-![enter image description here][11]
-[11]https://i.imgur.com/EUaNHzc.gif
+ ![enter image description here][11]
+
+  [11]: https://i.imgur.com/EUaNHzc.gif
 
 ##3.企业级分发
 
 iOS9之前，企业级分发十分方便：点击App出现“信任按钮”，
 
 
-![enter image description here][12]
+ ![enter image description here][12]
 
-[12]https://i.imgur.com/aSmM8bk.png
+  [12]: https://i.imgur.com/aSmM8bk.png
 
 iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
 
  ![enter image description here][10]
 
-[10]http://i.stack.imgur.com/WwF76.png
+  [10]: http://i.stack.imgur.com/WwF76.png
 
 必须让用户进行gif图中的设置（相关Demo：https://github.com/ChenYilong/iOS9AdaptationTips/ ）
 
  ![enter image description here][13]
-[13]https://i.imgur.com/PXM235L.gif
+
+  [13]: https://i.imgur.com/PXM235L.gif
 
 
 
