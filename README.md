@@ -228,9 +228,10 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
 必须让用户进行gif图中的设置（相关Demo：https://github.com/ChenYilong/iOS9AdaptationTips/ ）
 
- ![enter image description here][12]
 
-  [12]: https://i.imgur.com/AdGNYHe.gif
+ ![enter image description here][14]
+
+  [14]: https://i.imgur.com/PXM235L.gif
 
 
 
