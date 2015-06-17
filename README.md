@@ -198,13 +198,17 @@ Before iOS9，it's very easy to use:if you touch the app,it'll apear this :
   [10]: http://i.stack.imgur.com/WwF76.png
 
 Now:
+
  ![enter image description here][11]
 
-
+  [11]: https://i.imgur.com/Skn9iXk.png
+  
 You have to let the user  do like:
 Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
 
- ![enter image description here][12]
+  ![enter image description here][12]
+
+  [12]: https://i.imgur.com/AdGNYHe.gif
 
 
 ##3.企业级分发
