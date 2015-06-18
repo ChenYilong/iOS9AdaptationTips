@@ -6,7 +6,7 @@ iOS9适配系列教程【中文在页面下方】
 
 > English
 
-## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
+## 1. Demo1_You'd better Convert HTTP to HTTPS 
 
 
 
@@ -69,7 +69,7 @@ If you're having to do this, it's probably best to update your servers to use TL
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
 
-##2.Demo2_iOS9新特性_更灵活的后台定位
+##2.Demo2_iOS9 new feature  in CoreLocation :  background only when you need
 If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
 
 This new property is explained in the WWDC session ["What's New in Core Location"][6].
@@ -160,7 +160,17 @@ After Xcode 7,bitcode option will be enabled by default,If your library was comp
 
 
 
->  1. Update your library with bit code, 
+>  1. Update your library with bit code, or you'll get warnings like:
+
+> (null): URGENT: all bitcode will be dropped because
+> '/Users/myname/Library/Mobile
+> Documents/com~apple~CloudDocs/foldername/appname/GoogleMobileAds.framework/GoogleMobileAds(GADSlot+AdEvents.o)'
+> was built without bitcode. You must rebuild it with bitcode enabled
+> (Xcode setting ENABLE_BITCODE), obtain an updated library from the
+> vendor, or disable bitcode for this target. Note: This will be an
+> error in the future.
+
+
 
 
 >  2.  Say NO to Enable Bitcode in your target Build Settings 
@@ -276,10 +286,18 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 ##4.Bitcode（通俗解释：在线版安卓ART模式）
 未来Watch应用须包含Bitcode，iOS不强制，但Xcode7默认会开启Bitcode。
 
-如何适配？方法一：更新library使包含Bitcode，否则会出现下图中的警告；
- ![enter image description here][19]
+如何适配？方法一：更新library使包含Bitcode，否则会出现以下中的警告；
 
-  [19]: https://i.imgur.com/Ef2wwJ6.png
+> (null): URGENT: all bitcode will be dropped because
+> '/Users/myname/Library/Mobile
+> Documents/com~apple~CloudDocs/foldername/appname/GoogleMobileAds.framework/GoogleMobileAds(GADSlot+AdEvents.o)'
+> was built without bitcode. You must rebuild it with bitcode enabled
+> (Xcode setting ENABLE_BITCODE), obtain an updated library from the
+> vendor, or disable bitcode for this target. Note: This will be an
+> error in the future.
+
+
+
 方法二：关闭Bitcode，方法见下图
 
 >  ![enter image description here][15]
