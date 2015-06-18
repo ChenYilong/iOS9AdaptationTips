@@ -2,12 +2,14 @@
 
 
 
-iOS9适配系列教程
+iOS9适配系列教程【中文在页面下方】
+
+> English
 
 ## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
 
 
-> English
+
 
 
 
@@ -129,7 +131,66 @@ Use like:
         _locationManager.allowsBackgroundLocationUpdates = YES;
     }
     [_locationManager startUpdatingLocation];
+##3.iOS9 Untrusted Enterprise Developer with no option to trust
 
+Since iOS9 there is no option to trust an enterprise build. 
+Before iOS9，it's very easy to use:if you touch the app,it'll apear this :
+
+ ![enter image description here][10]
+
+  [10]: http://i.stack.imgur.com/WwF76.png
+
+Now:
+
+ ![enter image description here][11]
+
+  [11]: https://i.imgur.com/Skn9iXk.png
+  
+You have to let the user  do like:
+Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
+
+  ![enter image description here][12]
+
+  [12]: https://i.imgur.com/AdGNYHe.gif
+
+
+##4.bitcode optional 
+After Xcode 7,bitcode option will be enabled by default,If your library was compiled without bitcode but the bitcode option is enabled in your project settings.You can
+
+
+
+
+>  1. Update your library with bit code, 
+
+
+>  2.  Say NO to Enable Bitcode in your target Build Settings 
+
+
+
+
+
+>  ![enter image description here][15]
+
+
+
+  [15]: https://i.imgur.com/OoOogUe.gif
+
+and the Library Build Settings to remove the warnings
+
+For more information,go to 
+[documentation of bitcode in developer library][16]
+
+
+  [16]: https://developer.apple.com/library/prerelease/watchos/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html#//apple_ref/doc/uid/TP40012582-CH35-SW2
+
+,and WWDC 2015 Session 102: ["Platforms State of the Union"][17]
+
+
+  [17]: https://developer.apple.com/videos/wwdc/2015/?id=102
+
+ ![enter image description here][18]
+
+  [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
 
 
 
@@ -188,28 +249,6 @@ TLS 1.2 协议 强制增强数据访问安全
     <array>
         <string>location</string>
     </array>
-##3.iOS9 Untrusted Enterprise Developer with no option to trust
-
-Since iOS9 there is no option to trust an enterprise build. 
-Before iOS9，it's very easy to use:if you touch the app,it'll apear this :
-
- ![enter image description here][10]
-
-  [10]: http://i.stack.imgur.com/WwF76.png
-
-Now:
-
- ![enter image description here][11]
-
-  [11]: https://i.imgur.com/Skn9iXk.png
-  
-You have to let the user  do like:
-Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
-
-  ![enter image description here][12]
-
-  [12]: https://i.imgur.com/AdGNYHe.gif
-
 
 ##3.企业级分发
 
@@ -234,6 +273,35 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
   [14]: https://i.imgur.com/PXM235L.gif
 
 
+##4.Bitcode（通俗解释：在线版安卓ART模式）
+未来Watch应用须包含Bitcode，iOS不强制，但Xcode7默认会开启Bitcode。
+
+如何适配？方法一：更新library使包含Bitcode，否则会出现下图中的警告；
+ ![enter image description here][19]
+
+  [19]: https://i.imgur.com/Ef2wwJ6.png
+方法二：关闭Bitcode，方法见下图
+
+>  ![enter image description here][15]
+
+
+
+  [15]: https://i.imgur.com/OoOogUe.gif
+
+更多信息，请移步
+[bitcode 苹果官方文档][16]
+
+
+  [16]: https://developer.apple.com/library/prerelease/watchos/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html#//apple_ref/doc/uid/TP40012582-CH35-SW2
+
+,和 WWDC 2015 Session 102: ["Platforms State of the Union"][17]
+
+
+  [17]: https://developer.apple.com/videos/wwdc/2015/?id=102
+
+ ![enter image description here][18]
+
+  [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
 
 
 
