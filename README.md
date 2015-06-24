@@ -214,8 +214,12 @@ The main conclusion is that:
 
 The author also speculates that this is a bug with the OS and Apple will fix this in a subsequent release.
 
-This is a new security feature of iOS 9. Watch [WWDC 2015 Session 703][1] for more information. 
+This is a new security feature of iOS 9. Watch [WWDC 2015 Session 703][19] for more information. 
 
+ ![enter image description here][20]
+
+  [20]: https://i.imgur.com/2HxWQqq.png
+ 
 Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry in its plist file, declaring which schemes it attempts to query.
 
     <key>LSApplicationQueriesSchemes</key>
@@ -366,3 +370,10 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
 > If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
+更多信息请移步：WWDC 2015 Session 703: "Privacy and Your App"  https://developer.apple.com/videos/wwdc/2015/?id=703 时间在30：18左右
+
+
+ ![enter image description here][20]
+
+  [20]: https://i.imgur.com/2HxWQqq.png
+ 
