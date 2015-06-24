@@ -201,6 +201,32 @@ For more information,go to
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
+##5.Privacy and Your App【URL scheme changes】
+iOS 9 has made a small change to the handling of URL scheme. You must whitelist the url's that your app will call out to using the `LSApplicationQueriesSchemes` key in your `Info.plist`. 
+
+Please see post here: http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes
+
+The main conclusion is that:
+
+> If you call the “canOpenURL” method on a URL that is not in your whitelist, it will return “NO”, even if there is an app installed that has registered to handle this scheme. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
+
+> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
+
+The author also speculates that this is a bug with the OS and Apple will fix this in a subsequent release.
+
+This is a new security feature of iOS 9. Watch [WWDC 2015 Session 703][1] for more information. 
+
+Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry in its plist file, declaring which schemes it attempts to query.
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+     <string>urlscheme</string>
+     <string>urlscheme2</string>
+     <string>urlscheme3</string>
+     <string>urlscheme4</string>
+    </array> 
+
+  [19]: https://developer.apple.com/videos/wwdc/2015/?id=703
 
 
 
@@ -320,6 +346,23 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
+##5.URL scheme
+在iOS9中，如果使用URL scheme必须在"Info.plist"中将你要在外部调用的URL scheme列为白名单，否则不能使用。key叫做LSApplicationQueriesSchemes ，键值内容是
+
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	 <string>urlscheme</string>
+	 <string>urlscheme2</string>
+	 <string>urlscheme3</string>
+	 <string>urlscheme4</string>
+	</array> 
 
 
+推荐一篇博客: http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes
+
+其中最关键的是以下部分：
+
+> If you call the “canOpenURL” method on a URL that is not in your whitelist, it will return “NO”, even if there is an app installed that has registered to handle this scheme. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
+
+> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
