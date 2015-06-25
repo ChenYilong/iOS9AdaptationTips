@@ -3,6 +3,8 @@
 
 
 iOS9适配系列教程【中文在页面下方】
+（ 更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+For more infomation ，welcome go to [my twitter](https://twitter.com/stevechen1010)
 
 > English
 
