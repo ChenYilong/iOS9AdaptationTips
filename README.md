@@ -234,6 +234,26 @@ Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry 
 
   [19]: https://developer.apple.com/videos/wwdc/2015/?id=703
 
+##6. Support Slide Over and Split View of iOS 9
+
+![enter image description here](http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/06/ew-.gif)
+How to transition an an older project to support Slide Over and Split View of iOS 9？
+You may find that all the demo projects was written by storyboard or xib,
+but the older project's UI is written by code！
+
+I would suggest switching to storyboards to make your life easy.
+
+I would highly recommend you watch the following WWDC videos and then think about what exactly you need to do in order to support multi tasking.
+
+ 1. [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/wwdc/2015/?id=218)
+
+ 2. [What's New in Storyboards][https://developer.apple.com/videos/wwdc/2015/?id=215]
+
+ 3. [Implementing UI Designs in Interface Builder][https://developer.apple.com/videos/wwdc/2015/?id=407]
+
+ 4. [Getting Started with Multitasking on iPad in iOS 9][https://developer.apple.com/videos/wwdc/2015/?id=205]
+
+ 5. [Optimizing Your App for Multitasking on iPad in iOS][https://developer.apple.com/videos/wwdc/2015/?id=212] 
 
 
 > 中文
@@ -379,3 +399,24 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
   [20]: https://i.imgur.com/2HxWQqq.png
  
+
+##6. iPad适配Slide Over 和 Split View
+
+ ![enter image description here](http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/06/ew-.gif)
+ 
+【iPad适配Slide Over 和 Split View】
+若想适配multi tasking特性，唯一的建议：弃纯代码，改用storyboard、xib，纵观苹果WWDC所有Demo均是如此：
+
+
+ 1. [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/wwdc/2015/?id=218)
+
+ 2. [What's New in Storyboards][https://developer.apple.com/videos/wwdc/2015/?id=215]
+
+ 3. [Implementing UI Designs in Interface Builder][https://developer.apple.com/videos/wwdc/2015/?id=407]
+
+ 4. [Getting Started with Multitasking on iPad in iOS 9][https://developer.apple.com/videos/wwdc/2015/?id=205]
+
+ 5. [Optimizing Your App for Multitasking on iPad in iOS][https://developer.apple.com/videos/wwdc/2015/?id=212] 
+
+
+

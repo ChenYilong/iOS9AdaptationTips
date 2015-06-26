@@ -74,8 +74,8 @@ static const CLLocationDegrees EmptyLocation = -1000.0;
     //注意：建议只请求⓵和⓶中的一个，如果两个权限都需要，只请求⓶即可，
     //⓵⓶这样的顺序，将导致bug：第一次启动程序后，系统将只请求⓵的权限，⓶的权限系统不会请求，只会在下一次启动应用时请求⓶
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
-        [_locationManager requestWhenInUseAuthorization];//⓵只在前台开启定位
-//        [self.locationManager requestAlwaysAuthorization];//⓶在后台也可定位
+        //[_locationManager requestWhenInUseAuthorization];//⓵只在前台开启定位
+        [self.locationManager requestAlwaysAuthorization];//⓶在后台也可定位
     }
     // 5.iOS9新特性：将允许出现这种场景：同一app中多个location manager：一些只能在前台定位，另一些可在后台定位（并可随时禁止其后台定位）。
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
@@ -143,7 +143,12 @@ static const CLLocationDegrees EmptyLocation = -1000.0;
 }
 
 -(void)openGPSTips{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"当前定位服务不可用" message:@"请尝试到“设置->隐私->定位服务”中开启定位\n或等待GPS定位成功" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"当前定位服务不可用"
+                                                    message:@"请尝试到“设置->隐私->定位服务”中开启定位\n或等待GPS定位成功"
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:nil
+                          ];
     [alert show];
     int delayInSeconds = 2;
     dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -170,7 +175,12 @@ static const CLLocationDegrees EmptyLocation = -1000.0;
                      range:NSMakeRange(0, 2)];
         self.titleLabel.attributedText = text;
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"只支持在iOS9及以上系统执行本操作" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"只支持在iOS9及以上系统执行本操作"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:nil
+                              ];
         [alert show];
         int delayInSeconds = 1;
         dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -192,7 +202,6 @@ static const CLLocationDegrees EmptyLocation = -1000.0;
                  CLPlacemark *placeInfo = [placemarks objectAtIndex:0];
                  NSString *title = [placeInfo.addressDictionary objectForKey:@"Name"];
                  NSString *subTitle = [placeInfo.addressDictionary objectForKey:@"FormattedAddressLines"][0];
-                 //在未进行POI搜索时进行初始化,如果进行了POI搜索会进行重置
                  CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                  if(![self isCoordinateEmpty:coordinate]) {
                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:subTitle delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
@@ -204,8 +213,7 @@ static const CLLocationDegrees EmptyLocation = -1000.0;
                      });
                  }
                  NSLog(@"位置在：%@", subTitle);
-             }
-             else {
+             } else {
                  [self openGPSTips];
              }
          }];
