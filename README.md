@@ -245,15 +245,19 @@ I would suggest switching to storyboards to make your life easy.
 
 I would highly recommend you watch the following WWDC videos and then think about what exactly you need to do in order to support multi tasking.
 
+
  1. [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/wwdc/2015/?id=218)
 
- 2. [What's New in Storyboards][https://developer.apple.com/videos/wwdc/2015/?id=215]
+ 2. [What's New in Storyboards](https://developer.apple.com/videos/wwdc/2015/?id=215)
 
- 3. [Implementing UI Designs in Interface Builder][https://developer.apple.com/videos/wwdc/2015/?id=407]
+ 3. [Implementing UI Designs in Interface Builder](https://developer.apple.com/videos/wwdc/2015/?id=407)
 
- 4. [Getting Started with Multitasking on iPad in iOS 9][https://developer.apple.com/videos/wwdc/2015/?id=205]
+ 4. [Getting Started with Multitasking on iPad in iOS 9](https://developer.apple.com/videos/wwdc/2015/?id=205)
 
- 5. [Optimizing Your App for Multitasking on iPad in iOS][https://developer.apple.com/videos/wwdc/2015/?id=212] 
+ 5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
+
+
+
 
 
 > 中文
@@ -410,13 +414,13 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
  1. [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/wwdc/2015/?id=218)
 
- 2. [What's New in Storyboards][https://developer.apple.com/videos/wwdc/2015/?id=215]
+ 2. [What's New in Storyboards](https://developer.apple.com/videos/wwdc/2015/?id=215)
 
- 3. [Implementing UI Designs in Interface Builder][https://developer.apple.com/videos/wwdc/2015/?id=407]
+ 3. [Implementing UI Designs in Interface Builder](https://developer.apple.com/videos/wwdc/2015/?id=407)
 
- 4. [Getting Started with Multitasking on iPad in iOS 9][https://developer.apple.com/videos/wwdc/2015/?id=205]
+ 4. [Getting Started with Multitasking on iPad in iOS 9](https://developer.apple.com/videos/wwdc/2015/?id=205)
 
- 5. [Optimizing Your App for Multitasking on iPad in iOS][https://developer.apple.com/videos/wwdc/2015/?id=212] 
+ 5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
 
 
