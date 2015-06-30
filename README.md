@@ -128,7 +128,7 @@ Use like:
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
         [_locationManager requestAlwaysAuthorization];
-    }
+    }xc
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
         _locationManager.allowsBackgroundLocationUpdates = YES;
     }
