@@ -283,15 +283,9 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 ###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
 
-（SSL的解释在此不做赘述，网上有好多文章，也不是本文重点。）
-
-跟往常一样，先说结论：
-
-> HTTP+SSL/TLS+TCP = HTTPS
-
-或者
-
-> HTTPS = “HTTP over SSL”
+什么是SSL/TLS？
+SSL的解释在此不做赘述，网上有好多文章，也不是本文重点。
+说下什么是TLS，还有跟HTTP和HTTPS有什么关系。
 
 TLS 是 SSL 新的别称。举个例子：
 
@@ -304,8 +298,9 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 > TLS 1.0 ＝ SSL 3.1
 
 所以他们是一个东西，我们平常也经常简单见到 “SSL/TLS” 这种说法。
+目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。目前主流浏览器都已经实现了TLS 1.2的支持。
 
-常用的是下面这些：
+常用的有下面这些：
 
  - SSL 2.0
  - SSL 3.0
@@ -314,7 +309,9 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
  - TLS 1.2 (SSL 3.1)
 
 那为什么标题是“使用HTTPS”而没有提及SSL和TLS什么事？
-要理解这个，要看下一个公式：
+“SSL/TLS”跟HTTP和HTTPS有什么关系？
+
+要理解这个，要看下他们之间的关系：
 
 > HTTP+SSL/TLS+TCP = HTTPS
 
@@ -324,7 +321,7 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 > HTTPS = “HTTP over SSL”
 
-目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。目前主流浏览器都已经实现了TLS 1.2的支持。
+也就是说：
 
 > Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS
 
@@ -332,7 +329,7 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 > 不使用SSL/TLS的HTTP通信，就是不加密的通信！
 
-所有信息明文传播，带来了三大风险：
+ 不使用SSL/TLS的HTTP通信，所有信息明文传播，带来了三大风险：
 
  1. 窃听风险（eavesdropping）：第三方可以获知通信内容。
  2. 篡改风险（tampering）：第三方可以修改通信内容。
@@ -398,7 +395,7 @@ Info.plist 配置中的XML源码如下所示:
     </dict>
 
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
-彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒。。。
+彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级。。。
 
 你可以在Info.plist 配置中改用下面的XML源码：
 
