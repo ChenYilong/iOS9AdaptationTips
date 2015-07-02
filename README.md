@@ -266,6 +266,97 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 TLS 1.2 协议 强制增强数据访问安全
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+
+在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
+
+###跟我有毛关系？需要我加班吗？！
+
+首先咱们来看下业内对Apple这一做法的评论：
+![enter image description here](https://i.imgur.com/XfBA67A.jpg)
+这是某社交App上讨论，看来业内还是吐槽声和肯定声同在。
+
+结论是：
+
+> 跟你很有关系，加班吧，少年！
+
+书归正传【严肃脸】，我们正式讨论下 WHAT，WHY，HOW：
+
+ 1. WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
+ 2. WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS，闲得慌？！Apple是不是又在反人类？）
+ 3. HOW（如何适配？---弱弱地问下：加班要多久？）
+
+###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
+
+跟往常一样，先说结论：
+
+> HTTP+SSL/TLS+TCP = HTTPS
+
+TLS 是 SSL 新的别称。举个例子：
+
+“TLS1.0”之于“SSL3.1”，犹“公元2015”之于“民国104”，或者是“一千克”之于“一公斤”，或者是“半斤”之于“八两”：称呼不同，但意思相同。
+
+SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
+
+也就是说：
+
+> TLS 1.0 ＝ SSL 3.1
+
+所以他们是一个东西，我们平常也经常简单见到 “SSL/TLS” 这种说法。
+
+我们常见的
+
+那为什么标题是“使用HTTPS”而没有提及SSL和TLS什么事？
+要理解这个，要看下一个公式：
+
+> HTTP+SSL/TLS+TCP = HTTPS
+
+![HTTP+SSL/TLS+TCP](http://www.zytrax.com/tech/survival/ssl-layers.gif)
+
+
+
+打个比方：如果原来的 HTTP 是塑料水管，容易被戳破；那么如今新设计的 HTTPS 就像是在原有的塑料水管之外，再包一层金属水管。一来，原有的塑料水管照样运行；二来，用金属加固了之后，不容易被戳破。
+
+
+目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。
+
+常用的是下面这些：
+
+ - SSL 2.0
+ - SSL 3.0
+ - TLS 1.0 (SSL 3.1)
+ - TLS 1.1 (SSL 3.1)
+ - TLS 1.2 (SSL 3.1)
+
+> Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS
+
+###WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS，闲得慌？！Apple是不是又在反人类？）
+
+> 不使用SSL/TLS的HTTP通信，就是不加密的通信！
+
+所有信息明文传播，带来了三大风险：
+
+ 1. 窃听风险（eavesdropping）：第三方可以获知通信内容。
+ 2. 篡改风险（tampering）：第三方可以修改通信内容。
+ 3. 冒充风险（pretending）：第三方可以冒充他人身份参与通信。
+
+SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
+ 1. 所有信息都是加密传播，第三方无法窃听。
+ 2. 具有校验机制，一旦被篡改，通信双方会立刻发现。
+ 3. 配备身份证书，防止身份被冒充。
+
+### HOW（如何适配？---弱弱地问下：加班要多久？）
+
+正如文章开头所说：
+
+> TLS 1.2 协议 强制增强数据访问安全 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+
+方案一：立即让公司的服务端升级使用TLS 1.2
+
+方案二：虽Apple不建议，但可通过在 Info.plist 中声明，倒退回不安全的网络请求依然能让App访问指定http，甚至任意的http，
+
+具体做法见gif图，示例Demo见 [enter image description here](Demo1)
+
+
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
 【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
