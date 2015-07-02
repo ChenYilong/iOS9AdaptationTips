@@ -4,6 +4,8 @@
 
 iOS9适配系列教程【中文在页面下方】
 （ 更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+
+
 For more infomation ，welcome go to [my twitter](https://twitter.com/stevechen1010)
 
 > English
@@ -16,24 +18,16 @@ For more infomation ，welcome go to [my twitter](https://twitter.com/stevechen1
 
 
 How to deal with the SSL in iOS9，One solution is to  do like:
- ![enter image description here][3]
+![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
-  [3]: https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif
+As the  [Apple](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) say :
 
 
-As the [Apple][1] say :
-  [1]: https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13
+  ![enter image description here](https://i.imgur.com/dCD1fBB.png)
   
- ![enter image description here][2]
-  [2]: https://i.imgur.com/dCD1fBB.png
-  
-  
-   ![enter image description here][4]
+![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
 
-  [4]: https://i.imgur.com/Tc0fS6p.jpg
-   ![enter image description here][5]
-
-  [5]: https://i.imgur.com/v2Tskwh.jpg
+![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
   
 iOS 9 and OSX 10.11 require TLSv1.2 SSL for all hosts you plan to request data from unless you specify exception domains in your app's Info.plist file.
 
@@ -356,6 +350,48 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
 
 具体做法见gif图，示例Demo见 [enter image description here](Demo1)
 
+![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
+
+正如  [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) 所说 :
+
+
+  ![enter image description here](https://i.imgur.com/dCD1fBB.png)
+
+![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
+
+![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
+  
+Info.plist 配置中的XML源码如下所示:
+
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSExceptionDomains</key>
+      <dict>
+        <key>yourserver.com</key>
+        <dict>
+          <!--允许子域名:subdomains-->
+          <key>NSIncludesSubdomains</key>
+          <true/>
+          <!--允许App进行不安全的HTTP请求-->
+          <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+          <!--在这里声明所支持的 TLS 最低版本-->
+          <key>NSTemporaryExceptionMinimumTLSVersion</key>
+          <string>TLSv1.1</string>
+        </dict>
+      </dict>
+    </dict>
+
+If your application (a third-party web browser, for instance) needs to connect to arbitrary hosts, you can configure it like this:
+
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <!--彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求 (不建议这样做)-->
+	    <key>NSAllowsArbitraryLoads</key>
+	    <true/>
+    </dict>
+
+声明：目前Apple的官方文档并未提及如何在 Info.plist 配置，我将密切关注官方文档，如有提及，再来更新[enter image description here](本文) .
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
