@@ -258,7 +258,7 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 ## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
 
-TLS 1.2 协议 强制增强数据访问安全
+[摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是 强制增强数据访问安全，而且
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
@@ -266,7 +266,7 @@ TLS 1.2 协议 强制增强数据访问安全
 ###跟我有毛关系？需要我加班吗？！
 
 首先咱们来看下业内对Apple这一做法的评论：
-![enter image description here](https://i.imgur.com/XfBA67A.jpg)
+![enter image description here](https://i.imgur.com/Q17QDG0.png)
 这是某社交App上讨论，看来业内还是吐槽声和肯定声同在。
 
 结论是：
@@ -297,7 +297,13 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 所以他们是一个东西，我们平常也经常简单见到 “SSL/TLS” 这种说法。
 
-我们常见的
+常用的是下面这些：
+
+ - SSL 2.0
+ - SSL 3.0
+ - TLS 1.0 (SSL 3.1)
+ - TLS 1.1 (SSL 3.1)
+ - TLS 1.2 (SSL 3.1)
 
 那为什么标题是“使用HTTPS”而没有提及SSL和TLS什么事？
 要理解这个，要看下一个公式：
@@ -313,13 +319,6 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。
 
-常用的是下面这些：
-
- - SSL 2.0
- - SSL 3.0
- - TLS 1.0 (SSL 3.1)
- - TLS 1.1 (SSL 3.1)
- - TLS 1.2 (SSL 3.1)
 
 > Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS
 
@@ -348,7 +347,7 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
 
 方案二：虽Apple不建议，但可通过在 Info.plist 中声明，倒退回不安全的网络请求依然能让App访问指定http，甚至任意的http，
 
-具体做法见gif图，示例Demo见 [enter image description here](Demo1)
+具体做法见gif图，示例Demo见 [Demo1](https://github.com/ChenYilong/iOS9AdaptationTips)
 
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
@@ -391,7 +390,7 @@ If your application (a third-party web browser, for instance) needs to connect t
 	    <true/>
     </dict>
 
-声明：目前Apple的官方文档并未提及如何在 Info.plist 配置，我将密切关注官方文档，如有提及，再来更新[enter image description here](本文) .
+声明：目前Apple的官方文档并未提及如何在 Info.plist 配置，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
