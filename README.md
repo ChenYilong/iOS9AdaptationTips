@@ -283,9 +283,15 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 ###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
 
+（SSL的解释在此不做赘述，网上有好多文章，也不是本文重点。）
+
 跟往常一样，先说结论：
 
 > HTTP+SSL/TLS+TCP = HTTPS
+
+或者
+
+> HTTPS = “HTTP over SSL”
 
 TLS 是 SSL 新的别称。举个例子：
 
@@ -314,13 +320,11 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 ![HTTP+SSL/TLS+TCP](http://www.zytrax.com/tech/survival/ssl-layers.gif)
 
+或者
 
+> HTTPS = “HTTP over SSL”
 
-打个比方：如果原来的 HTTP 是塑料水管，容易被戳破；那么如今新设计的 HTTPS 就像是在原有的塑料水管之外，再包一层金属水管。一来，原有的塑料水管照样运行；二来，用金属加固了之后，不容易被戳破。
-
-
-目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。
-
+目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。目前主流浏览器都已经实现了TLS 1.2的支持。
 
 > Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS
 
@@ -338,6 +342,10 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
  1. 所有信息都是加密传播，第三方无法窃听。
  2. 具有校验机制，一旦被篡改，通信双方会立刻发现。
  3. 配备身份证书，防止身份被冒充。
+
+SSL/TLS的作用，打个比方来讲：
+
+如果原来的 HTTP 是塑料水管，容易被戳破；那么如今新设计的 HTTPS 就像是在原有的塑料水管之外，再包一层金属水管（SSL/TLS协议）。一来，原有的塑料水管照样运行；二来，用金属加固了之后，不容易被戳破。
 
 ### HOW（如何适配？---弱弱地问下：加班要多久？）
 
@@ -389,7 +397,10 @@ Info.plist 配置中的XML源码如下所示:
       </dict>
     </dict>
 
-If your application (a third-party web browser, for instance) needs to connect to arbitrary hosts, you can configure it like this:
+上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
+彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒。。。
+
+你可以在Info.plist 配置中改用下面的XML源码：
 
     <key>NSAppTransportSecurity</key>
     <dict>
