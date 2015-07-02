@@ -6,7 +6,7 @@ iOS9适配系列教程【中文在页面下方】
 （ 更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 
-For more infomation ，welcome go to [my twitter](https://twitter.com/stevechen1010)
+For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
 
 > English
 
@@ -23,7 +23,7 @@ How to deal with the SSL in iOS9，One solution is to  do like:
 As the  [Apple](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) say :
 
 
-  ![enter image description here](https://i.imgur.com/dCD1fBB.png)
+  ![enter image description here](https://i.imgur.com/eTgSHZY.png)
   
 ![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
 
@@ -365,12 +365,12 @@ SSL/TLS的作用，打个比方来讲：
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
 这也是官方文档和WWDC给出的解决方案：
- 1.   [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13)
+ 1.   [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13)  ![enter image description here](https://i.imgur.com/eTgSHZY.png)
  2. [WWDC Session： "Networking with NSURLSession" session（ 【WWDC 2015 session 703, “Privacy and Your App” O网页链接 】, 时间在30:18左右）](https://developer.apple.com/videos/wwdc/2015/?id=703)
 
 
 
-  ![enter image description here](https://i.imgur.com/dCD1fBB.png)
+
 
 ![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
 
