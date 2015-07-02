@@ -395,7 +395,7 @@ Info.plist 配置中的XML源码如下所示:
     </dict>
 
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
-彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级。。。
+彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级服务器。。。
 
 你可以在Info.plist 配置中改用下面的XML源码：
 
@@ -406,7 +406,7 @@ Info.plist 配置中的XML源码如下所示:
 	    <true/>
     </dict>
 
-声明：目前Apple的官方文档并未提及如何在 Info.plist 配置，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .
+【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
