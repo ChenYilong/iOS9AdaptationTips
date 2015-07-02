@@ -258,7 +258,7 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 ## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
 
-[摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是 强制增强数据访问安全，而且
+[摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是强制增强数据访问安全，而且
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
@@ -266,7 +266,9 @@ I would highly recommend you watch the following WWDC videos and then think abou
 ###跟我有毛关系？需要我加班吗？！
 
 首先咱们来看下业内对Apple这一做法的评论：
+
 ![enter image description here](https://i.imgur.com/Q17QDG0.png)
+
 这是某社交App上讨论，看来业内还是吐槽声和肯定声同在。
 
 结论是：
@@ -343,15 +345,21 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
 
 > TLS 1.2 协议 强制增强数据访问安全 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
 
-方案一：立即让公司的服务端升级使用TLS 1.2
+总之：
 
-方案二：虽Apple不建议，但可通过在 Info.plist 中声明，倒退回不安全的网络请求依然能让App访问指定http，甚至任意的http，
+> 要么咱们iOS程序猿加班，要么后台加班：
 
-具体做法见gif图，示例Demo见 [Demo1](https://github.com/ChenYilong/iOS9AdaptationTips)
+
+方案一：立即让公司的服务端升级使用TLS 1.2，以解析相关数据。
+
+方案二：虽Apple不建议，但可通过在 Info.plist 中声明，倒退回不安全的网络请求依然能让App访问指定http，甚至任意的http，具体做法见gif图，示例Demo见 [Demo1](https://github.com/ChenYilong/iOS9AdaptationTips)
 
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
-正如  [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) 所说 :
+这也是官方文档和WWDC给出的解决方案：
+ 1.   [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13)
+ 2. [WWDC Session： "Networking with NSURLSession" session（ 【WWDC 2015 session 703, “Privacy and Your App” O网页链接 】, 时间在30:18左右）](https://developer.apple.com/videos/wwdc/2015/?id=703)
+
 
 
   ![enter image description here](https://i.imgur.com/dCD1fBB.png)
