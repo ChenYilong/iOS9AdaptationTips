@@ -256,10 +256,10 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
 > 中文
 
-## 1. Demo1_iOS9网络适配_改用更安全的HTTPS
+## 1. Demo1_iOS9网络适配_ATS：改用更安全的HTTPS
 
 [摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是强制增强数据访问安全，而且
-系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
 
@@ -323,7 +323,7 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 也就是说：
 
-> Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS
+> Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS。而这一做法，官方文档称为ATS，全称为App Transport Security。
 
 ###WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS，闲得慌？！Apple是不是又在反人类？）
 
@@ -343,6 +343,10 @@ SSL/TLS协议是为了解决这三大风险而设计的，希望达到：
 SSL/TLS的作用，打个比方来讲：
 
 如果原来的 HTTP 是塑料水管，容易被戳破；那么如今新设计的 HTTPS 就像是在原有的塑料水管之外，再包一层金属水管（SSL/TLS协议）。一来，原有的塑料水管照样运行；二来，用金属加固了之后，不容易被戳破。
+
+
+
+
 
 ### HOW（如何适配？---弱弱地问下：加班要多久？）
 
