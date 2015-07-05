@@ -3,7 +3,9 @@
 
 
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
-（ 更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+
+
+（截至2015年7月5日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
