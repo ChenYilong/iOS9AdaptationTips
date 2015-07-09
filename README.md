@@ -252,7 +252,13 @@ I would highly recommend you watch the following WWDC videos and then think abou
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
+##License
 
+Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) 
+
+ [Creative Commons BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)
+
+ 
 
 
 
@@ -571,4 +577,11 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
 
+
+
+----------
+
+
+Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)
 
