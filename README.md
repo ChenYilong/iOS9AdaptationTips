@@ -230,6 +230,33 @@ Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry 
 
   [19]: https://developer.apple.com/videos/wwdc/2015/?id=703
 
+Assuming two apps TestA and TestB. TestB wants to query if TestA is installed. "TestA" defines the following URL scheme in its info.plist file:
+
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>testA</string>
+			</array>
+		</dict>
+	</array>
+
+The second app "TestB" tries to find out if "TestA" is installed by calling:
+
+    [[UIApplication sharedApplication]
+                        canOpenURL:[NSURL URLWithString:@"TestA://"]];
+
+But this will normally return NO in iOS9 because "TestA" needs to be added to the LSApplicationQueriesSchemes entry in TestB's info.plist file. This is done by adding the following code to TestB's info.plist file:
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>TestA</string>
+    </array>
+
+A working implementation can be found here:
+https://github.com/gatzsche/LSApplicationQueriesSchemes-Working-Example
+
 ##6. Support Slide Over and Split View of iOS 9
 
 ![enter image description here](http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/06/ew-.gif)
