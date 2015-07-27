@@ -17,8 +17,6 @@ For more infomation ，welcome to follow [my twitter](https://twitter.com/stevec
 
 
 
-
-
 How to deal with the SSL in iOS9，One solution is to  do like:
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
@@ -66,6 +64,12 @@ If your application (a third-party web browser, for instance) needs to connect t
 If you're having to do this, it's probably best to update your servers to use TLSv1.2 and SSL, if they're not already doing so. This should be considered a temporary workaround.
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
+
+If your server is support  TLSv1.2 ,but you also have to do what I say just now if you want to connect success in iOS9:
+
+After some discussion with Apple Support, the issue is due to the self signed certificate.
+
+ATS trusts only certificate signed by a well known CA, all others are rejected. As a consequence the only solution with a Self signed certificate is to set an exception with NSExceptionDomains.
 
 ##2.Demo2_iOS9 new feature  in CoreLocation :  background only when you need
 If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
@@ -295,6 +299,10 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 [摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是强制增强数据访问安全，而且
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
+
+
+（注：有童鞋反映：“服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。”那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。）
+
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
 
