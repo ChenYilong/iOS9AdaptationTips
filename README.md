@@ -629,8 +629,16 @@ Xcode 7 + 会开启 Bitcode。
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
-##5.URL scheme
-在iOS9中，如果使用URL scheme必须在"Info.plist"中将你要在外部调用的URL scheme列为白名单，否则不能使用。key叫做LSApplicationQueriesSchemes ，键值内容是
+##5.Demo3---iOS9 URL Scheme 适配_引入白名单概念
+
+ [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) （ 时间在30：18左右）关于 `URL scheme` 的介绍，指出：
+
+
+ ![enter image description here][20]
+
+  [20]: https://i.imgur.com/2HxWQqq.png
+
+也就是说：在iOS9中，如果使用 `canOpenURL:` 方法，该方法所涉及到的  `URL scheme` 必须在"Info.plist"中将它们列为白名单，否则不能使用。key叫做LSApplicationQueriesSchemes ，键值内容是
 
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -640,19 +648,67 @@ Xcode 7 + 会开启 Bitcode。
 	 <string>urlscheme4</string>
 	</array> 
 
+然而，我们却发现了一件意外的事：
 
-推荐一篇[博文](http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes)，其中最关键的是以下部分：
+当我们在 iOS9-beta（截至本文发布时，iOS9正式版还未发布）中，使用 `openURL:`  方法时，不在白名单中的 URL 会报错
+
+ > “This app is not allowed to query for scheme xxx” 
+
+无论是官方文档还是 WWDC 的视频中都没有提及 `openURL:`  方法的这一变动，所以猜测这是 beta 版本一个 bug ，截至本文发布时，iOS9正式版还未发布，期望在正式版中能得以修复。在此之前，可通过将 `openURL:`  用到的 `URL scheme` 列入白名单来解决这个 bug 。
+
+苹果为什么要这么做？
+
+在 iOS9 之前，你可以使用 `canOpenURL:` 监测用户手机里到底装没装微信，装没装微博。但是也有一些别有用心的 App ，这些 App 有一张常用 App 的 `URL scheme`，然后他们会多次调用`canOpenURL:` 遍历该表，来监测用户手机都装了什么 App ，比如这个用户装了叫“大姨妈”的App，你就可以知道这个用户是女性，你就可以只推给这个用户女性用品的广告。这是侵犯用户隐私的行为。
+
+这也许就是原因。
+
+本项目中给出了一个演示用的 Demo ，仓库的文件夹叫“Demo3_iOS9URLScheme适配_引入白名单概念”，Demo引用自[ ***LSApplicationQueriesSchemes-Working-Example*** ](https://github.com/gatzsche/LSApplicationQueriesSchemes-Working-Example)
+
+Demo结构如下：
+
+![enter image description here](http://i61.tinypic.com/2hyyuqv.jpg)
+
+主要演示的情景是这样的：
+
+假设有两个App： weixin(微信) and 我的App. 我的App 想监测 weixin(微信) 是否被安装了. "weixin(微信)" 在 info.plist  中定义了 URL scheme :
+
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>weixin</string>
+            </array>
+        </dict>
+    </array>
+
+ 我的App 想监测 weixin(微信) 是否被安装了 ：
+
+    [[UIApplication sharedApplication]
+                        canOpenURL:[NSURL URLWithString:@"weixin(微信)://"]];
+
+即使你安装了微信，在iOS9中，这有可能会返回NO：
+
+因为你需要将 "weixin(微信)" 添加到 “我的App” 的 info.plist 文件中：
+
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>weixin</string>
+    </array>
+
+关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。
+
+
+另外，推荐一篇[博文](http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes)，其中最关键的是以下部分：
 
 > If you call the “canOpenURL” method on a URL that is not in your whitelist, it will return “NO”, even if there is an app installed that has registered to handle this scheme. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
+
+
+
 > If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
-更多信息请移步： [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) ， 时间在30：18左右。
-
-
- ![enter image description here][20]
-
-  [20]: https://i.imgur.com/2HxWQqq.png
  
 
 ##6. iPad适配Slide Over 和 Split View
