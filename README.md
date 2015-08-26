@@ -321,7 +321,7 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 书归正传【严肃脸】，我们正式讨论下 WHAT，WHY，HOW：
 
  1. WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
- 2. WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS，闲得慌？！Apple是不是又在反人类？）
+ 2. WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？！Apple是不是又在反人类？）
  3. HOW（如何适配？---弱弱地问下：加班要多久？）
 
 ###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
@@ -529,9 +529,56 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
 
 ##4.Bitcode（通俗解释：在线版安卓ART模式）
-未来Watch应用须包含Bitcode，iOS不强制，但Xcode7默认会开启Bitcode。
 
-如何适配？方法一：更新library使包含Bitcode，否则会出现以下中的警告；
+【前言】未来， Watch 应用必须包含 bitcode ，iOS不强制，Mac OS不支持。
+但最坑的一点是： Xcode7 及以上版本会默认开启 bitcode 。
+
+什么是 bitcode ？
+
+Apple 官方文档--[ ***App Distribution Guide – App Thinning (iOS, watchOS)*** ](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html#//apple_ref/doc/uid/TP40012582-CH35)是这样定义的：
+
+> Bitcode is an intermediate representation of a compiled program. Apps you upload to iTunes Connect that contain bitcode will be compiled and linked on the App Store. Including bitcode will allow Apple to re-optimize your app binary in the future without the need to submit a new version of your app to the store.
+
+翻译过来就是：
+
+>  bitcode 是被编译程序的一种中间形式的代码。包含 bitcode 配置的程序将会在 App Store 上被编译和链接。 bitcode 允许苹果在后期重新优化我们程序的二进制文件，而不需要我们重新提交一个新的版本到 App Store 上。
+
+
+在 Xcode简介--- [ ***What’s New in Xcode-New Features in Xcode 7*** ](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/WhatsNewXcode/Articles/xcode_7_0.html)中这样描述：
+
+
+ > Bitcode. When you archive for submission to the App Store, Xcode will compile your app into an intermediate representation. The App Store will then compile the bitcode down into the 64 or 32 bit executables as necessary.
+
+也就是
+
+ > 当我们提交程序到 App Store上时， Xcode 会将程序编译为一个中间表现形式( bitcode )。然后 App store 会再将这个 bitcode 编译为可执行的64位或32位程序。
+
+
+再看看这两段描述都是放在App Thinning(App瘦身)一节中，可以看出其与包的优化有关了。喵大(@onevcat)在其博客 [《开发者所需要知道的 iOS 9 SDK 新特性》](http://onevcat.com/2015/06/ios9-sdk/) 中也描述了iOS 9中苹果在App瘦身中所做的一些改进，大家可以转场到那去研读一下。
+
+
+ Bitcode 是一种中间代码，那它是什么格式的呢？ LLVM 官方文档有介绍这种文件的格式：  [ ***LLVM Bitcode File Format*** ](http://llvm.org/docs/BitCodeFormat.html#llvm-bitcode-file-format) 。
+
+
+
+如何适配？
+
+在上面的错误提示中，提到了如何处理我们遇到的问题：
+
+
+ > You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. for architecture arm64
+
+正如开头所说的：
+
+
+ > 未来， Watch 应用必须包含 Bitcode ，iOS不强制，Mac OS不支持。
+但最坑的一点是： Xcode7 及以上版本会默认开启 Bitcode 。
+
+Xcode 7 + 会开启 Bitcode。
+
+也就是说，也两种方法适配：
+
+方法一：更新library使包含Bitcode，否则会出现以下中的警告；
 
 > (null): URGENT: all bitcode will be dropped because
 > '/Users/myname/Library/Mobile
@@ -542,6 +589,11 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 > error in the future.
 
 
+甚至有的会报错误，无法通过编译：
+
+> ld: ‘/Users/**/Framework/SDKs/PolymerPay/Library/mobStat/lib**SDK.a(**ForSDK.o)’ does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. for architecture arm64
+
+无论是警告还是错误，得到的信息是：我们引入的一个第三方库不包含bitcode。
 
 方法二：关闭Bitcode，方法见下图
 
@@ -551,13 +603,25 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
   [15]: https://i.imgur.com/OoOogUe.gif
 
+我们可以在”Build Settings”->”Enable Bitcode”选项中看到：
+
+用 Xcode 7+ 新建一个 iOS 程序时， bitcode 选项默认是设置为YES的。现在需要改成NO。
+
+
+
+如果我们开启了bitcode，在提交包时，下面这个界面也会有个 bitcode 选项：
+
+![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
+
+
 更多信息，请移步
-[bitcode 苹果官方文档][16]
+
+ 1. [bitcode 苹果官方文档][16]
 
 
   [16]: https://developer.apple.com/library/prerelease/watchos/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html#//apple_ref/doc/uid/TP40012582-CH35-SW2
 
-,和 WWDC 2015 Session 102: ["Platforms State of the Union"][17]
+ 2.  WWDC 2015 Session 102: ["Platforms State of the Union"][17]
 
 
   [17]: https://developer.apple.com/videos/wwdc/2015/?id=102
@@ -577,15 +641,13 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 	</array> 
 
 
-推荐一篇博客: http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes
-
-其中最关键的是以下部分：
+推荐一篇[博文](http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes)，其中最关键的是以下部分：
 
 > If you call the “canOpenURL” method on a URL that is not in your whitelist, it will return “NO”, even if there is an app installed that has registered to handle this scheme. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
 > If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 
-更多信息请移步：WWDC 2015 Session 703: "Privacy and Your App"  https://developer.apple.com/videos/wwdc/2015/?id=703 时间在30：18左右
+更多信息请移步： [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) ， 时间在30：18左右。
 
 
  ![enter image description here][20]
