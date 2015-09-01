@@ -647,14 +647,10 @@ Xcode 7 + 会开启 Bitcode。
 	 <string>urlscheme3</string>
 	 <string>urlscheme4</string>
 	</array> 
-
+ <p><del>
 然而，我们却发现了一件意外的事：
-
-当我们在 iOS9-beta（截至本文发布时，iOS9正式版还未发布）中，使用 `openURL:`  方法时，不在白名单中的 URL 会报错
-
- > “This app is not allowed to query for scheme xxx” 
-
-无论是官方文档还是 WWDC 的视频中都没有提及 `openURL:`  方法的这一变动，所以猜测这是 beta 版本一个 bug ，截至本文发布时，iOS9正式版还未发布，期望在正式版中能得以修复。在此之前，可通过将 `openURL:`  用到的 `URL scheme` 列入白名单来解决这个 bug 。
+当我们在 iOS9-beta（截至本文发布时，iOS9正式版还未发布）中，使用 `openURL:`  方法时，不在白名单中的 URL 会报错 > “This app is not allowed to query for scheme xxx” 。
+无论是官方文档还是 WWDC 的视频中都没有提及 `openURL:`  方法的这一变动，所以猜测这是 beta 版本一个 bug ，截至本文发布时，iOS9正式版还未发布，期望在正式版中能得以修复。在此之前，可通过将 `openURL:`  用到的 `URL scheme` 列入白名单来解决这个 bug 。（经测试：iOS9 beta5中已经修复）</del></p>
 
 苹果为什么要这么做？
 
@@ -697,7 +693,7 @@ Demo结构如下：
         <string>weixin</string>
     </array>
 
-关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。
+ <p><del>关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。（经测试：iOS9 beta5中已经修复）</del></p>
 
 
 另外，推荐一篇[博文](http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes)，其中最关键的是以下部分：
