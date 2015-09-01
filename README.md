@@ -593,6 +593,13 @@ Xcode 7 + 会开启 Bitcode。
 
 > ld: ‘/Users/**/Framework/SDKs/PolymerPay/Library/mobStat/lib**SDK.a(**ForSDK.o)’ does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. for architecture arm64
 
+或：
+
+ > ld: -undefined and -bitcode_bundle (Xcode setting  `ENABLE_BITCODE` =YES) cannot be used together
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+![enter image description here](http://i62.tinypic.com/330vhug.jpg)
+
 无论是警告还是错误，得到的信息是：我们引入的一个第三方库不包含bitcode。
 
 方法二：关闭Bitcode，方法见下图
