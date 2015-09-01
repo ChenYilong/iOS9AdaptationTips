@@ -659,6 +659,10 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 当我们在 iOS9-beta（截至本文发布时，iOS9正式版还未发布）中，使用 `openURL:`  方法时，不在白名单中的 URL 会报错 > “This app is not allowed to query for scheme xxx” 。
 无论是官方文档还是 WWDC 的视频中都没有提及 `openURL:`  方法的这一变动，所以猜测这是 beta 版本一个 bug ，截至本文发布时，iOS9正式版还未发布，期望在正式版中能得以修复。在此之前，可通过将 `openURL:`  用到的 `URL scheme` 列入白名单来解决这个 bug 。（经测试：iOS9 beta5中已经修复）</del></p>
 
+iOS9中 `openURL:` 方法没有什么实质性的变化，仅仅多了一个确认动作：
+
+![enter image description here](http://i57.tinypic.com/8zjh35.jpg)
+
 苹果为什么要这么做？
 
 在 iOS9 之前，你可以使用 `canOpenURL:` 监测用户手机里到底装没装微信，装没装微博。但是也有一些别有用心的 App ，这些 App 有一张常用 App 的 `URL scheme`，然后他们会多次调用`canOpenURL:` 遍历该表，来监测用户手机都装了什么 App ，比如这个用户装了叫“大姨妈”的App，你就可以知道这个用户是女性，你就可以只推给这个用户女性用品的广告。这是侵犯用户隐私的行为。
