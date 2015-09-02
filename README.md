@@ -297,15 +297,16 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 ## 1. Demo1_iOS9网络适配_ATS：改用更安全的HTTPS
 
-[摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是强制增强数据访问安全，而且
-系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
+[摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 `NSURLConnection` ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对ATS 的介绍：
 
 ![enter image description here](http://i58.tinypic.com/ajsf0j.jpg)
 
 
-注：有童鞋反映：“服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。”那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+注：有童鞋反映：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
+
+那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。下文也会详细描述该问题。
 
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
@@ -413,9 +414,9 @@ SSL/TLS的作用，打个比方来讲：
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
 这也是官方文档和WWDC给出的解决方案：
+
  1.   [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13)  ![enter image description here](https://i.imgur.com/eTgSHZY.png)
 
-![enter image description here](http://i61.tinypic.com/ae9tgj.jpg)
 
  2. [WWDC Session： "Networking with NSURLSession" session（ 【WWDC 2015 session 703, “Privacy and Your App” O网页链接 】, 时间在30:18左右）](https://developer.apple.com/videos/wwdc/2015/?id=703)
 
@@ -423,34 +424,71 @@ SSL/TLS的作用，打个比方来讲：
 
 
 
-![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
+ ![enter image description here](https://i.imgur.com/Tc0fS6p.jpg)
 
-![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
+ ![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
   
-![enter image description here](https://cdn-images-1.medium.com/max/800/1*9-VeRXU5SAI6lLZeWLI0hQ.png)
+  ![enter image description here](https://cdn-images-1.medium.com/max/800/1*9-VeRXU5SAI6lLZeWLI0hQ.png)
 
 
-等一下。我的应用使用的是我没有权限控制的CDN (Content Delivery Network)而且它不支持HTTPS。
+即使你的应用使用的是：你没有权限控制的CDN (Content Delivery Network)，而且它不支持HTTPS！
 
-别担心，Apple都替你考虑好了。关于App Transport Security，每个应用都属于4个大类当中的一类。我们来看看每一个大类都是怎样影响应用的。
+也别担心，Apple都替你考虑好了：
+
+ ![enter image description here](http://i61.tinypic.com/ae9tgj.jpg)
+ 正如你在上图中看到的：苹果官方提供了一些可选配置项来决定是否开启ATS模式，也就是可以选择开启或者不开启。
+
+ 开发者可以针对某些确定的URL不使用ATS，这需要在工程中的info.plist中标记NSExceptionDomains。在NSExceptionDomains字典中，可以显式的指定一些不使用ATS的URL。这些你可以使用的例子可以是:
+
+  - NSIncludesSubdomains
+
+  - NSExceptionAllowInsecureHTTPLoads
+
+  - NSExceptionRequiresForwardSecrecy
+
+  - NSExceptionMinimumTLSVersion
+
+  - NSThirdPartyExceptionAllowsInsecureHTTPLoads
+
+  - NSThirdPartyExceptionMinimumTLSVersion
+
+  - NSThirdPartyExceptionRequiresForwardSecrecy
+
+
+
+这些关键字使我们可以更加细致的设置针对不使用ATS的域名情况下禁用ATS或者一些特殊的ATS选项。
+
+你可能注意到一些关键字像是使用了一些其他关键字中的词但是在前面加上了"ThirdParty"字样，比如列表里最后三个：
+
+- NSThirdPartyExceptionAllowsInsecureHTTPLoads
+
+- NSThirdPartyExceptionMinimumTLSVersion
+
+- NSThirdPartyExceptionRequiresForwardSecrecy
+
+在功能上，这些关键字与不含有"ThirdParty"的关键字有同样的效果。而且实际运行中所调用的代码将会完全忽略是否使用"ThirdParty"关键字。你应该使用适用于你的场景的关键字而不必过多考虑这些。
+
+关于App Transport Security，每个应用都属于4个大类当中的一类。我们来看看每一个大类都是怎样影响应用的。
 
 
 |--| 分类名|解释|
 -------------|-------------|-------------
-1.|HTTPS Only （只有HTTPS）|如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
+1.|HTTPS Only （只有HTTPS，所有情况下都使用ATS）|如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
 2.|Mix & Match（混合）|你的应用与一个不符合ATS要求的服务器工作是很有可能的。在这种情况下，你需要告诉操作系统哪些站点是涉及到的然后在你的应用的 Info.plist文件中指明哪些要求没有达到。
 3.|Opt Out（撤销ATS）|如果你在创建一个网页浏览器，那么你有一个更大的麻烦。因为你不可能知道你的用户将要访问那个网页，你不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，除了全部撤销 App Transport Security 没有其它办法。
-4.|Opt Out With Exceptions（有着例外的撤销ATS）|当你的应用撤消了App Transport Security,，但同时定义了一些例外。这非常有用就是当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个例外来表明哪些是必须要求 App Transport Security的。
+4.|Opt Out With Exceptions（除特殊情况外，都不使用ATS）|当你的应用撤消了App Transport Security,，但同时定义了一些例外。这非常有用就是当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个例外来表明哪些是必须要求 App Transport Security的。
 
 下面分别做一下介绍：
 
-####1.HTTPS Only （只有HTTPS）
-如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
+####1.HTTPS Only （只有HTTPS，所有情况下都使用ATS）
+如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。
 
-有人遇到过这样的疑惑：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
+唯一需要做的事情就是使用  `NSURLSession` 。如果你的开发目标是iOS 9或者 OS X EI Capitan之后，ATS 的最佳实践将会应用到所有基于 `NSURLSession` 的网络。
+
+但也有人遇到过这样的疑惑：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
 
 
-那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
 
@@ -542,10 +580,10 @@ Invalid certificates result in a hard failure and no connection
                     <key>NSExceptionRequiresForwardSecrecy</key>
                     <false/>
                     <!--允许App进行不安全的HTTP请求-->
-                    <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
                     <true/>
                     <!--在这里声明所支持的 TLS 最低版本-->
-                    <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                    <key>NSExceptionMinimumTLSVersion</key>
                     <string>TLSv1.1</string>
                 </dict>
             </dict>
@@ -554,7 +592,10 @@ Invalid certificates result in a hard failure and no connection
 
  在 plist 文件里显示如下：
 
- ![enter image description here](http://i62.tinypic.com/352nlhx.jpg)
+
+ ![enter image description here](http://i61.tinypic.com/w6xn43.jpg)
+
+ `NSIncludesSubdomains` 关键字告诉 App Transport Security 这个“例外”（Exception）适用于这个特定域名的所有子域。这个“例外”（Exception）还进一步通过扩展可接受的密码列表来定义这个域名可以使用不支持forward secrecy( `NSExceptionRequiresForwardSecrecy` )  协议的密码。想了解更多关于forward secrecy的信息，推荐去看官方文档  [ ***Apple's technote*** ](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/index.html) 。
 
 如果你的App中同时用到了这三个域名，那么应该是这样：
 
@@ -586,26 +627,28 @@ Invalid certificates result in a hard failure and no connection
 
 ![enter image description here](http://i61.tinypic.com/13ynggk.jpg)
 
- `NSIncludesSubdomains` 关键字告诉 App Transport Security 这个“例外”（Exception）适用于这个特定域名的所有子域。这个“例外”（Exception）还进一步通过扩展可接受的密码列表来定义这个域名可以使用不支持forward secrecy( `NSExceptionRequiresForwardSecrecy` )  协议的密码。想了解更多关于forward secrecy的信息，推荐去看官方文档  [ ***Apple's technote*** ](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/index.html) 。
-
 #### 3. Opt Out（撤销ATS）
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
 彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级服务器。。。
 
 你可以在Info.plist 配置中改用下面的XML源码：
 
+
+ ```XML
     <key>NSAppTransportSecurity</key>
     <dict>
         <!--彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求 (不建议这样做)-->
 	    <key>NSAllowsArbitraryLoads</key>
 	    <true/>
     </dict>
+ ```
+
 
 在 plist 文件里显示如下：
 
 ![enter image description here](http://i57.tinypic.com/9uq2c7.jpg)
 
-#### 4. Opt Out With Exceptions（有着例外的撤销ATS）
+#### 4. Opt Out With Exceptions（除特殊情况外，都不使用ATS）
 
 上面已经介绍了三种情景，还有一种可能你也会遇到：
 
@@ -633,9 +676,15 @@ Invalid certificates result in a hard failure and no connection
 ![enter image description here](http://i62.tinypic.com/de1rw9.jpg)
 
 
-【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】
+ <p><del>【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】（官方文档已经有阐述）</del></p>
 
-###Q-A
+####Certificate Transparency
+
+虽然ATS大多数安全特性都是默认可用的，Certificate Transparency 是必须设置的。如果你有支持Certificate Transparency的证书，你可以检查NSRequiresCertificateTransparency关键字来使用Certificate Transparency。再次强调，如果你的证书不支持Certificate Transparency，此项需要设置为不可用。
+
+如果需要调试一些由于采用了ATS而产生的问题，需要设置CFNETWORK_DIAGNOSTICS为1，这样就会打印出包含被访问的URL和ATS错误在内的NSURLSession错误信息。要确保处理了遇到的所有的错误消息，这样才能使ATS易于提高可靠性和扩展性。
+
+####Q-A
 
 Q：我用xcode7编译的app，如果不在plist里面加关键字说明，ios9下不能进行网络请求，因为我们服务器并不支持 TLS 1.2 ，我要是直接下载app store上的，什么也没有做，也是能正常网络请求。
 
@@ -650,13 +699,23 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 Q：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
 
 
-A：那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+A：那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
 
  > Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
 Invalid certificates result in a hard failure and no connection
 
+Q：我使用的是第三方的网络框架，比如 AFNetworking 、ASIHTTPRequest、CFSocket 等，这个有影响没有？
+
+A： AFNetworking 有影响，其它没影响。
+
+ ATS 是只针对 `NSURLConnection` 、 `CFURL` 、 `NSURLSession` ，如果底层涉及到这三个类就会有影响。
+
+现在的 AFNetworking 的 AFHTTPRequestOperationManager 实现是使用的 `NSURLConnection` 。
+
+但 AFNetworking 也有更新计划，移除 `NSURLConnection` 相关API，迁移到 AFHTTPSessionManager ，但还未执行，详情见：[https://github.com/AFNetworking/AFNetworking/issues/2806](https://github.com/AFNetworking/AFNetworking/issues/2806)。
 
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
