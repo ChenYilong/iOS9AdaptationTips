@@ -470,6 +470,29 @@ Info.plist 配置中的XML源码如下所示:
 
 【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】
 
+###Q-A
+
+Q：我用xcode7编译的app，如果不在plist里面加关键字说明，ios9下不能进行网络请求，因为我们服务器并不支持 TLS 1.2 ，我要是直接下载app store上的，什么也没有做，也是能正常网络请求。
+
+A：本文中所罗列的新特性，指的是 iOS9.X-SDK 或者可以说是 Xcode7.X 的新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。
+
+那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
+
+
+![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
+
+Q：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
+
+
+A：那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+
+官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
+
+ > Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
+Invalid certificates result in a hard failure and no connection
+
+
+
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
 【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
@@ -519,6 +542,8 @@ Info.plist 配置中的XML源码如下所示:
     <array>
         <string>location</string>
     </array>
+
+
 
 ##3.企业级分发
 
@@ -739,6 +764,17 @@ Demo结构如下：
 
 
 > If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
+
+###Q-A
+
+Q：我用xcode7编译的app，如果不在plist里面加scheme，ios9下qq就会不显示，因为我用了qqsdk里的判断是否安装qq的方法，我要是直接下载app store上的，没有加scheme，qq也是能显示。
+
+A：本文中所罗列的新特性，指的是 iOS9.X-SDK 或者可以说是 Xcode7.X 的新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。
+
+那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
+
+
+![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
 
  
 
