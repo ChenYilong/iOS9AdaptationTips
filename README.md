@@ -474,7 +474,8 @@ Info.plist 配置中的XML源码如下所示:
 
 Q：我用xcode7编译的app，如果不在plist里面加关键字说明，ios9下不能进行网络请求，因为我们服务器并不支持 TLS 1.2 ，我要是直接下载app store上的，什么也没有做，也是能正常网络请求。
 
-A：本文中所罗列的新特性，指的是 iOS9.X-SDK 或者可以说是 Xcode7.X 的新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。
+A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。也就是说：**Xcode7给iOS8打设备包可以请求到网络，Xcode7给iOS9设备打的包请求不到网络，Xcode7和iOS9缺一不可，才需要网络适配ATS。**
+
 
 那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
 
@@ -769,7 +770,8 @@ Demo结构如下：
 
 Q：我用xcode7编译的app，如果不在plist里面加scheme，ios9下qq就会不显示，因为我用了qqsdk里的判断是否安装qq的方法，我要是直接下载app store上的，没有加scheme，qq也是能显示。
 
-A：本文中所罗列的新特性，指的是 iOS9.X-SDK 或者可以说是 Xcode7.X 的新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。
+A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。也就是说：**Xcode7给iOS8打设备包不需要白名单也能调用“canOpenURL” ，Xcode7给iOS9设备打的包则不然，Xcode7和iOS9缺一不可，才需要网络适配URL Scheme。**
+
 
 那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
 
