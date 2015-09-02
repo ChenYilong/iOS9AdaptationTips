@@ -433,6 +433,8 @@ SSL/TLS的作用，打个比方来讲：
 
 ![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
   
+![enter image description here](https://cdn-images-1.medium.com/max/800/1*9-VeRXU5SAI6lLZeWLI0hQ.png)
+
 Info.plist 配置中的XML源码如下所示:
 
     <key>NSAppTransportSecurity</key>
