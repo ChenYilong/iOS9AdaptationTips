@@ -5,7 +5,7 @@
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
 
-（截至2015年7月5日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+（截至2015年9月3日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
@@ -337,20 +337,14 @@ Invalid certificates result in a hard failure and no connection
 ###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
 
 什么是SSL/TLS？
-SSL的解释在此不做赘述，网上有好多文章，也不是本文重点。
-说下什么是TLS，还有跟HTTP和HTTPS有什么关系。
+SSL你一定知道，在此不做赘述。主要说下什么是TLS，还有跟HTTP和HTTPS有什么关系。
 
-TLS 是 SSL 新的别称。举个例子：
+TLS 是 SSL 新的别称：
 
-“TLS1.0”之于“SSL3.1”，犹“公元2015”之于“民国104”，或者是“一千克”之于“一公斤”，或者是“半斤”之于“八两”：称呼不同，但意思相同。
+“TLS1.0”之于“SSL3.1”，犹“公元2015”之于“民国104”，“一千克”之于“一公斤”：称呼不同，意思相同。
 
-SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
+SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0：**TLS 1.0＝SSL 3.1**。所以我们平常也经常见到 “SSL/TLS” 这种说法。
 
-也就是说：
-
-> TLS 1.0 ＝ SSL 3.1
-
-所以他们是一个东西，我们平常也经常简单见到 “SSL/TLS” 这种说法。
 目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。目前主流浏览器都已经实现了TLS 1.2的支持。
 
 常用的有下面这些：
@@ -378,7 +372,7 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0,
 
 > Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS。而这一做法，官方文档称为ATS，全称为App Transport Security。
 
-###WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS，闲得慌？！Apple是不是又在反人类？）
+###WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？Apple是不是又在反人类？）
 
 > 不使用SSL/TLS的HTTP通信，就是不加密的通信！
 
@@ -435,27 +429,166 @@ SSL/TLS的作用，打个比方来讲：
   
 ![enter image description here](https://cdn-images-1.medium.com/max/800/1*9-VeRXU5SAI6lLZeWLI0hQ.png)
 
-Info.plist 配置中的XML源码如下所示:
 
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSExceptionDomains</key>
-      <dict>
-        <key>yourserver.com</key>
+等一下。我的应用使用的是我没有权限控制的CDN (Content Delivery Network)而且它不支持HTTPS。
+
+别担心，Apple都替你考虑好了。关于App Transport Security，每个应用都属于4个大类当中的一类。我们来看看每一个大类都是怎样影响应用的。
+
+
+|--| 分类名|解释|
+-------------|-------------|-------------
+1.|HTTPS Only （只有HTTPS）|如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
+2.|Mix & Match（混合）|你的应用与一个不符合ATS要求的服务器工作是很有可能的。在这种情况下，你需要告诉操作系统哪些站点是涉及到的然后在你的应用的 Info.plist文件中指明哪些要求没有达到。
+3.|Opt Out（撤销ATS）|如果你在创建一个网页浏览器，那么你有一个更大的麻烦。因为你不可能知道你的用户将要访问那个网页，你不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，除了全部撤销 App Transport Security 没有其它办法。
+4.|Opt Out With Exceptions（有着例外的撤销ATS）|当你的应用撤消了App Transport Security,，但同时定义了一些例外。这非常有用就是当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个例外来表明哪些是必须要求 App Transport Security的。
+
+下面分别做一下介绍：
+
+####1.HTTPS Only （只有HTTPS）
+如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
+
+有人遇到过这样的疑惑：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
+
+
+那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+
+官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
+
+ > Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
+Invalid certificates result in a hard failure and no connection
+
+
+
+####2.Mix & Match（混合）	
+你的应用与一个不符合ATS要求的服务器工作是很有可能的，
+
+当你遇到以下三个不符合 ATS 要求的服务器的域名时：
+
+ 1. api.insecuredomain.com
+ 2. cdn.domain.com
+ 3. thatotherdomain.com
+
+你可以分别设置如下：        
+        
+ 1. api.insecuredomain.com
+
+ Info.plist 配置中的XML源码如下所示:
+
+
+ ```XML
+        <key>NSAppTransportSecurity</key>
         <dict>
-          <!--允许子域名:subdomains-->
-          <key>NSIncludesSubdomains</key>
-          <true/>
-          <!--允许App进行不安全的HTTP请求-->
-          <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-          <!--在这里声明所支持的 TLS 最低版本-->
-          <key>NSTemporaryExceptionMinimumTLSVersion</key>
-          <string>TLSv1.1</string>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>api.insecuredomain.com</key>
+                <dict>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <false/>
+                </dict>
+            </dict>
         </dict>
-      </dict>
-    </dict>
+ ```
 
+
+ 在 plist 文件里显示如下：
+
+
+ ![enter image description here](http://i60.tinypic.com/24y5q4l.jpg)
+
+ 我们定义的第一个“例外”（Exception）告诉ATS当与这个子域交互的时候撤销了必须使用HTTPS的要求。注意这个仅仅针对在“例外”（Exception）中声明了的子域。非常重要的一点是要理解NSExceptionAllowsInsecureHTTPLoads关键字并不仅仅只是与使用HTTPS相关。这个“例外”（Exception）指明了对于那个域名，所有的App Transport Security的要求都被撤销了。
+
+
+
+ 2. cdn.domain.com
+ Info.plist 配置中的XML源码如下所示:
+
+
+ ```XML
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>cdn.somedomain.com</key>
+			<dict>
+				<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+		</dict>
+	</dict>
+ ```
+
+
+ 在 plist 文件里显示如下：
+
+  ![enter image description here](http://i58.tinypic.com/29atm5k.jpg)
+
+ 很可能你的应用是与一个支持HTTPS传输数据的服务器交互，但是并没有使用TLS 1.2或更高。在这种情况下，你定义一个“例外”（Exception），它指明应该使用的最小的TLS的版本。这比完全撤销那个域名的App Transport Security要更好更安全。
+
+ 3. thatotherdomain.com
+
+ Info.plist 配置中的XML源码如下所示:
+
+ ```XML
+       <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>thatotherdomain.com</key>
+                <dict>
+                    <!--适用于这个特定域名下的所有子域-->
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <!--扩展可接受的密码列表：这个域名可以使用不支持 forward secrecy 协议的密码-->
+                    <key>NSExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                    <!--允许App进行不安全的HTTP请求-->
+                    <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <!--在这里声明所支持的 TLS 最低版本-->
+                    <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                    <string>TLSv1.1</string>
+                </dict>
+            </dict>
+        </dict>
+ ```
+
+ 在 plist 文件里显示如下：
+
+ ![enter image description here](http://i62.tinypic.com/352nlhx.jpg)
+
+如果你的App中同时用到了这三个域名，那么应该是这样：
+
+ ```XML
+     <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>api.insecuredomain.com</key>
+                <dict>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <false/>
+                </dict>
+                <key>cdn.somedomain.com</key>
+                <dict>
+                    <key>NSThirdPartyExceptionMinimumTLSVersion</key>
+                    <string>TLSv1.1</string>
+                </dict>
+                <key>thatotherdomain.com</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+ ```
+
+![enter image description here](http://i61.tinypic.com/13ynggk.jpg)
+
+ `NSIncludesSubdomains` 关键字告诉 App Transport Security 这个“例外”（Exception）适用于这个特定域名的所有子域。这个“例外”（Exception）还进一步通过扩展可接受的密码列表来定义这个域名可以使用不支持forward secrecy( `NSExceptionRequiresForwardSecrecy` )  协议的密码。想了解更多关于forward secrecy的信息，推荐去看官方文档  [ ***Apple's technote*** ](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/index.html) 。
+
+#### 3. Opt Out（撤销ATS）
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
 彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级服务器。。。
 
@@ -467,6 +600,38 @@ Info.plist 配置中的XML源码如下所示:
 	    <key>NSAllowsArbitraryLoads</key>
 	    <true/>
     </dict>
+
+在 plist 文件里显示如下：
+
+![enter image description here](http://i57.tinypic.com/9uq2c7.jpg)
+
+#### 4. Opt Out With Exceptions（有着例外的撤销ATS）
+
+上面已经介绍了三种情景，还有一种可能你也会遇到：
+
+当你的应用撤消了App Transport Security,，但同时定义了一些“例外”（Exception）。当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个“例外”（Exception）来表明哪些是必须要求 App Transport Security的。下面是Info.plist文件应该会有的内容：
+
+
+ ```XML
+<key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>api.tutsplus.com</key>
+                <dict>
+                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+ ```
+
+ 在 plist 文件里显示如下：
+
+![enter image description here](http://i62.tinypic.com/de1rw9.jpg)
+
 
 【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】
 
