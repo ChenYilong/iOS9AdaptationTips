@@ -400,7 +400,7 @@ SSL/TLS的作用，打个比方来讲：
 
 正如文章开头所说：
 
-> TLS 1.2 协议 强制增强数据访问安全 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
+> TLS 1.2 协议 强制增强数据访问安全 系统 Foundation 框架下的“相关网络请求”将不再默认使用 HTTP 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。
 
 总之：
 
@@ -475,7 +475,7 @@ SSL/TLS的作用，打个比方来讲：
 -------------|-------------|-------------
 1.|HTTPS Only （只有HTTPS，所有情况下都使用ATS）|如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
 2.|Mix & Match（混合）|你的应用与一个不符合ATS要求的服务器工作是很有可能的。在这种情况下，你需要告诉操作系统哪些站点是涉及到的然后在你的应用的 Info.plist文件中指明哪些要求没有达到。
-3.|Opt Out（撤销ATS）|如果你在创建一个网页浏览器，那么你有一个更大的麻烦。因为你不可能知道你的用户将要访问那个网页，你不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，除了全部撤销 App Transport Security 没有其它办法。
+3.|Opt Out（禁用ATS）|如果你在创建一个网页浏览器，那么你有一个更大的麻烦。因为你不可能知道你的用户将要访问那个网页，你不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，除了全部撤销 App Transport Security 没有其它办法。
 4.|Opt Out With Exceptions（除特殊情况外，都不使用ATS）|当你的应用撤消了App Transport Security,，但同时定义了一些例外。这非常有用就是当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个例外来表明哪些是必须要求 App Transport Security的。
 
 下面分别做一下介绍：
@@ -627,7 +627,7 @@ Invalid certificates result in a hard failure and no connection
 
 ![enter image description here](http://i61.tinypic.com/13ynggk.jpg)
 
-#### 3. Opt Out（撤销ATS）
+#### 3. Opt Out（禁用ATS）
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
 彻底倒退回不安全的HTTP网络请求，能任意进行HTTP请求，比如你在开发一款浏览器App，或者你想偷懒，或者后台想偷懒，或者公司不给你升级服务器。。。
 
@@ -988,13 +988,13 @@ Demo结构如下：
 
 
 
-> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
-
+ <p><del>> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
+</del></p>
 ###Q-A
 
 Q：我用xcode7编译的app，如果不在plist里面加scheme，ios9下qq就会不显示，因为我用了qqsdk里的判断是否安装qq的方法，我要是直接下载app store上的，没有加scheme，qq也是能显示。
 
-A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。也就是说：**Xcode7给iOS8打设备包不需要白名单也能调用“canOpenURL” ，Xcode7给iOS9设备打的包则不然，Xcode7和iOS9缺一不可，才需要网络适配URL Scheme。**
+A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特性，AppStore 的版本是基于 iOS8.X-SDK或 iOS7.X-SDK，所以并不受 iOS9新特性约束。也就是说：**Xcode7给iOS8打设备包不需要白名单也能调用“canOpenURL” ，Xcode7给iOS9设备打的包则不然，Xcode7和iOS9缺一不可，才需要适配URL Scheme。**
 
 
 那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
