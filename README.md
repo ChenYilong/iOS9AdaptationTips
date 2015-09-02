@@ -300,8 +300,18 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 [摘要]iOS9把所有的http请求都改为https了：iOS9系统发送的网络请求将统一使用TLS 1.2 SSL。采用TLS 1.2 协议，目的是强制增强数据访问安全，而且
 系统 Foundation 框架下的相关网络请求，将不再默认使用 Http 等不安全的网络协议，而默认采用 TLS 1.2。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
 
+官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对ATS 的介绍：
 
-（注：有童鞋反映：“服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。”那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。）
+![enter image description here](http://i58.tinypic.com/ajsf0j.jpg)
+
+
+注：有童鞋反映：“服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。”那是因为：ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+
+
+官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
+
+ > Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
+Invalid certificates result in a hard failure and no connection
 
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
@@ -410,6 +420,9 @@ SSL/TLS的作用，打个比方来讲：
 
 这也是官方文档和WWDC给出的解决方案：
  1.   [Apple官方文档](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13)  ![enter image description here](https://i.imgur.com/eTgSHZY.png)
+
+![enter image description here](http://i61.tinypic.com/ae9tgj.jpg)
+
  2. [WWDC Session： "Networking with NSURLSession" session（ 【WWDC 2015 session 703, “Privacy and Your App” O网页链接 】, 时间在30:18左右）](https://developer.apple.com/videos/wwdc/2015/?id=703)
 
 
@@ -654,6 +667,15 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 	 <string>urlscheme3</string>
 	 <string>urlscheme4</string>
 	</array> 
+
+白名单上限是50个：
+
+ [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) ）有说明：
+
+ > 
+ “So for apps that are linked before iOS 9 and are running on iOS 9, they will be given 50 distinct URL schemes.”  --  WWDC 2015 session 703 Privacy and Your App 
+
+
  <p><del>
 然而，我们却发现了一件意外的事：
 当我们在 iOS9-beta（截至本文发布时，iOS9正式版还未发布）中，使用 `openURL:`  方法时，不在白名单中的 URL 会报错 > “This app is not allowed to query for scheme xxx” 。
