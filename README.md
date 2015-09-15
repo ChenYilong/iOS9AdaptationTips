@@ -1022,7 +1022,10 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
+#结束语
+如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  交流。
 
+疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
 
 ----------
