@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0C458831-44B4-472E-BD43-5C91087A4CBF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LSApplicationQueriesSchemes</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FE1A655B2A450A8470CCA21768E6AA4D6897F91B</key>
+		<string>https://github.com/ChenYilong/iOS9AdaptationTips.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Demo3_iOS9URLScheme适配_引入白名单概念/LSApplicationQueriesSchemes.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FE1A655B2A450A8470CCA21768E6AA4D6897F91B</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ChenYilong/iOS9AdaptationTips.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FE1A655B2A450A8470CCA21768E6AA4D6897F91B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FE1A655B2A450A8470CCA21768E6AA4D6897F91B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS9AdaptationTips</string>
+		</dict>
+	</array>
+</dict>
+</plist>
