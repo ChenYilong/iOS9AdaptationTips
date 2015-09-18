@@ -718,6 +718,32 @@ A： AFNetworking 有影响，其它没影响。
 但 AFNetworking 也有更新计划，移除 `NSURLConnection` 相关API，迁移到 AFHTTPSessionManager ，但还未执行，详情见：[https://github.com/AFNetworking/AFNetworking/issues/2806](https://github.com/AFNetworking/AFNetworking/issues/2806)。
 
 
+Q：试了一下禁用 ATS 的方法 但是还是无法联网 仍然提示要使用https?
+
+
+ > App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&#039;s Info.plist file.
+</p>The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+
+
+A：遇到这类问题，90%是出现在“一个 Project 多 Target ”的情况下，所以
+请确保你修改的，确实是你的 Target 所属的 Info.plist ！
+
+如何确认？请前往这里，确认你 Target 所属的 Info.plist 究竟是哪个：
+
+Project -> Your Target -> Build Settings -> Info.plist File
+
+![enter image description here](http://i60.tinypic.com/sbrfrl.jpg)
+
+或者更直截了当一点，直接修改：
+
+Project -> Your Target —>info－> Custom iOS target properties－> 添加禁用 ATS 的属性
+
+![enter image description here](http://i60.tinypic.com/zvbt7b.jpg)
+
+Q：我的项目是“一个 Project 多 Target ”，按照本文禁用 ATS 的方法，是不是每个 Info.plist 都要修改？
+
+A：不需要，用到哪个 Target 修改哪个的 Info.plist ，Target 是独立的，不受其他 Target 的影响，也不会影响其他 Target。
+
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
 【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
