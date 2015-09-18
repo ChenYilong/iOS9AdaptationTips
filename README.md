@@ -299,6 +299,12 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 [摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 `NSURLConnection` ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
 
+一个符合 ATS 要求的 HTTPS，应该满足如下条件：
+
+ 1. Transport Layer Security协议版本要求TLS1.2以上
+ 2. 服务的Ciphers配置要求支持Forward Secrecy等
+ 3. 证书签名算法符合ATS要求等
+
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对ATS 的介绍：
 
 ![enter image description here](http://i58.tinypic.com/ajsf0j.jpg)
@@ -743,6 +749,25 @@ Project -> Your Target —>info－> Custom iOS target properties－> 添加禁�
 Q：我的项目是“一个 Project 多 Target ”，按照本文禁用 ATS 的方法，是不是每个 Info.plist 都要修改？
 
 A：不需要，用到哪个 Target 修改哪个的 Info.plist ，Target 是独立的，不受其他 Target 的影响，也不会影响其他 Target。
+
+Q：如何检测我们公司 HTTPS 是否符合 ATS 的要求？
+
+A：
+如果你的 App 的服务也在升级以适配ATS要求，可以使用如下的方式进行校验：
+
+在OS X EI Capitan系统的终端中通过nscurl命令来诊断检查你的HTTPS服务配置是否满足Apple的ATS要求:
+
+ ```Objective-C
+ $ nscurl --verbose --ats-diagnostics https://<your_server_domain>
+ ```
+
+当然，你也可以让公司服务端的同事参考Apple提供官方指南App Transport Security Technote进行服务的升级配置以满足ATS的要求：
+
+一个符合 ATS 要求的 HTTPS，应该满足如下条件：
+
+ 1. Transport Layer Security协议版本要求TLS1.2以上
+ 2. 服务的Ciphers配置要求支持Forward Secrecy等
+ 3. 证书签名算法符合ATS要求等
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
