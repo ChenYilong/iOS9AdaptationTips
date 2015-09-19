@@ -823,6 +823,14 @@ A：
 
 ##3.企业级分发
 
+有两处变化：
+
+ 1. iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
+ 2. iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况
+
+
+###  1. iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
+
 iOS9之前，企业级分发十分方便：点击App出现“信任按钮”，
 
 
@@ -836,12 +844,36 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
   [11]: https://i.imgur.com/Skn9iXk.png
 
-必须让用户进行gif图中的设置（相关Demo：https://github.com/ChenYilong/iOS9AdaptationTips/ ）
+必须让用户进行gif图中的设置：
 
 
  ![enter image description here][14]
 
   [14]: https://i.imgur.com/PXM235L.gif
+
+### 2. iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况
+
+iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，而iOS8或更早的系统不受影响。那是因为从iOS9以后，系统会在 ipa 包下载完之后，拿ipa包中的 bundle ID 与网页中的 plist 文件中的 bundle ID 进行比对，不一致不允许安装。
+
+错误提示如下：
+
+![enter image description here](http://i57.tinypic.com/28jckus.jpg)
+
+网页中的 plist 文件中的 bundle ID 的作用可参考 [《iOS:苹果企业证书通过网页分发安装app》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-1.html) 。
+
+而iOS9之前，苹果不会检查这一项，因此iOS9之前可以安装。
+
+导致这一错误的原因除了粗心，还有开发者是故意设置不一致，据开发者说：
+
+ > 当初服务器 plist 的 bundle id 上故意做成成不一致。是为了解决一些人安装不上的问题。
+
+
+详情可参考： [《升级到ios 9，企业版发布现在无法安装成功了，有人遇到了这种问题吗？》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-2.html) 
+
+适配方法：
+
+ 1. 两者的 bundle id 修改一致
+ 2. 使用fir.im等第三方分发平台：上述“ bundle id 不一致导致下载失败”这种情况只会出现在企业自己搭建网页分发的情形下，事实证明第三方的分发平台更加专业，已经很好地规避了该情况的发生。
 
 
 ##4.Bitcode
