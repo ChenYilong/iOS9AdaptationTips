@@ -859,7 +859,7 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 ![enter image description here](http://i57.tinypic.com/28jckus.jpg)
 
-网页中的 plist 文件中的 bundle ID 的作用可参考 [《iOS:苹果企业证书通过网页分发安装app》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-1.html) 。
+网页中的 plist 文件中的 bundle ID 的作用可参考 [《iOS:苹果企业证书通过网页分发安装app》](http://blog.sina.com.cn/s/blog_6afb7d800101fa16.html) 。
 
 而iOS9之前，苹果不会检查这一项，因此iOS9之前可以安装。
 
@@ -868,7 +868,7 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
  > 当初服务器 plist 的 bundle id 上故意做成成不一致。是为了解决一些人安装不上的问题。
 
 
-详情可参考： [《升级到ios 9，企业版发布现在无法安装成功了，有人遇到了这种问题吗？》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-2.html) 
+详情可参考： [《升级到ios 9，企业版发布现在无法安装成功了，有人遇到了这种问题吗？》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-1.html) 
 
 适配方法：
 
