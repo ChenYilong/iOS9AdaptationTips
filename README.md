@@ -1,4 +1,4 @@
-# iOS9AdaptationTips
+# iOS9AdaptationTips（iOS9开发学习交流群：313287681）
 
 
 
@@ -6,6 +6,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
 
 
 （截至2015年9月3日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+
 
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
@@ -1253,7 +1254,7 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
 
 #结束语
-如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  交流。
+如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：313287681”中交流。
 
 疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
