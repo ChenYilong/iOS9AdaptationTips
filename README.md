@@ -1140,6 +1140,108 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
+##7.iOS 9 对企业版本APP发布时，更加严格校验manifest信息。
+
+最近公司出现iOS 9设备安装企业版本不成功，而低于iOS 9版本的设备可以正常安装。解决问题的关键，就是通过查看设备上的日志信息，有一个 itunesstored 进程提示安装信息：
+
+     20:40:09 ifeegoo itunesstored →  <Warning>: [Download]: Download task did finish: 8 for download: 2325728577585828282
+     20:40:09 ifeegoo itunesstored →  <Warning>: [ApplicationWorkspace] Installing download: 2325728577585828282 with step(s): Install
+     20:40:09 ifeegoo itunesstored →  <Warning>: [ApplicationWorkspace]: Installing software package with bundleID: com.***.***: bundleVersion: 1.01 path: /var/mobile/Media/Downloads/2325728577585828282/-1925357977307433048
+     20:40:09 ifeegoo itunesstored →  <Warning>: BundleValidator: Failed bundleIdentifier: com.***.**** does not match expected bundleIdentifier: com.***.*********
+     20:40:09 ifeegoo itunesstored →  <Warning>: [ApplicationWorkspace]: Bundle validated for bundleIdentifier: com.****.******success: 0
+     20:40:09 ifeegoo itunesstored →  <Warning>: LaunchServices: Uninstalling placeholder for app <LSApplicationProxy: 0x12677be70> com.****.*******(Placeholder) <file:///private/var/mobile/Containers/Bundle/Application/B62D8EA3-2052-4393-8A7E-3FD27228BFC2/2325728577585828282.app>
+     20:40:09 ifeegoo itunesstored →  <Warning>: LaunchServices: Uninstalling app <LSApplicationProxy: 0x12677be70> com.****.*****(Placeholder) <file:///private/var/mobile/Containers/Bundle/Application/B62D8EA3-2052-4393-8A7E-3FD27228BFC2/2325728577585828282.app>
+
+其中的这一句很重要：
+
+    20:40:09 ifeegoo itunesstored →  <Warning>: BundleValidator: Failed bundleIdentifier: com.***.**** does not match expected bundleIdentifier: com.***.*********
+
+经过核对，果然是.ipa文件中真实的Bundle ID和manifest文件中配置的信息不匹配，然后测试发现：
+
+> iOS 9是校验bundle-identifier值的，而iOS 9以下版本是不校验，一旦iOS 9发现bundle-identifier不匹配，即使下载成功了，也会 Uninstall(日志中提示的)app的。
+
+一旦出现iOS9能够安装企业版本APP，iOS9以下版本不能安装，一定先查看安装日志，然后核对每个参数配置。
+
+manifest文件的参考配置。
+
+ ```XML
+ <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <!-- array of downloads. -->
+   <key>items</key>
+   <array>
+       <dict>
+           <!-- an array of assets to download -->
+           <key>assets</key>
+           <array>
+               <!-- software-package: the ipa to install. -->
+               <dict>
+                   <!-- required.  the asset kind. -->
+                   <key>kind</key>
+                   <string>software-package</string>
+                   <!-- optional.  md5 every n bytes.  -->
+                   <!-- will restart a chunk if md5 fails. -->
+                   <key>md5-size</key>
+                   <integer>10485760</integer>
+                   <!-- optional.  array of md5 hashes -->
+                   <key>md5s</key>
+                   <array>
+                       <string>41fa64bb7a7cae5a46bfb45821ac8bba</string>
+                       <string>51fa64bb7a7cae5a46bfb45821ac8bba</string>
+                   </array>
+                   <!-- required.  the URL of the file to download. -->
+                   <key>url</key>
+                   <string>http://www.example.com/apps/foo.ipa</string>
+               </dict>
+               <!-- display-image: the icon to display during download. -->
+               <dict>
+                   <key>kind</key>
+                   <string>display-image</string>
+                   <!-- optional. icon needs shine effect applied. -->
+                   <key>needs-shine</key>
+                   <true/>
+                   <key>url</key>
+                   <string>http://www.example.com/image.57×57.png</string>
+               </dict>
+               <!-- full-size-image: the large 512×512 icon used by iTunes. -->
+               <dict>
+                   <key>kind</key>
+                   <string>full-size-image</string>
+                   <!-- optional.  one md5 hash for the entire file. -->
+                   <key>md5</key>
+                   <string>61fa64bb7a7cae5a46bfb45821ac8bba</string>
+                   <key>needs-shine</key>
+                   <true/>
+                   <key>url</key>
+                   <string>http://www.example.com/image.512×512.jpg</string>
+               </dict>
+           </array><key>metadata</key>
+           <dict>
+               <!-- required -->
+               <key>bundle-identifier</key>
+               <string>com.example.fooapp</string>
+               <!-- optional (software only) -->
+               <key>bundle-version</key>
+               <string>1.0</string>
+               <!-- required.  the download kind. -->
+               <key>kind</key>
+               <string>software</string>
+               <!-- optional. displayed during download; -->
+               <!-- typically company name -->
+               <key>subtitle</key>
+               <string>Apple</string>
+               <!-- required.  the title to display during the download. -->
+               <key>title</key>
+               <string>Example Corporate App</string>
+           </dict>
+       </dict>
+   </array>
+</dict>
+</plist>
+ ```
+
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  交流。
 
