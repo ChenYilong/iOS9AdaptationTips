@@ -1232,7 +1232,13 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
 ![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
 
- 
+ Q：我们自己的应用跳到微信、支付宝、微博等的URLScheme是固定几个，但是从微信、支付宝、微博跳回到我们的应用的URLScheme可能是成千上万个，那他们那些大厂是如何做这个白名单？
+
+A：白名单策略影响的仅仅是 canOpenURL: 接口，OpenURL: 不受影响，这些大厂只调用 openURL: 所以不受 iOS9 的影响。
+
+Q：文中提到了设置白名单的原因，然而，如果这些别有用心的APP在它自己的白名单列出它关心的APP, 然后依次调用canOpenURL来检测，照样可以监控用户都安装了哪些APP啊？所以我依然不明白苹果这样做得原因。
+
+A：白名单的数目上限是50个。苹果这样子做，使得最多只能检测50个App。
 
 ##6. iPad适配Slide Over 和 Split View
 
