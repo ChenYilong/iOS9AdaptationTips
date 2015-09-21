@@ -747,6 +747,9 @@ Project -> Your Target —>info－> Custom iOS target properties－> 添加禁�
 
 ![enter image description here](http://i60.tinypic.com/zvbt7b.jpg)
 
+还有一种可能性是：禁用 ATS 的代码粘贴进 plist 时，位置不对，可以尝试放在 diwuhang
+
+
 Q：我的项目是“一个 Project 多 Target ”，按照本文禁用 ATS 的方法，是不是每个 Info.plist 都要修改？
 
 A：不需要，用到哪个 Target 修改哪个的 Info.plist ，Target 是独立的，不受其他 Target 的影响，也不会影响其他 Target。
@@ -1208,6 +1211,9 @@ Demo结构如下：
         <string>weixin</string>
     </array>
 
+（以上只是为了演示，实际开发中，你不仅需要添加“weixin”还需要“wechat”这两个。具体 ）
+
+
  <p><del>关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。（经测试：iOS9 beta5中已经修复）</del></p>
 
 
@@ -1220,7 +1226,92 @@ Demo结构如下：
 
  <p><del>> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 </del></p>
-###Q-A
+
+
+### 常见 URL Scheme
+
+如果想一次性集成最常用的微信、新浪微博、QQ、支付宝四者的白名单，则配置如下：
+
+ ```XML
+ <key>LSApplicationQueriesSchemes</key>
+<array>
+    <!-- 微信 URL Scheme 白名单-->
+    <string>wechat</string>
+    <string>weixin</string>
+
+    <!-- 新浪微博 URL Scheme 白名单-->
+    <string>sinaweibohd</string>
+    <string>sinaweibo</string>
+    <string>sinaweibosso</string>
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+
+    <!-- QQ、Qzone URL Scheme 白名单-->
+    <string>mqqapi</string>
+    <string>mqq</string>
+    <string>mqqOpensdkSSoLogin</string>
+    <string>mqqconnect</string>
+    <string>mqqopensdkdataline</string>
+    <string>mqqopensdkgrouptribeshare</string>
+    <string>mqqopensdkfriend</string>
+    <string>mqqopensdkapi</string>
+    <string>mqqopensdkapiV2</string>
+    <string>mqqopensdkapiV3</string>
+    <string>mqzoneopensdk</string>
+    <string>wtloginmqq</string>
+    <string>wtloginmqq2</string>
+    <string>mqqwpa</string>
+    <string>mqzone</string>
+    <string>mqzonev2</string>
+    <string>mqzoneshare</string>
+    <string>wtloginqzone</string>
+    <string>mqzonewx</string>
+    <string>mqzoneopensdkapiV2</string>
+    <string>mqzoneopensdkapi19</string>
+    <string>mqzoneopensdkapi</string>
+    <string>mqzoneopensdk</string>
+
+    <!-- 支付宝  URL Scheme 白名单-->
+    <string>alipay</string>
+    <string>alipayshare</string>
+
+</array>
+ ```
+plist 文件看起来会是这样的：
+
+![enter image description here](http://i58.tinypic.com/e5pyee.jpg)
+
+其他平台可在下面的列表中查询：
+各平台OpenURL白名单说明
+
+平台名称 | URL Schem  | 补充说明
+-------------|-------------|-------------
+微信 | wechat,</p> weixin
+支付宝 | alipay,</p>alipayshare
+QQ | mqqOpensdkSSoLogin, </p>mqqopensdkapiV2,</p>mqqopensdkapiV3,</p>wtloginmqq2,</p>mqq,</p>mqqapi |
+QZONE | mqzoneopensdk, </p>mqzoneopensdkapi,</p>mqzoneopensdkapi19,</p>mqzoneopensdkapiV2,</p>mqqOpensdkSSoLogin,</p>mqqopensdkapiV2,</p>mqqopensdkapiV3,</p>wtloginmqq2,</p>mqqapi,</p>mqqwpa，</p>mqzone，</p>mqq | [注:若同时使用QQ和QZONE,则直接添加本格即可]
+新浪微博 | sinaweibo,</p>sinaweibohd,</p>sinaweibosso,</p>sinaweibohdsso,</p>weibosdk,</p>weibosdk2.5 | [后两个若导入新浪SDK则需要]
+豆瓣 |  无需配置 |
+开心网 | 无需配置 |
+易信 | yixin,</p> yixinopenapi
+Google+ | googlechrome, </p>googlechrome-x-callback,</p>hasgplus4,</p>com.google.gppconsent,</p>com.google.gppconsent.2.2.0,</p>com.google.gppconsent.2.3.0,</p>com.google.gppconsent.2.4.0,</p>com.google.gppconsent.2.4.1 |
+人人网 |  renrenapi,</p>renrenios,</p>renreniphone,</p>renren, | 
+Facebook | fbauth2 |
+Twitter | 无需配置 |
+Pocket | pocket-oauth-v1|
+Pinterest | pinit |
+Instagram | instagram |
+WhatsApp |  whatsapp |
+Line | line |
+KakaoTalk | kakaolink |
+KaokaoStory | storylink |
+LinkedIn | 无需配置 |
+Tumblr | 无需配置 |
+非平台类 | 无需配置 | ( 如短信，复制，邮件等)
+
+
+
+### Q-A
 
 Q：我用xcode7编译的app，如果不在plist里面加scheme，ios9下qq就会不显示，因为我用了qqsdk里的判断是否安装qq的方法，我要是直接下载app store上的，没有加scheme，qq也是能显示。
 
@@ -1239,6 +1330,17 @@ A：白名单策略影响的仅仅是 canOpenURL: 接口，OpenURL: 不受影响
 Q：文中提到了设置白名单的原因，然而，如果这些别有用心的APP在它自己的白名单列出它关心的APP, 然后依次调用canOpenURL来检测，照样可以监控用户都安装了哪些APP啊？所以我依然不明白苹果这样做得原因。
 
 A：白名单的数目上限是50个。苹果这样子做，使得最多只能检测50个App。
+
+Q：按照文中的适配方法，error原因就没有了的确没问题了，但是还是会打印如下信息：
+
+ ```Objective-C
+ -canOpenURL: failed for URL: "XXXXXXXXXX" - error: "(null)"。
+ ```
+
+A：这个模拟器的一个 bug，无论使用iOS9的真机还是模拟器均出现该问题，估计 Xcode 后续的升级中会修复掉。
+
+那如何判断日志究竟是 Xcode bug 造成的还是没有适配造成的？看error的值，如果是null，则是 bug。（2015-09-21更）
+
 
 ##6. iPad适配Slide Over 和 Split View
 
