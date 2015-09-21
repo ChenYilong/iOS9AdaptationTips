@@ -4,14 +4,36 @@
 
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
-
 （截至2015年9月3日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
+#中文快速导航：
 
+
+ 1.  [iOS9网络适配_ATS：改用更安全的HTTPS（见Demo1）](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https) 
+  1. [WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）](https://github.com/ChenYilong/iOS9AdaptationTips#what什么是ssltls跟http和https有什么关系) 
+  2.  [WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？Apple是不是又在反人类？）](https://github.com/ChenYilong/iOS9AdaptationTips#why以前的http不是也能用吗为什么要用ssltlsapple是不是又在反人类) 
+  3.  [HOW（如何适配？---弱弱地问下：加班要多久？）](https://github.com/ChenYilong/iOS9AdaptationTips#how如何适配---弱弱地问下加班要多久) 
+     1.  [第1种情况：HTTPS Only （只有HTTPS，所有情况下都使用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#1https-only-只有https所有情况下都使用ats) 
+     2.  [第2种情况：Mix & Match（混合）](https://github.com/ChenYilong/iOS9AdaptationTips#2mix--match混合) 
+     3.  [第3种情况：Opt Out（禁用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#3-opt-out禁用ats) 
+     4.  [第4种情况：Opt Out With Exceptions（除特殊情况外，都不使用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#4-opt-out-with-exceptions除特殊情况外都不使用ats) 
+     4.  [Certificate Transparency](https://github.com/ChenYilong/iOS9AdaptationTips#certificate-transparency) 
+  4.  [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a) 
+ 2.  [iOS9新特性_更灵活的后台定位（见Demo2）](https://github.com/ChenYilong/iOS9AdaptationTips#2demo2_ios9新特性_更灵活的后台定位) 
+ 3.  [企业级分发](https://github.com/ChenYilong/iOS9AdaptationTips#3企业级分发) 
+  1.  [iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”](https://github.com/ChenYilong/iOS9AdaptationTips#1-ios9以后企业级分发ipa包将遭到与mac上dmg安装包一样的待遇默认不能安装也不再出现信任按钮) 
+  2.  [iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况](https://github.com/ChenYilong/iOS9AdaptationTips#2-ios9以后企业分发时可能存在下载的ipa包与网页两者的-bundle-id-无法匹配而导致下载失败的情况) 
+ 4.  [Bitcode](https://github.com/ChenYilong/iOS9AdaptationTips#4bitcode) 
+ 5.  [iOS9 URL Scheme 适配_引入白名单概念（见Demo3）](https://github.com/ChenYilong/iOS9AdaptationTips#5demo3---ios9-url-scheme-适配_引入白名单概念) 
+
+  [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
+
+  [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a-1) 
+ 6.  [ iPad适配Slide Over 和 Split View](https://github.com/ChenYilong/iOS9AdaptationTips#6-ipad适配slide-over-和-split-view) 
+
+# English⬇️⬇️
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
-
-> English
 
 ## 1. Demo1_You'd better Convert HTTP to HTTPS 
 
