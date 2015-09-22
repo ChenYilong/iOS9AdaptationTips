@@ -1416,6 +1416,7 @@ CGSize size = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFon
 CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
  ```
 
+
 ## 8.升级 Xcode7 后的崩溃与警告
 
 ### 旧版本新浪微博 SDK 在 iOS9 上会导致的 Crash
@@ -1432,17 +1433,15 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 解决：更新新浪微博SDK，新浪的SDK最新版做了对iOS9兼容。
 
-影响：移除新浪微博SDK后，除了依赖SDK实现的跳到客户端的分享和关注官网微博等失效。其他主要功能如分享、SSO、获取用户资料等不受影响。
-
 ### iOS9 下使用 Masonry 会引起崩溃的一种情况
  
-我们在使用一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
+我们在使用时候一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
 
  ```Objective-C
  make.left.equalTo(self.mas_leading).offset(15);
  ```
 
-修改后是
+应该为：
 
  ```Objective-C
  make.left.equalTo(self.mas_left).offset(15);
@@ -1458,18 +1457,18 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 <Error>: CGContextRestoreGState: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
  ```
 
-出错原因：设置 app 的状态栏样式的使用使用了旧的方式，在 info.plist 里面设置了 `View controller-based status bar appearance` 即使不设置默认为YES，但一般 iOS6 的时候使用将其设为NO的这种方式来设置，iOS7，8也兼容，但是到了iOS9 就会报警告。
+出错原因：设置 app 的状态栏样式的时候，使用了旧的方式，在 info.plist 里面的 `View controller-based status bar appearance` 默认会为 YES，即使不设置也是 YES，但一般 iOS6 的时候为了设置状态栏样式，需要将其设为NO，iOS7，8也兼容，但是到了iOS9 就会报警告。
 
 解决办法：
 
-删除原先的设置代码
+删除原先的设置代码，通常老的设置方式是这样的：
 
  ```Objective-C
  //设置状态栏的白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
  ```
 
-删除的原因是：
+删除的原因见下：
 
  ```Objective-C
  // Setting the statusBarStyle does nothing if your application is using the default UIViewController-based status bar system.
@@ -1480,7 +1479,7 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 修改方式是在 `Info.plist` 文件中做如下修改：
 
-将View controller-based status bar appearance设置为YES，
+将 `View controller-based status bar appearance` 删除（默认为 YES），或设置为YES：
 
 ![enter image description here](http://i61.tinypic.com/jrsjnd.jpg)
 
@@ -1506,12 +1505,13 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 ### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
 
-Xcode6的工程升级到 Xcode7上来，会报警告：
+Xcode6 的工程升级到 Xcode7上来，会报警告：
 
 ![enter image description here](http://i57.tinypic.com/2a5zuia.jpg)
 
-是debug编译时导出符号文件出现的告警，如果从 Xcode6 升上来，则会引起告警，
-新建的Xcode7工程不会有该问题。
+这是 debug 编译时导出符号文件出现的告警，
+
+然而新建的Xcode7工程不会有该问题。
 
 解决方法是让 debug 编译的时候不生成符号文件：
 
