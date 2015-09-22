@@ -30,6 +30,12 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
 
   [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a-1) 
  6.  [ iPad适配Slide Over 和 Split View](https://github.com/ChenYilong/iOS9AdaptationTips#6-ipad适配slide-over-和-split-view) 
+ 7.  [字体间隙变大导致 UI 显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#7字体间隙变大导致-ui-显示异常) 
+ 8.  [升级 Xcode7 后的崩溃与警告](https://github.com/ChenYilong/iOS9AdaptationTips#8升级-xcode7-后的崩溃与警告) 
+  1.  [iOS9 下使用 Masonry 会引起崩溃的一种情况](https://github.com/ChenYilong/iOS9AdaptationTips#ios9-下使用-masonry-会引起崩溃的一种情况) 
+  2.  [Xcode 升级后，旧的状态栏的样式设置方式会引起警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode-升级后旧的状态栏的样式设置方式会引起警告) 
+  3.  [Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-在-debug-状态下也生成-dsym-文件引起的警告) 
+
 
 # English⬇️⬇️
 
