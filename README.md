@@ -1388,6 +1388,136 @@ A：这个模拟器的一个 bug，无论使用iOS9的真机还是模拟器均�
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
+## 7.字体间隙变大导致 UI 显示异常
+
+iOS8中，字体是Helvetica，中文的字体有点类似于“华文细黑”。只是苹果手机自带渲染，所以看上去可能比普通的华文细黑要美观。iOS9中，中文系统字体变为了专为中国设计的“苹方” 有点类似于一种word字体“幼圆”。字体有轻微的加粗效果，并且最关键的是字体间隙变大了！
+
+所以很多原本写死了width的label可能会出现“...”的情况：
+
+情况 | 显示 |解释
+-------------|------------- |------------- 
+XIB |将 label 的 width 写死 | 下面这两张图也可以直观的看出同一个界面，同一个label的变化。
+iOS8 | ![enter image description here](http://images2015.cnblogs.com/blog/717809/201509/717809-20150919223903476-176844619.png) | 正常
+iOS9 | ![enter image description here](http://images2015.cnblogs.com/blog/717809/201509/717809-20150919223918101-1917717144.png) | 最后四位数字、、、
+
+如果不将 label 的 width 写死，仅仅添加左端约束则右端的四个数字会越界
+
+情况 | 显示 |解释
+-------------|------------- |------------- 
+XIB | ![enter image description here](http://i60.tinypic.com/292r428.jpg) |如果仅仅添加左端约束
+iOS8 | ![enter image description here](http://i58.tinypic.com/2vj92bn.jpg) | 正常
+iOS9 | ![enter image description here](http://i62.tinypic.com/2czaq1v.jpg) | “3199”这四个数字越界了
+
+所以为了在界面显示上不出错，就算是固定长度的文字也还是建议使用sizetofit 或者ios向上取整 ceilf() 或者提前计算：
+
+
+ ```Objective-C
+CGSize size = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]}];
+CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
+ ```
+
+## 8.升级 Xcode7 后的崩溃与警告
+
+### 旧版本新浪微博 SDK 在 iOS9 上会导致的 Crash
+
+ ```Objective-C
+ app was compiled with optimization - stepping may behave oddly; variables may not be available
+ ```
+
+打印出来这句话，然后崩溃。多是启动的过程中程序就崩溃。
+
+在iOS9下，新浪微博SDK里面使用的 JSONKit 在部分机型可能导致崩溃。崩溃信息如下图。
+
+![enter image description here](http://wiki.mob.com/wp-content/uploads/2015/09/4062130C-1138-4352-89AF-E518F189A851.png)
+
+解决：更新新浪微博SDK，新浪的SDK最新版做了对iOS9兼容。
+
+影响：移除新浪微博SDK后，除了依赖SDK实现的跳到客户端的分享和关注官网微博等失效。其他主要功能如分享、SSO、获取用户资料等不受影响。
+
+### iOS9 下使用 Masonry 会引起崩溃的一种情况
+ 
+我们在使用一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
+
+ ```Objective-C
+ make.left.equalTo(self.mas_leading).offset(15);
+ ```
+
+修改后是
+
+ ```Objective-C
+ make.left.equalTo(self.mas_left).offset(15);
+ ```
+
+同理 mas_training 也需要改为right
+
+### Xcode 升级后，旧的状态栏的样式设置方式会引起警告
+
+ ```Objective-C
+<Error>: CGContextSaveGState: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+<Error>: CGContextTranslateCTM: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+<Error>: CGContextRestoreGState: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+ ```
+
+出错原因：设置 app 的状态栏样式的使用使用了旧的方式，在 info.plist 里面设置了 `View controller-based status bar appearance` 即使不设置默认为YES，但一般 iOS6 的时候使用将其设为NO的这种方式来设置，iOS7，8也兼容，但是到了iOS9 就会报警告。
+
+解决办法：
+
+删除原先的设置代码
+
+ ```Objective-C
+ //设置状态栏的白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+ ```
+
+删除的原因是：
+
+ ```Objective-C
+ // Setting the statusBarStyle does nothing if your application is using the default UIViewController-based status bar system.
+@property(readwrite, nonatomic) UIStatusBarStyle statusBarStyle NS_DEPRECATED_IOS(2_0, 9_0, "Use -[UIViewController preferredStatusBarStyle]");
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle animated:(BOOL)animated NS_DEPRECATED_IOS(2_0, 9_0, "Use -[UIViewController preferredStatusBarStyle]");
+ ```
+
+
+修改方式是在 `Info.plist` 文件中做如下修改：
+
+将View controller-based status bar appearance设置为YES，
+
+![enter image description here](http://i61.tinypic.com/jrsjnd.jpg)
+
+然后使用新的方式来实现状态栏的样式：
+
+
+ ```Objective-C
+- (UIStatusBarStyle)preferredStatusBarStyle;- (UIViewController *)childViewControllerForStatusBarStyle;- (void)setNeedsStatusBarAppearanceUpdate
+ ```
+
+比如，你想将状态栏设置为白色，就可以这样写：
+
+ ```Objective-C
+//设置状态栏的白色
+ -(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+ ```
+
+记得要 clean 下或者删除应用程序重新运行
+
+
+### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
+
+Xcode6的工程升级到 Xcode7上来，会报警告：
+
+![enter image description here](http://i57.tinypic.com/2a5zuia.jpg)
+
+是debug编译时导出符号文件出现的告警，如果从 Xcode6 升上来，则会引起告警，
+新建的Xcode7工程不会有该问题。
+
+解决方法是让 debug 编译的时候不生成符号文件：
+
+![enter image description here](http://i60.tinypic.com/2e23qyp.jpg)
+
+
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：313287681”中交流。
