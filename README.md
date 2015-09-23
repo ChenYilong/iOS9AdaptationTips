@@ -38,7 +38,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   3.  [Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-在-debug-状态下也生成-dsym-文件引起的警告) 
   4.  [Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 there is an intenal API error](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-无法使用-8x-系统的设备调试一运行就报错-there-is-an-intenal-api-error) 
   5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
-
+ 4.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6---corespotlightsearch) 
 # English⬇️⬇️
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
@@ -1637,7 +1637,7 @@ bulid settings  ->    packaging  -> product name
  1.  [HTML 的iframe 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
  2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
 
-## 9.Demo5、Demo6---CoreSpotlightSearch
+## 9.Demo5、Demo6--- 搜索 API
 
 导入两个 framework，
 
