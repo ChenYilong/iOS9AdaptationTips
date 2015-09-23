@@ -1637,6 +1637,17 @@ bulid settings  ->    packaging  -> product name
  1.  [HTML 的iframe 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
  2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
 
+## 9.Demo5---CoreSpotlightSearch
+
+导入两个 framework，
+
+然后像设置tableView 的 cell 一样设置下每一个“搜索元素”，详情见代码。
+
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150923/21/17338872420150923214730010.gif?370x686_110
+)
+
+
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
