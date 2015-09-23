@@ -1487,6 +1487,14 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 将 `View controller-based status bar appearance` 删除（默认为 YES），或设置为YES：
 
+对应的 plist 里的 XML源码：
+
+ ```Objective-C
+ <key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+ ```
+看起来长这样：
+
 ![enter image description here](http://i61.tinypic.com/jrsjnd.jpg)
 
 然后使用新的方式来实现状态栏的样式：
@@ -1508,6 +1516,79 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 记得要 clean 下或者删除应用程序重新运行
 
+#### Demo4---navigationController状态栏样式新的设置方法
+
+如果你按照上面的方法设置了，但还是不行。八成是 rootViewController 设置的问题，你必须设置 rootViewController，编译器才会去 rootViewController 中重载 preferredStatusBarStyle 方法。
+
+另外当你在 appdelegate 中将 navigationController 设为 rootViewController 的时候：
+
+ ```Objective-C
+     self.window.rootViewController = self.navigationController;
+ ```
+
+因为 rootViewController 变为了 navigationController，你在 ViewController 里重写 preferredStatusBarStyle 方法是不会起作用的。所以最好的方法是
+
+
+
+ ```Objective-C
+ - (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"微博@iOS程序犭袁";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+}
+ ```
+
+
+如果你还是想重写 preferredStatusBarStyle 方法来达到作用，那最好使用分类来解决：
+
+.h文件：
+
+ ```Objective-C
+ //
+//  UINavigationController+StatusBarStyle.h
+//  微博@iOS程序犭袁
+//
+//  Created by  https://github.com/ChenYilong/iOS9AdaptationTips/ on 15/6/8.
+//  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UINavigationController (StatusBarStyle)
+
+@end
+
+ ```
+
+.m文件：
+
+
+ ```Objective-C
+ //
+//  UINavigationController+StatusBarStyle.m
+//  微博@iOS程序犭袁
+//
+//  Created by  https://github.com/ChenYilong/iOS9AdaptationTips/ on 15/6/8.
+//  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
+//
+
+#import "UINavigationController+StatusBarStyle.h"
+
+@implementation UINavigationController (StatusBarStyle)
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    //also you may add any fancy condition-based code here
+    return UIStatusBarStyleLightContent;
+}
+
+@end
+ ```
+
+我在仓库里给出了 navigation 的设置方法，见Demo4。
+
+参考链接： [preferredStatusBarStyle isn't called--For anyone using a UINavigationController:](http://stackoverflow.com/a/19513714/3395008) 
 
 ### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
 
