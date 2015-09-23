@@ -1637,7 +1637,7 @@ bulid settings  ->    packaging  -> product name
  1.  [HTML 的iframe 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
  2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
 
-## 9.Demo5---CoreSpotlightSearch
+## 9.Demo5、Demo6---CoreSpotlightSearch
 
 导入两个 framework，
 
@@ -1645,6 +1645,13 @@ bulid settings  ->    packaging  -> product name
 
 
 ![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150923/21/17338872420150923214730010.gif?370x686_110
+)
+
+既然刚才说了搜索元素与 tableView 的 cell 非常相似：那么我们就展示一下如何让 tableView 与 CoreSpotlightSearch 进行结合：
+
+详见 Demo6，Demo6 与 Demo5 的主要差异在于：在点击搜索结果跳转到 App 后，还会进一步根据搜索的内容 push 到相应的详情页中：
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150924/00/17338872420150924001340035.gif?306x572_110
 )
 
 
