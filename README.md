@@ -1605,6 +1605,36 @@ Xcode6 的工程升级到 Xcode7上来，会报警告：
 
 ![enter image description here](http://i60.tinypic.com/2e23qyp.jpg)
 
+### Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 `there is an intenal API error` 
+
+
+![enter image description here](http://cdn.cocimg.com/bbs/attachment/Fid_21/21_296305_92094d6a71e587a.png)
+
+`Xcode7` 调试  `iOS8.x` 的真机，需要确保项目名改为英文，中间含有中文会报错  `there is an intenal API error`
+
+按照下面的步骤检查：
+
+bulid settings  ->    packaging  -> product name   
+
+### 使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App 
+
+我们都知道，从网易新闻分享一条新闻到QQ，然后从QQ中打开链接再用safari打开链接，在iOS8上，这个时候会跳转到网易新闻App。但是现在（2015年09月23日）版本的网易新闻在 iOS9 就不能正常跳转，会跳转到 App Store 页面并提示要不要打开 App Store。
+
+
+这是很可能是因为使用了 HTML 的 iframe 元素，并将自定义的链接放进了该元素中
+
+举例说明：
+
+![enter image description here](http://i61.tinypic.com/2wbvok8.jpg)
+
+
+我之前写的一个 Demo： [模仿 《简书 App》 的效果:在html中跳转到App中的对应页面,并能从App跳转到原来的网址](https://github.com/ChenYilong/CYLExternalURL)，在例子中直接调用自定义链接在 iOS9上是可以跳转到 App 中的，然而，如果用 iframe 元素包起来就会变不可用。
+
+参考链接：
+
+
+ 1.  [HTML <iframe> 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
+ 2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
 
 
 #结束语
