@@ -10,6 +10,13 @@
 
 @implementation UINavigationController (StatusBarStyle)
 
+/*
+ *
+ 因为在 ViewController 里已经设置了 self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+ 所以不需要使用下面的分类方法，如果不在 ViewController 里已经设置，可采用下面的分类方法来达到设置状态栏的效果。
+ *
+ */
+ 
 //- (UIStatusBarStyle)preferredStatusBarStyle
 //{
 //    //also you may add any fancy condition-based code here
