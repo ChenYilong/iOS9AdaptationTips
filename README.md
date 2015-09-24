@@ -1063,6 +1063,10 @@ Apple 官方文档--[ ***App Distribution Guide – App Thinning (iOS, watchOS)*
 
 再看看这两段描述都是放在App Thinning(App瘦身)一节中，可以看出其与包的优化有关了。
 
+打个比方，没有 bitcode  的 AppStore 里所提供的 App，类似在新华书店里卖捆绑销售的《四大名著丛书--精装版》，要买只能全买走，有了 bitcode 就好比这套四大名著每本都可以单卖，顾客就能按需购买。我们开发者在这个过程中扮演的角色是图书出版商的角色，应该照顾那些没钱一次买四本的顾客。（不要做不珍惜用户流量和存储空间的奸商。。）
+
+那为什么第三方的 SDK 不支持 bitcode，我的 app 也就不能支持？打个比方，《四大名著丛书》只要有一本是可以单卖的，那么你很难再卖捆绑销售款的《四大名著丛书》了，所以干脆全都可以单卖，这大概就是 Apple 的逻辑。
+
  App Thinning 官方文档解释如下：
 
 
@@ -1160,6 +1164,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 ![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
 
+那么 SDK 厂商如何支持 bitcode 呢？答案是只要在 Xcode7上重新编译一下就 ok 了。（请确保默认开启的 bitcode 没有去主动关闭）
 
 更多信息，请移步
 
@@ -1176,6 +1181,8 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
+
+
 ##5.Demo3---iOS9 URL Scheme 适配_引入白名单概念
 
  [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) （ 时间在30：18左右）关于 `URL scheme` 的介绍，指出：
