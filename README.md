@@ -4,7 +4,7 @@
 
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
-（截至2015年9月23日共有8篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+（截至2015年9月24日共有9篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 #中文快速导航：
 
@@ -25,10 +25,8 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   2.  [iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况](https://github.com/ChenYilong/iOS9AdaptationTips#2-ios9以后企业分发时可能存在下载的ipa包与网页两者的-bundle-id-无法匹配而导致下载失败的情况) 
  4.  [Bitcode](https://github.com/ChenYilong/iOS9AdaptationTips#4bitcode) 
  5.  [iOS9 URL Scheme 适配_引入白名单概念（见Demo3）](https://github.com/ChenYilong/iOS9AdaptationTips#5demo3---ios9-url-scheme-适配_引入白名单概念) 
-
-  [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
-
-  [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a-1) 
+     1.   [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
+     2.   [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a-1) 
  6.  [ iPad适配Slide Over 和 Split View](https://github.com/ChenYilong/iOS9AdaptationTips#6-ipad适配slide-over-和-split-view) 
  7.  [字体间隙变大导致 UI 显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#7字体间隙变大导致-ui-显示异常) 
  8.  [升级 Xcode7 后的崩溃与警告](https://github.com/ChenYilong/iOS9AdaptationTips#8升级-xcode7-后的崩溃与警告) 
