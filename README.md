@@ -1514,7 +1514,9 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 
  ```Objective-C
-- (UIStatusBarStyle)preferredStatusBarStyle;- (UIViewController *)childViewControllerForStatusBarStyle;- (void)setNeedsStatusBarAppearanceUpdate
+- (UIStatusBarStyle)preferredStatusBarStyle;
+- (UIViewController *)childViewControllerForStatusBarStyle;
+- (void)setNeedsStatusBarAppearanceUpdate
  ```
 
 比如，你想将状态栏设置为白色，就可以这样写：
@@ -1665,7 +1667,42 @@ bulid settings  ->    packaging  -> product name
 ![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150924/00/17338872420150924001340035.gif?306x572_110
 )
 
+## 10.iOS国际化问题：当前设备语言字符串返回有变化。
 
+```
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+NSArray *allLanguage = [defaults objectForKey:@"AppleLanguages"];
+NSString *currentLanguage = [allLanguage objectAtIndex:0];
+NSLog(@"The current language is : %@", currentLanguage);
+```
+
+iOS 9 之前：以上返回结果：语言字符串代码。例如："zh-Hans"
+
+iOS 9:以上返回结果：语言字符串代码 + 地区代码。例如："zh-Hans-US"
+
+备注：  
+1.请注意判断当前语言类型，不要用以下形式的代码了，不然在iOS9上就会遇到坑。
+
+```
+if ([currentLanguage isEqualToString:@"zh-Hans"])
+```
+
+可以使用：
+
+```
+if ([currentLanguage hasPrefix:@"zh-Hans"])
+```
+
+另外：对于中文，语言有：
+
++ 简体中文:zh-Hans
++ 繁体中文:zh-Hant
++ 香港中文:zh-HK
++ 澳门中文:zh-MO
++ 台湾中文:zh-TW
++ 新加坡中文:zh-SG  
+
+**备注：以上iOS9 当前语言字符串返回结果：语言字符串代码 + 地区代码。在某些情况下不是这样，本人手机型号：大陆版电信iPhone5S/A1533/16GB测试结果：zh-HK/zh-TW，在地区为"中国"、"中国香港"、"中国台湾"的时候，显示的还是zh-HK/zh-TW，一旦切换到其它地区，设备语言会自动的切换到中文繁体。请开发人员注意中文的问题！**
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
