@@ -37,7 +37,8 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   4.  [Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 there is an intenal API error](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-无法使用-8x-系统的设备调试一运行就报错-there-is-an-intenal-api-error) 
   5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
  4.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api) 
-
+ 5.  [Xcode7 + iOS9  锁屏出现UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-+-iOS9-锁屏出现uiapplication-_hanlenonlaunchspecificactions:forscene:withtransitioncontext:completion)
+ 
 
 
 
@@ -1666,6 +1667,17 @@ bulid settings  ->    packaging  -> product name
 )
 
 
+##10.Xcode7 + iOS9  锁屏出现UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion
+
+应用运行过称中锁屏，出现以下提示：
+
+`** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x17ee7800> {
+handler = remote; 
+info = <BSSettings: 0x17e48490> {(1) = 5;};}`
+
+当应用处于空闲状态时（无网络请求）锁屏对于用户而言并无较大影响，但是当应用在执行某个异步任务时（比如下拉刷新一下列表）锁屏，重新解锁进入就会发现异步任务失败，弹窗提示Error信息。在iOS8系统下测试并未发现此问题。
+
+在官方论坛和stackoverflow 并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎Update!
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
