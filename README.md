@@ -1656,7 +1656,7 @@ bulid settings  ->    packaging  -> product name
 加入运行如下示例代码：
 
  ```Objective-C
- - (void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^(void) {
@@ -1668,11 +1668,11 @@ bulid settings  ->    packaging  -> product name
 }
  ```
 
-应用运行过称中锁屏，总是会出现以下提示：
+应用运行过程中锁屏，总是会出现以下提示：
 
 
  ```Objective-C
-   ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
     handler = remote;
     info = <BSSettings: 0x16d80e50> {
         (1) = 5;
@@ -1688,7 +1688,7 @@ bulid settings  ->    packaging  -> product name
 
 
  ```Objective-C
-  ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
     handler = remote;
     info = <BSSettings: 0x16d80e50> {
         (1) = 5;
