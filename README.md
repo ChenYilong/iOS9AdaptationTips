@@ -4,7 +4,7 @@
 
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
-（截至2015年9月24日共有9篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+（截至2015年9月26日共有10篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 #中文快速导航：
 
@@ -39,7 +39,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   5.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#iOS9锁屏控制台会打印警告)
 
  9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api) 
- 
+ 10.   [iOS国际化问题：当前设备语言字符串返回有变化](https://github.com/ChenYilong/iOS9AdaptationTips#10ios国际化问题当前设备语言字符串返回有变化) 
 
 
 
