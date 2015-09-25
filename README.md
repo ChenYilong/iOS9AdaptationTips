@@ -36,11 +36,10 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   3.  [Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-在-debug-状态下也生成-dsym-文件引起的警告) 
   4.  [Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 there is an intenal API error](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-无法使用-8x-系统的设备调试一运行就报错-there-is-an-intenal-api-error) 
   5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
- 4.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api) 
- 5.  [Xcode7 + iOS9  锁屏出现UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-+-iOS9-锁屏出现uiapplication-_hanlenonlaunchspecificactions:forscene:withtransitioncontext:completion)
+  5.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#iOS9锁屏控制台会打印警告)
+
+ 9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api) 
  
-
-
 
 
 
@@ -1649,6 +1648,58 @@ bulid settings  ->    packaging  -> product name
  1.  [HTML 的iframe 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
  2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
 
+### iOS9锁屏控制台会打印警告 
+
+加入运行如下示例代码：
+
+ ```Objective-C
+ - (void)viewDidLoad {
+    [super viewDidLoad];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^(void) {
+        //在这个10秒内锁屏
+         NSLog(@"准备休眠");
+        sleep(10);
+        NSLog(@"打印成功");
+    });
+}
+ ```
+
+应用运行过称中锁屏，总是会出现以下提示：
+
+
+ ```Objective-C
+   ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+    handler = remote;
+    info = <BSSettings: 0x16d80e50> {
+        (1) = 5;
+    };
+}
+ ```
+
+
+当应用处于空闲状态时（无网络请求）锁屏对于用户而言并无较大影响，
+
+
+但是当应用在执行某个异步任务时（比如下拉刷新一下列表）锁屏，重新解锁进入就可能会发现异步任务失败，控制台也会提示 Error 信息：
+
+
+ ```Objective-C
+  ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+    handler = remote;
+    info = <BSSettings: 0x16d80e50> {
+        (1) = 5;
+    };
+}
+error in __connection_block_invoke_2: Connection interrupted
+ ```
+
+以上情况不易复现，但确有发生。
+
+在 iOS8 系统下测试并未发现此问题。
+
+对此并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎提 PR !
+
 ## 9.Demo5、Demo6--- 搜索 API
 
 导入两个 framework，
@@ -1666,18 +1717,6 @@ bulid settings  ->    packaging  -> product name
 ![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150924/00/17338872420150924001340035.gif?306x572_110
 )
 
-
-##10.Xcode7 + iOS9  锁屏出现UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion
-
-应用运行过称中锁屏，出现以下提示：
-
-`** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x17ee7800> {
-handler = remote; 
-info = <BSSettings: 0x17e48490> {(1) = 5;};}`
-
-当应用处于空闲状态时（无网络请求）锁屏对于用户而言并无较大影响，但是当应用在执行某个异步任务时（比如下拉刷新一下列表）锁屏，重新解锁进入就会发现异步任务失败，弹窗提示Error信息。在iOS8系统下测试并未发现此问题。
-
-在官方论坛和stackoverflow 并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎Update!
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
