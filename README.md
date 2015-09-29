@@ -1763,7 +1763,7 @@ window.rootViewController = [[UIViewController alloc] init];
 
 
 
-尤其注意一种情况，在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果，因而也不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。解决办法就是要确保给 window 设置了 `rootViewController` 。
+尤其注意一种情况，在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果，因而也不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。
 
  ```Objective-C
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -1780,8 +1780,8 @@ window.rootViewController = [[UIViewController alloc] init];
 }
  ```
 
-在 iOS8及之前仅仅会有一个警告，iOS9上则会崩溃。
 
+这种情况，在 `didFinishLaunchingWithOptions` 需要修改原来的策略，将第二个 window 类型改为其他类型，比如 viewController 类型、navigation 类型、tabbarController 类型等。
  
 
 ## 9.Demo5、Demo6--- 搜索 API
