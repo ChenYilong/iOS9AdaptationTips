@@ -1,4 +1,4 @@
-# iOS9AdaptationTips（iOS9开发学习交流群：141607754）
+# iOS9AdaptationTips（iOS9开发学习交流群：469035598）
 
 
 
@@ -36,10 +36,12 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   3.  [Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-在-debug-状态下也生成-dsym-文件引起的警告) 
   4.  [Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 there is an intenal API error](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-无法使用-8x-系统的设备调试一运行就报错-there-is-an-intenal-api-error) 
   5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
-  5.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#iOS9锁屏控制台会打印警告)
-
- 9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api) 
+  6.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#ios9锁屏控制台会打印警告)
+  7. [Xcode7 上传应用时提示 ITMS-90535 Unable to publish iOS app with xxx SDK 的问题](http://stackoverflow.com/questions/32622899/itms-90535-unable-to-publish-ios-app-with-latest-google-signin-sdk)
+  8.  [在didFinishLaunchingWithOptions结束后还没有设置window的rootViewController会导致崩溃](https://github.com/ChenYilong/iOS9AdaptationTips#在didfinishlaunchingwithoptions结束后还没有设置window的rootviewcontroller会导致崩溃) 
+ 9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api)  
  10.   [iOS国际化问题：当前设备语言字符串返回有变化](https://github.com/ChenYilong/iOS9AdaptationTips#10ios国际化问题当前设备语言字符串返回有变化) 
+
 
 
 
@@ -842,6 +844,10 @@ A：
 > *** Assertion failure in -[CLLocationManager setAllowsBackgroundLocationUpdates:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/CoreLocationFramework_Sim/CoreLocation-1808.1.5/Framework/CoreLocation/CLLocationManager.m:593
 
 
+这个问题，有两种方式可以解决：
+
+第一种：
+
 要将  Info.plist 配置如下：
  ![enter image description here][8]
 
@@ -856,6 +862,12 @@ A：
     <array>
         <string>location</string>
     </array>
+
+第二种：
+
+在对应 target 的 Capabilities -> Background Modes -> 开启 Location Updates 
+
+![enter image description here](http://cdn2.raywenderlich.com/wp-content/uploads/2014/12/background_modes.png)
 
 
 
@@ -1163,6 +1175,24 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
 
 那么 SDK 厂商如何支持 bitcode 呢？答案是只要在 Xcode7上重新编译一下就 ok 了。（请确保默认开启的 bitcode 没有去主动关闭）
+
+但是如果仅仅是编译一下，则会出现下类似的如下警告：
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150928/17/1733887242015092817143106.jpg?1462x120_120
+)
+
+
+
+ > ld: warning: full bitcode bundle could not be generated because 'Lookback(Lookback.o)' was built only with bitcode marker. The library must be generated from Xcode archive build with bitcode enabled (Xcode setting ENABLE_BITCODE)
+
+
+
+警告的消除步骤：
+
+模拟器、真机分开打包，SDK在build的时候，让模拟器与真机分开build，模拟器不设置bitcode的参数，真机的加上，然后再合起来。（“合起来”指的是指令集，好比 x86_64 i386 跟 armv7 arm64合起来。）用命令行打包的话 加上这个参数OTHER_CFLAGS=“-fembed-bitcode”。
+
+详情可移步：[ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
+
 
 更多信息，请移步
 
@@ -1655,7 +1685,7 @@ bulid settings  ->    packaging  -> product name
 加入运行如下示例代码：
 
  ```Objective-C
- - (void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^(void) {
@@ -1667,11 +1697,11 @@ bulid settings  ->    packaging  -> product name
 }
  ```
 
-应用运行过称中锁屏，总是会出现以下提示：
+应用运行过程中锁屏，总是会出现以下提示：
 
 
  ```Objective-C
-   ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
     handler = remote;
     info = <BSSettings: 0x16d80e50> {
         (1) = 5;
@@ -1687,7 +1717,7 @@ bulid settings  ->    packaging  -> product name
 
 
  ```Objective-C
-  ** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
     handler = remote;
     info = <BSSettings: 0x16d80e50> {
         (1) = 5;
@@ -1701,6 +1731,59 @@ error in __connection_block_invoke_2: Connection interrupted
 在 iOS8 系统下测试并未发现此问题。
 
 对此并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎提 PR !
+
+### 在`didFinishLaunchingWithOptions`结束后还没有设置window的`rootViewController`会导致崩溃
+
+
+
+
+ iOS9 不允许在 `didFinishLaunchingWithOptions` 结束了之后，还没有设置 window 的 `rootViewController` 。 也许是 Xcode7 的编译器本身就不支持。
+
+崩溃时的控制台日志提示：
+
+ ```Objective-C
+*** Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3505.16/UIApplication.m:3294
+
+***  Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Application windows are expected to have a root view controller at the end of application launch'
+
+*** First throw call stack:
+/*省略*/
+libc++abi.dylib: terminating with uncaught exception of type NSException
+(lldb) 
+ ```
+
+解决的方法是先设初始化个值，之后再赋值替换掉：
+
+
+
+ ```Objective-C
+UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreenmainScreen].bounds];
+window.rootViewController = [[UIViewController alloc] init];
+ ```
+
+
+
+
+尤其注意一种情况，在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果，因而也不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。
+
+ ```Objective-C
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor yellowColor];
+    [self.window makeKeyAndVisible];
+    
+    UIWindow *normalWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    normalWindow.backgroundColor = [UIColor blueColor];
+    normalWindow.windowLevel = UIWindowLevelAlert;
+    [normalWindow makeKeyAndVisible];
+    
+    return YES;
+}
+ ```
+
+
+这种情况，在 `didFinishLaunchingWithOptions` 需要修改原来的策略，将第二个 window 类型改为其他类型，比如 viewController 类型、navigation 类型、tabbarController 类型等。
+ 
 
 ## 9.Demo5、Demo6--- 搜索 API
 
