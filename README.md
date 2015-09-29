@@ -1731,7 +1731,7 @@ error in __connection_block_invoke_2: Connection interrupted
 
 对此并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎提 PR !
 
-### 在`didFinishLaunchingWithOptions`结束后还没有设置window的`rootViewController`会有警告甚至崩溃
+### 在`didFinishLaunchingWithOptions`结束后还没有设置window的`rootViewController`会导致崩溃
 
 
 如果运行的时候报下列错误，那就是你的didFinishLaunchingWithOptions写的不对了
@@ -1755,7 +1755,7 @@ window.rootViewController = [[UIViewController alloc] init];
 而且如果不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。解决办法就是要确保给 window 设置了 `rootViewController` 。
 
 
-在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果：
+尤其注意一种情况，在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果：
 
 
  ```Objective-C
@@ -1776,15 +1776,15 @@ window.rootViewController = [[UIViewController alloc] init];
 在 iOS8及之前仅仅会有一个警告，iOS9上则会崩溃：
 
  ```Objective-C
-2015-09-29 15:07:58.938 CYLiOS9AppdelegateChangeDemo[4411:685467] *** Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3505.16/UIApplication.m:3294
-2015-09-29 15:07:58.947 CYLiOS9AppdelegateChangeDemo[4411:685467] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Application windows are expected to have a root view controller at the end of application launch'
+*** Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3505.16/UIApplication.m:3294
+
+***  Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Application windows are expected to have a root view controller at the end of application launch'
+
 *** First throw call stack:
 /*省略*/
 libc++abi.dylib: terminating with uncaught exception of type NSException
 (lldb) 
  ```
-
-解决方法就是必须设 rootViewController 。
 
  
 
