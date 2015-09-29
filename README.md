@@ -843,6 +843,10 @@ A：
 > *** Assertion failure in -[CLLocationManager setAllowsBackgroundLocationUpdates:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/CoreLocationFramework_Sim/CoreLocation-1808.1.5/Framework/CoreLocation/CLLocationManager.m:593
 
 
+这个问题，有两种方式可以解决：
+
+第一种：
+
 要将  Info.plist 配置如下：
  ![enter image description here][8]
 
@@ -857,6 +861,12 @@ A：
     <array>
         <string>location</string>
     </array>
+
+第二种：
+
+在对应 target 的 Capabilities -> Background Modes -> 开启 Location Updates 
+
+![enter image description here](http://cdn2.raywenderlich.com/wp-content/uploads/2014/12/background_modes.png)
 
 
 
@@ -1720,6 +1730,35 @@ error in __connection_block_invoke_2: Connection interrupted
 在 iOS8 系统下测试并未发现此问题。
 
 对此并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎提 PR !
+
+### 在`didFinishLaunchingWithOptions`结束后还没有设置window的`rootViewController`会有警告
+
+
+如果运行的时候报下列错误，那就是你的didFinishLaunchingWithOptions写的不对了
+
+
+
+ > Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3505.16/UIApplication.m:32
+
+
+ iOS9 不允许在 `didFinishLaunchingWithOptions` 结束了之后，还没有设置 window 的 `rootViewController` 。 也许是 Xcode7 的编译器本身就不支持。
+
+解决的方法当然就是先初始化个值，之后再赋值替换掉
+
+
+
+ ```Objective-C
+UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreenmainScreen].bounds];
+window.rootViewController = [[UIViewController alloc] init];
+ ```
+
+而且如果不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。解决办法就是要确保给 window 设置了 `rootViewController` 。
+
+
+
+
+
+ 
 
 ## 9.Demo5、Demo6--- 搜索 API
 
