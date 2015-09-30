@@ -38,10 +38,14 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
   6.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#ios9锁屏控制台会打印警告)
   7. [Xcode7 上传应用时提示 ITMS-90535 Unable to publish iOS app with xxx SDK 的问题](http://stackoverflow.com/questions/32622899/itms-90535-unable-to-publish-ios-app-with-latest-google-signin-sdk)
-  8.  [在didFinishLaunchingWithOptions结束后还没有设置window的rootViewController会导致崩溃](https://github.com/ChenYilong/iOS9AdaptationTips#在didfinishlaunchingwithoptions结束后还没有设置window的rootviewcontroller会导致崩溃) 
+  8.  [在didFinishLaunchingWithOptions结束后还没有设置window的rootViewController会导致崩溃](https://github.com/ChenYilong/iOS9AdaptationTips#在didfinishlaunchingwithoptions结束后还没有设置window的rootview
+controller会导致崩溃) 
  9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api)  
  10.   [iOS国际化问题：当前设备语言字符串返回有变化](https://github.com/ChenYilong/iOS9AdaptationTips#10ios国际化问题当前设备语言字符串返回有变化) 
  11.  [UITableView显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#11uitableview显示异常) 
+  1.  [代码创建的 tableView 无法隐藏 cell 分割线](https://github.com/ChenYilong/iOS9AdaptationTips#代码创建的-tableview-无法隐藏-cell-分割线) 
+  2. [reloadData 刷新失效](https://github.com/ChenYilong/iOS9AdaptationTips#reloaddata-刷新失效)
+
 
 
 
