@@ -1845,6 +1845,55 @@ if ([currentLanguage hasPrefix:@"zh-Hans"])
 
 疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
+## 11.UITableView显示异常
+
+原本在 Xcode6 上完好的项目，在 Xcode7 上一编译， `tableView` 出了两个问题 ：
+
+
+ 1.  代码创建的 `tableView` 无法隐藏 cell 分割线
+ 2.  `reloadData` 刷新失效；
+
+
+### 代码创建的 `tableView` 无法隐藏 cell 分割线
+
+iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是在用xib创建的 tableview，就不存在这个问题
+
+解决方法是将设置分割线隐藏的方法 `self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;` 写在 `-layoutSubviews` 中：
+
+ ```Objective-C
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+ ```
+
+也有人发现另一种方法，就是每次 reloadData 之前都进行一次设置：设置分割线隐藏，这样也可以解决：
+
+
+
+ ```Objective-C
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+   [self.tableView reloadData]
+ ```
+
+虽然也可以解决但是不推荐，这样写会给其他人造成困扰：不知所云。
+
+
+### `reloadData` 刷新失效
+
+现象： `[tableView reloadData]` 无效，有一行 cell 明明改变了但是刷新不出来。
+
+
+ 感觉可能是这个方法和某种新加的特性冲突了，猜测可能是 `reloadData` 的操作被推迟到下一个 `RunLoop` 执行最终失效。
+
+解决的方法是，注释 `[tableView reloadData]` ，改用局部刷新：
+
+ ```Objective-C
+[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+ ```
+
+这两个推测均属 Xcode7 的bug，将来 Apple 肯定会修复。
+
 
 ----------
 
