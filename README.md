@@ -41,7 +41,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
   8.  [在didFinishLaunchingWithOptions结束后还没有设置window的rootViewController会导致崩溃](https://github.com/ChenYilong/iOS9AdaptationTips#在didfinishlaunchingwithoptions结束后还没有设置window的rootviewcontroller会导致崩溃) 
  9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api)  
  10.   [iOS国际化问题：当前设备语言字符串返回有变化](https://github.com/ChenYilong/iOS9AdaptationTips#10ios国际化问题当前设备语言字符串返回有变化) 
-
+ 11.  [UITableView显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#11uitableview显示异常) 
 
 
 
@@ -1840,10 +1840,7 @@ if ([currentLanguage hasPrefix:@"zh-Hans"])
 
 **备注：以上iOS9 当前语言字符串返回结果：语言字符串代码 + 地区代码。在某些情况下不是这样，本人手机型号：大陆版电信iPhone5S/A1533/16GB测试结果：zh-HK/zh-TW，在地区为"中国"、"中国香港"、"中国台湾"的时候，显示的还是zh-HK/zh-TW，一旦切换到其它地区，设备语言会自动的切换到中文繁体。请开发人员注意中文的问题！**
 
-#结束语
-如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
 
-疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
 ## 11.UITableView显示异常
 
@@ -1894,6 +1891,11 @@ iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是
 
 这两个推测均属 Xcode7 的bug，将来 Apple 肯定会修复。
 
+
+#结束语
+如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
+
+疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
 ----------
 
