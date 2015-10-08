@@ -1793,7 +1793,13 @@ window.rootViewController = [[UIViewController alloc] init];
 
 导入两个 framework，
 
-然后像设置tableView 的 cell 一样设置下每一个“搜索元素”，详情见代码。
+然后像设置tableView 的 cell 一样设置下每一个“搜索元素”，搜索元素的组成如下：
+
+
+![enter image description here](http://i57.tinypic.com/144b22w.jpg)
+
+
+详情见 Demo6 代码。
 
 
 ![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150923/21/17338872420150923214730010.gif?370x686_110
