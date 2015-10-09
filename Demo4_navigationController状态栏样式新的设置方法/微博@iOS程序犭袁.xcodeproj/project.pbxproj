@@ -1,0 +1,313 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A87A29F1B2A920400CA0E9B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A87A2741B2A920400CA0E9B /* ViewController.m */; };
+		9ACCF88A1B27EF1C00CBEF4B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */; };
+		9ACCF88B1B27EF1C00CBEF4B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */; };
+		9ACCF88F1B27EF1C00CBEF4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */; };
+		9ACCF8911B27EF1C00CBEF4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCF8651B27EF1C00CBEF4B /* main.m */; };
+		9ADFA3041BB28128002C09FD /* UINavigationController+StatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADFA3031BB28128002C09FD /* UINavigationController+StatusBarStyle.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		18EFF2C01B25746C00786CE1 /* 微博@iOS程序犭袁.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "微博@iOS程序犭袁.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A87A2731B2A920400CA0E9B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9A87A2741B2A920400CA0E9B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9ACCF8591B27EF1C00CBEF4B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9ACCF85C1B27EF1C00CBEF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9ACCF8641B27EF1C00CBEF4B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ACCF8651B27EF1C00CBEF4B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9ADFA3021BB28128002C09FD /* UINavigationController+StatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+StatusBarStyle.h"; sourceTree = "<group>"; };
+		9ADFA3031BB28128002C09FD /* UINavigationController+StatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StatusBarStyle.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18EFF2BD1B25746C00786CE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18EFF2B71B25746C00786CE1 = {
+			isa = PBXGroup;
+			children = (
+				9ACCF8581B27EF1C00CBEF4B /* 微博@iOS程序犭袁 */,
+				18EFF2C11B25746C00786CE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18EFF2C11B25746C00786CE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18EFF2C01B25746C00786CE1 /* 微博@iOS程序犭袁.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A87A2711B2A920400CA0E9B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9A87A2721B2A920400CA0E9B /* Controller */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9A87A2721B2A920400CA0E9B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9ADFA3021BB28128002C09FD /* UINavigationController+StatusBarStyle.h */,
+				9ADFA3031BB28128002C09FD /* UINavigationController+StatusBarStyle.m */,
+				9A87A2731B2A920400CA0E9B /* ViewController.h */,
+				9A87A2741B2A920400CA0E9B /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9ACCF8581B27EF1C00CBEF4B /* 微博@iOS程序犭袁 */ = {
+			isa = PBXGroup;
+			children = (
+				9A87A2711B2A920400CA0E9B /* Classes */,
+				9ACCF8591B27EF1C00CBEF4B /* AppDelegate.h */,
+				9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */,
+				9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */,
+				9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */,
+				9ACCF8641B27EF1C00CBEF4B /* Info.plist */,
+				9ACCF8651B27EF1C00CBEF4B /* main.m */,
+			);
+			path = "微博@iOS程序犭袁";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18EFF2BF1B25746C00786CE1 /* 微博@iOS程序犭袁 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18EFF2E31B25746C00786CE1 /* Build configuration list for PBXNativeTarget "微博@iOS程序犭袁" */;
+			buildPhases = (
+				18EFF2BC1B25746C00786CE1 /* Sources */,
+				18EFF2BD1B25746C00786CE1 /* Frameworks */,
+				18EFF2BE1B25746C00786CE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "微博@iOS程序犭袁";
+			productName = "B01-tableView";
+			productReference = 18EFF2C01B25746C00786CE1 /* 微博@iOS程序犭袁.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18EFF2B81B25746C00786CE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = itcast;
+				TargetAttributes = {
+					18EFF2BF1B25746C00786CE1 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 18EFF2BB1B25746C00786CE1 /* Build configuration list for PBXProject "微博@iOS程序犭袁" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18EFF2B71B25746C00786CE1;
+			productRefGroup = 18EFF2C11B25746C00786CE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18EFF2BF1B25746C00786CE1 /* 微博@iOS程序犭袁 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18EFF2BE1B25746C00786CE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ACCF88F1B27EF1C00CBEF4B /* Images.xcassets in Resources */,
+				9ACCF88B1B27EF1C00CBEF4B /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18EFF2BC1B25746C00786CE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A87A29F1B2A920400CA0E9B /* ViewController.m in Sources */,
+				9ACCF88A1B27EF1C00CBEF4B /* AppDelegate.m in Sources */,
+				9ACCF8911B27EF1C00CBEF4B /* main.m in Sources */,
+				9ADFA3041BB28128002C09FD /* UINavigationController+StatusBarStyle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9ACCF85C1B27EF1C00CBEF4B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18EFF2E11B25746C00786CE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18EFF2E21B25746C00786CE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18EFF2E41B25746C00786CE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_NAME = "微博@iOS程序犭袁";
+			};
+			name = Debug;
+		};
+		18EFF2E51B25746C00786CE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_NAME = "微博@iOS程序犭袁";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18EFF2BB1B25746C00786CE1 /* Build configuration list for PBXProject "微博@iOS程序犭袁" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18EFF2E11B25746C00786CE1 /* Debug */,
+				18EFF2E21B25746C00786CE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18EFF2E31B25746C00786CE1 /* Build configuration list for PBXNativeTarget "微博@iOS程序犭袁" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18EFF2E41B25746C00786CE1 /* Debug */,
+				18EFF2E51B25746C00786CE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18EFF2B81B25746C00786CE1 /* Project object */;
+}
