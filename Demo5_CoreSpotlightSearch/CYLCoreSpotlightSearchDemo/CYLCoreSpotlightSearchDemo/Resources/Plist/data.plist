@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>ios</string>
+		<key>image_name</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Sachin Tendulkar, IND</string>
+		<key>image_name</key>
+		<string>2.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Chris Gayle, WI</string>
+		<key>image_name</key>
+		<string>3.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Rahul Dravid, IND</string>
+		<key>image_name</key>
+		<string>4.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Adam Gilchrist, AUS</string>
+		<key>image_name</key>
+		<string>5.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Ricky Ponting, AUS</string>
+		<key>image_name</key>
+		<string>6.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Sourav Ganguly, IND</string>
+		<key>image_name</key>
+		<string>7.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Dale Steyn, SA</string>
+		<key>image_name</key>
+		<string>8.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Imran Khan, PAK</string>
+		<key>image_name</key>
+		<string>9.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Johnty Rhodes, SA</string>
+		<key>image_name</key>
+		<string>10.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Kapil Dev, IND</string>
+		<key>image_name</key>
+		<string>11.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Glenn Mcgrath, AUS</string>
+		<key>image_name</key>
+		<string>12.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Muttaiah Muralitharan, SL</string>
+		<key>image_name</key>
+		<string>13.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Anil Kumble, IND</string>
+		<key>image_name</key>
+		<string>14.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Steve Waugh, AUS</string>
+		<key>image_name</key>
+		<string>15.png</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Wasim Akram, PAK</string>
+		<key>image_name</key>
+		<string>16.png</string>
+	</dict>
+</array>
+</plist>

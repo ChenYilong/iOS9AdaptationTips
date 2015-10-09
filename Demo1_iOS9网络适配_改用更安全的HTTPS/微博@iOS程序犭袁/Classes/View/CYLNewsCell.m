@@ -12,11 +12,11 @@
 
 @interface CYLNewsCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleView;
-@property (weak, nonatomic) IBOutlet UILabel *summaryView;
-@property (weak, nonatomic) IBOutlet UILabel *sitenameView;
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UILabel *addtimeView;
+@property (nonatomic, weak) IBOutlet UILabel *titleView;
+@property (nonatomic, weak) IBOutlet UILabel *summaryView;
+@property (nonatomic, weak) IBOutlet UILabel *sitenameView;
+@property (nonatomic, weak) IBOutlet UIImageView *imgView;
+@property (nonatomic, weak) IBOutlet UILabel *addtimeView;
 
 @end
 

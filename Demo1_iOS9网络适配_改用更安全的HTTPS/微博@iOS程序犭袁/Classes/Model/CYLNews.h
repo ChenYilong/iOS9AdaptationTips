@@ -10,12 +10,17 @@
 
 @interface CYLNews : NSObject
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *summary;  //摘要
-@property (nonatomic, copy) NSString *img;
-@property (nonatomic, copy) NSString *sitename;
-@property (nonatomic, assign) long addtime;
-@property (nonatomic, copy) NSString *time;
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *summary;  //摘要
+@property (nonatomic, readonly, copy) NSString *img;
+@property (nonatomic, readonly, copy) NSString *sitename;
+/*
+ *
+ 之前写的是 long，但是4s-iOS9模拟器上会崩溃，暂时改成 int 类型
+ *
+ */
+@property (nonatomic, readonly, assign) int addtime;
+@property (nonatomic, readonly, copy) NSString *time;
 
 + (instancetype)newWithDic:(NSDictionary *)dic;
 

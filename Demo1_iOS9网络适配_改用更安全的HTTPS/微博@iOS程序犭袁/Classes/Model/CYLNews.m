@@ -30,7 +30,7 @@
  *  获取news对象所有的属性
  */
 + (NSArray *)getProperties {
-    return @[@"title",@"summary",@"img",@"sitename",@"addtime"];
+    return @[ @"title", @"summary", @"img", @"sitename", @"addtime" ];
 }
 
 - (NSString *)description{

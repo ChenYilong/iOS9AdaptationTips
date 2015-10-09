@@ -1,16 +1,57 @@
-# iOS9AdaptationTips
+# iOS9AdaptationTips（iOS9开发学习交流群：146652529）
 
 
 
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
+（截至2015年9月26日共有10篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
-（截至2015年9月3日共有6篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+#中文快速导航：
 
+
+ 1.  [iOS9网络适配_ATS：改用更安全的HTTPS（见Demo1）](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https) 
+  1. [WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）](https://github.com/ChenYilong/iOS9AdaptationTips#what什么是ssltls跟http和https有什么关系) 
+  2.  [WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？Apple是不是又在反人类？）](https://github.com/ChenYilong/iOS9AdaptationTips#why以前的http不是也能用吗为什么要用ssltlsapple是不是又在反人类) 
+  3.  [HOW（如何适配？---弱弱地问下：加班要多久？）](https://github.com/ChenYilong/iOS9AdaptationTips#how如何适配---弱弱地问下加班要多久) 
+     1.  [第1种情况：HTTPS Only （只有HTTPS，所有情况下都使用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#1https-only-只有https所有情况下都使用ats) 
+     2.  [第2种情况：Mix & Match（混合）](https://github.com/ChenYilong/iOS9AdaptationTips#2mix--match混合) 
+     3.  [第3种情况：Opt Out（禁用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#3-opt-out禁用ats) 
+     4.  [第4种情况：Opt Out With Exceptions（除特殊情况外，都不使用ATS）](https://github.com/ChenYilong/iOS9AdaptationTips#4-opt-out-with-exceptions除特殊情况外都不使用ats) 
+     4.  [Certificate Transparency](https://github.com/ChenYilong/iOS9AdaptationTips#certificate-transparency) 
+  4.  [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a) 
+ 2.  [iOS9新特性_更灵活的后台定位（见Demo2）](https://github.com/ChenYilong/iOS9AdaptationTips#2demo2_ios9新特性_更灵活的后台定位) 
+ 3.  [企业级分发](https://github.com/ChenYilong/iOS9AdaptationTips#3企业级分发) 
+  1.  [iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”](https://github.com/ChenYilong/iOS9AdaptationTips#1-ios9以后企业级分发ipa包将遭到与mac上dmg安装包一样的待遇默认不能安装也不再出现信任按钮) 
+  2.  [iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况](https://github.com/ChenYilong/iOS9AdaptationTips#2-ios9以后企业分发时可能存在下载的ipa包与网页两者的-bundle-id-无法匹配而导致下载失败的情况) 
+ 4.  [Bitcode](https://github.com/ChenYilong/iOS9AdaptationTips#4bitcode) 
+ 5.  [iOS9 URL Scheme 适配_引入白名单概念（见Demo3）](https://github.com/ChenYilong/iOS9AdaptationTips#5demo3---ios9-url-scheme-适配_引入白名单概念) 
+     1.   [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
+     2.   [Q-A](https://github.com/ChenYilong/iOS9AdaptationTips#q-a-1) 
+ 6.  [ iPad适配Slide Over 和 Split View](https://github.com/ChenYilong/iOS9AdaptationTips#6-ipad适配slide-over-和-split-view) 
+ 7.  [字体间隙变大导致 UI 显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#7字体间隙变大导致-ui-显示异常) 
+ 8.  [升级 Xcode7 后的崩溃与警告](https://github.com/ChenYilong/iOS9AdaptationTips#8升级-xcode7-后的崩溃与警告) 
+  1.  [iOS9 下使用 Masonry 会引起崩溃的一种情况](https://github.com/ChenYilong/iOS9AdaptationTips#ios9-下使用-masonry-会引起崩溃的一种情况) 
+  2.  [Xcode 升级后，旧的状态栏的样式设置方式会引起警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode-升级后旧的状态栏的样式设置方式会引起警告) 
+        1.  [Demo4---navigationController状态栏样式新的设置方法](https://github.com/ChenYilong/iOS9AdaptationTips#demo4---navigationcontroller状态栏样式新的设置方法) 
+  3.  [Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-在-debug-状态下也生成-dsym-文件引起的警告) 
+  4.  [Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 there is an intenal API error](https://github.com/ChenYilong/iOS9AdaptationTips#xcode7-无法使用-8x-系统的设备调试一运行就报错-there-is-an-intenal-api-error) 
+  5.  [使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App](https://github.com/ChenYilong/iOS9AdaptationTips#使用了-html-的-iframe-元素可能导致无法从-safari-跳转至-app) 
+  6.  [iOS9锁屏控制台会打印警告](https://github.com/ChenYilong/iOS9AdaptationTips#ios9锁屏控制台会打印警告)
+  7. [Xcode7 上传应用时提示 ITMS-90535 Unable to publish iOS app with xxx SDK 的问题](http://stackoverflow.com/questions/32622899/itms-90535-unable-to-publish-ios-app-with-latest-google-signin-sdk)
+  8.  [在didFinishLaunchingWithOptions结束后还没有设置window的rootViewController会导致崩溃](https://github.com/ChenYilong/iOS9AdaptationTips#在didfinishlaunchingwithoptions结束后还没有设置window的rootview
+controller会导致崩溃) 
+ 9.  [Demo5、Demo6--- 搜索 API](https://github.com/ChenYilong/iOS9AdaptationTips#9demo5demo6----搜索-api)  
+ 10.   [iOS国际化问题：当前设备语言字符串返回有变化](https://github.com/ChenYilong/iOS9AdaptationTips#10ios国际化问题当前设备语言字符串返回有变化) 
+ 11.  [UITableView显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#11uitableview显示异常) 
+  1.  [代码创建的 tableView 无法隐藏 cell 分割线](https://github.com/ChenYilong/iOS9AdaptationTips#代码创建的-tableview-无法隐藏-cell-分割线) 
+  2. [reloadData 刷新失效](https://github.com/ChenYilong/iOS9AdaptationTips#reloaddata-刷新失效)
+
+
+
+
+# English⬇️⬇️
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
-
-> English
 
 ## 1. Demo1_You'd better Convert HTTP to HTTPS 
 
@@ -298,6 +339,12 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 ## 1. Demo1_iOS9网络适配_ATS：改用更安全的HTTPS
 
 [摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从`NSURLConnection` 、 `CFURL` 、 `NSURLSession`发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 `NSURLConnection` ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。
+
+一个符合 ATS 要求的 HTTPS，应该满足如下条件：
+
+ 1. Transport Layer Security协议版本要求TLS1.2以上
+ 2. 服务的Ciphers配置要求支持Forward Secrecy等
+ 3. 证书签名算法符合ATS要求等
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对ATS 的介绍：
 
@@ -718,6 +765,54 @@ A： AFNetworking 有影响，其它没影响。
 但 AFNetworking 也有更新计划，移除 `NSURLConnection` 相关API，迁移到 AFHTTPSessionManager ，但还未执行，详情见：[https://github.com/AFNetworking/AFNetworking/issues/2806](https://github.com/AFNetworking/AFNetworking/issues/2806)。
 
 
+Q：试了一下禁用 ATS 的方法 但是还是无法联网 仍然提示要使用https?
+
+
+ > App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&#039;s Info.plist file.
+</p>The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+
+
+A：遇到这类问题，90%是出现在“一个 Project 多 Target ”的情况下，所以
+请确保你修改的，确实是你的 Target 所属的 Info.plist ！
+
+如何确认？请前往这里，确认你 Target 所属的 Info.plist 究竟是哪个：
+
+Project -> Your Target -> Build Settings -> Info.plist File
+
+![enter image description here](http://i60.tinypic.com/sbrfrl.jpg)
+
+或者更直截了当一点，直接修改：
+
+Project -> Your Target —>info－> Custom iOS target properties－> 添加禁用 ATS 的属性
+
+![enter image description here](http://i60.tinypic.com/zvbt7b.jpg)
+
+还有一种可能性是：禁用 ATS 的代码粘贴进 plist 时，位置不对，可以尝试放在 diwuhang
+
+
+Q：我的项目是“一个 Project 多 Target ”，按照本文禁用 ATS 的方法，是不是每个 Info.plist 都要修改？
+
+A：不需要，用到哪个 Target 修改哪个的 Info.plist ，Target 是独立的，不受其他 Target 的影响，也不会影响其他 Target。
+
+Q：如何检测我们公司 HTTPS 是否符合 ATS 的要求？
+
+A：
+如果你的 App 的服务也在升级以适配ATS要求，可以使用如下的方式进行校验：
+
+在OS X EI Capitan系统的终端中通过nscurl命令来诊断检查你的HTTPS服务配置是否满足Apple的ATS要求:
+
+ ```Objective-C
+ $ nscurl --verbose --ats-diagnostics https://<your_server_domain>
+ ```
+
+当然，你也可以让公司服务端的同事参考Apple提供官方指南App Transport Security Technote进行服务的升级配置以满足ATS的要求：
+
+一个符合 ATS 要求的 HTTPS，应该满足如下条件：
+
+ 1. Transport Layer Security协议版本要求TLS1.2以上
+ 2. 服务的Ciphers配置要求支持Forward Secrecy等
+ 3. 证书签名算法符合ATS要求等
+
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
 【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
@@ -753,6 +848,10 @@ A： AFNetworking 有影响，其它没影响。
 > *** Assertion failure in -[CLLocationManager setAllowsBackgroundLocationUpdates:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/CoreLocationFramework_Sim/CoreLocation-1808.1.5/Framework/CoreLocation/CLLocationManager.m:593
 
 
+这个问题，有两种方式可以解决：
+
+第一种：
+
 要将  Info.plist 配置如下：
  ![enter image description here][8]
 
@@ -768,9 +867,23 @@ A： AFNetworking 有影响，其它没影响。
         <string>location</string>
     </array>
 
+第二种：
+
+在对应 target 的 Capabilities -> Background Modes -> 开启 Location Updates 
+
+![enter image description here](http://cdn2.raywenderlich.com/wp-content/uploads/2014/12/background_modes.png)
+
 
 
 ##3.企业级分发
+
+有两处变化：
+
+ 1. iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
+ 2. iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况
+
+
+###  1. iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
 
 iOS9之前，企业级分发十分方便：点击App出现“信任按钮”，
 
@@ -783,22 +896,165 @@ iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇�
 
  ![enter image description here][11]
 
-  [11]: https://i.imgur.com/Skn9iXk.png
+  [11]: http://i58.tinypic.com/2zecm83.jpg
 
-必须让用户进行gif图中的设置（相关Demo：https://github.com/ChenYilong/iOS9AdaptationTips/ ）
+必须让用户进行gif图中的设置：
 
 
  ![enter image description here][14]
 
   [14]: https://i.imgur.com/PXM235L.gif
 
+### 2. iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况
 
-##4.Bitcode（通俗解释：在线版安卓ART模式）
+iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，而iOS8或更早的系统不受影响。那是因为从iOS9以后，系统会在 ipa 包下载完之后，拿ipa包中的 bundle ID 与网页中的 plist 文件中的 bundle ID 进行比对，不一致不允许安装。
+
+错误提示如下：
+
+![enter image description here](http://i57.tinypic.com/28jckus.jpg)
+
+网页中的 plist 文件中的 bundle ID 的作用可参考 [《iOS:苹果企业证书通过网页分发安装app》](http://blog.sina.com.cn/s/blog_6afb7d800101fa16.html) 。
+
+正如这篇文章提到的，“网页中的 plist 文件”是习惯的叫法，也有人称作“manifest文件”，比如 [这篇文章](http://gknops.github.io/adHocGenerate/)。
+
+
+而iOS9之前，苹果不会检查这一项，因此iOS9之前可以安装。
+
+导致这一错误的原因除了粗心，还有开发者是故意设置不一致，据开发者说：
+
+ > 当初服务器 plist 的 bundle id 上故意做成成不一致。是为了解决一些人安装不上的问题。
+
+
+详情可参考： [《升级到ios 9，企业版发布现在无法安装成功了，有人遇到了这种问题吗？》](http://www.cocoachina.com/bbs/read.php?tid-324230-fpage-2-page-1.html) 
+
+
+
+
+如何知道是因为 bundle id 不一致造成的无法安装？
+
+通过查看设备上的日志信息：有一个 itunesstored 进程提示安装信息：
+
+      itunesstored →  <Warning>: [Download]: Download task did finish: 8 for download: 2325728577585828282
+      itunesstored →  <Warning>: [ApplicationWorkspace] Installing download: 2325728577585828282 with step(s): Install
+      itunesstored →  <Warning>: [ApplicationWorkspace]: Installing software package with bundleID: com.***.***: bundleVersion: 1.01 path: /var/mobile/Media/Downloads/2325728577585828282/-1925357977307433048
+      itunesstored →  <Warning>: BundleValidator: Failed bundleIdentifier: com.***.**** does not match expected bundleIdentifier: com.***.*********
+      itunesstored →  <Warning>: [ApplicationWorkspace]: Bundle validated for bundleIdentifier: com.****.******success: 0
+      itunesstored →  <Warning>: LaunchServices: Uninstalling placeholder for app <LSApplicationProxy: 0x12677be70> com.****.*******(Placeholder) <file:///private/var/mobile/Containers/Bundle/Application/B62D8EA3-2052-4393-8A7E-3FD27228BFC2/2325728577585828282.app>
+      itunesstored →  <Warning>: LaunchServices: Uninstalling app <LSApplicationProxy: 0x12677be70> com.****.*****(Placeholder) <file:///private/var/mobile/Containers/Bundle/Application/B62D8EA3-2052-4393-8A7E-3FD27228BFC2/2325728577585828282.app>
+
+其中的这一句很重要：
+
+     itunesstored →  <Warning>: BundleValidator: Failed bundleIdentifier: com.***.**** does not match expected bundleIdentifier: com.***.*********
+
+经过核对，果然是.ipa文件中真实的Bundle ID和manifest文件中配置的信息不匹配，然后测试发现：
+
+> iOS 9是校验bundle-identifier值的，而iOS 9以下版本是不校验，一旦iOS 9发现bundle-identifier不匹配，即使下载成功了，也会 Uninstall(日志中提示的)app的。
+
+
+适配方法：
+
+ 1. 两者的 bundle id 修改一致
+
+ 一旦出现iOS9能够安装企业版本APP，iOS9以下版本不能安装，一定先查看安装日志，然后核对每个参数配置。
+
+ manifest文件的参考配置。
+
+ ```XML
+ <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <!-- array of downloads. -->
+   <key>items</key>
+   <array>
+       <dict>
+           <!-- an array of assets to download -->
+           <key>assets</key>
+           <array>
+               <!-- software-package: the ipa to install. -->
+               <dict>
+                   <!-- required.  the asset kind. -->
+                   <key>kind</key>
+                   <string>software-package</string>
+                   <!-- optional.  md5 every n bytes.  -->
+                   <!-- will restart a chunk if md5 fails. -->
+                   <key>md5-size</key>
+                   <integer>10485760</integer>
+                   <!-- optional.  array of md5 hashes -->
+                   <key>md5s</key>
+                   <array>
+                       <string>41fa64bb7a7cae5a46bfb45821ac8bba</string>
+                       <string>51fa64bb7a7cae5a46bfb45821ac8bba</string>
+                   </array>
+                   <!-- required.  the URL of the file to download. -->
+                   <key>url</key>
+                   <string>http://www.example.com/apps/foo.ipa</string>
+               </dict>
+               <!-- display-image: the icon to display during download. -->
+               <dict>
+                   <key>kind</key>
+                   <string>display-image</string>
+                   <!-- optional. icon needs shine effect applied. -->
+                   <key>needs-shine</key>
+                   <true/>
+                   <key>url</key>
+                   <string>http://www.example.com/image.57×57.png</string>
+               </dict>
+               <!-- full-size-image: the large 512×512 icon used by iTunes. -->
+               <dict>
+                   <key>kind</key>
+                   <string>full-size-image</string>
+                   <!-- optional.  one md5 hash for the entire file. -->
+                   <key>md5</key>
+                   <string>61fa64bb7a7cae5a46bfb45821ac8bba</string>
+                   <key>needs-shine</key>
+                   <true/>
+                   <key>url</key>
+                   <string>http://www.example.com/image.512×512.jpg</string>
+               </dict>
+           </array><key>metadata</key>
+           <dict>
+               <!-- required -->
+               <key>bundle-identifier</key>
+               <string>com.example.fooapp</string>
+               <!-- optional (software only) -->
+               <key>bundle-version</key>
+               <string>1.0</string>
+               <!-- required.  the download kind. -->
+               <key>kind</key>
+               <string>software</string>
+               <!-- optional. displayed during download; -->
+               <!-- typically company name -->
+               <key>subtitle</key>
+               <string>Apple</string>
+               <!-- required.  the title to display during the download. -->
+               <key>title</key>
+               <string>Example Corporate App</string>
+           </dict>
+       </dict>
+   </array>
+</dict>
+</plist>
+ ```
+
+
+ 2. 使用fir.im等第三方分发平台：上述“ bundle id 不一致导致下载失败”这种情况只会出现在企业自己搭建网页分发的情形下，事实证明第三方的分发平台更加专业，已经很好地规避了该情况的发生。
+
+###Q-A
+
+Q：企业分发，企业版证书在iOS9上安装应用报 ` Ignore manifest download, already have bundleID: com.mycom.MyApp`  只有我的手机无法安装，别人 iOS9 都可以安装
+
+A：这并非 iOS9的问题，iOS8及以前的系统也会出现，和缓存有关系，请尝试关机重启手机，然后就可以安装了。
+
+
+##4.Bitcode
 
 【前言】未来， Watch 应用必须包含 bitcode ，iOS不强制，Mac OS不支持。
 但最坑的一点是： Xcode7 及以上版本会默认开启 bitcode 。
 
 什么是 bitcode ？
+
+通俗解释：在线版安卓ART模式。
 
 Apple 官方文档--[ ***App Distribution Guide – App Thinning (iOS, watchOS)*** ](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html#//apple_ref/doc/uid/TP40012582-CH35)是这样定义的：
 
@@ -819,11 +1075,48 @@ Apple 官方文档--[ ***App Distribution Guide – App Thinning (iOS, watchOS)*
  > 当我们提交程序到 App Store上时， Xcode 会将程序编译为一个中间表现形式( bitcode )。然后 App store 会再将这个 bitcode 编译为可执行的64位或32位程序。
 
 
-再看看这两段描述都是放在App Thinning(App瘦身)一节中，可以看出其与包的优化有关了。喵大(@onevcat)在其博客 [《开发者所需要知道的 iOS 9 SDK 新特性》](http://onevcat.com/2015/06/ios9-sdk/) 中也描述了iOS 9中苹果在App瘦身中所做的一些改进，大家可以转场到那去研读一下。
+再看看这两段描述都是放在App Thinning(App瘦身)一节中，可以看出其与包的优化有关了。
 
+打个比方，没有 bitcode  的 AppStore 里所提供的 App，类似在新华书店里卖捆绑销售的《四大名著丛书--精装版》，要买只能全买走，有了 bitcode 就好比这套四大名著每本都可以单卖，顾客就能按需购买。我们开发者在这个过程中扮演的角色是图书出版商的角色，应该照顾那些没钱一次买四本的顾客。（不要做不珍惜用户流量和存储空间的奸商。。）
+
+那为什么第三方的 SDK 不支持 bitcode，我的 app 也就不能支持？打个比方，《四大名著丛书》只要有一本是可以单卖的，那么你很难再卖捆绑销售款的《四大名著丛书》了，所以干脆全都可以单卖，这大概就是 Apple 的逻辑。
+
+ App Thinning 官方文档解释如下：
+
+
+ > The App Store and operating system optimize the installation of iOS and watchOS apps by tailoring app delivery to the capabilities of the user’s particular device, with minimal footprint. This optimization, called app thinning, lets you create apps that use the most device features, occupy minimum disk space, and accommodate future updates that can be applied by Apple. Faster downloads and more space for other apps and content provides a better user experience.
+
+
+开发者都知道，当前 iOS App 的编译打包方式是把适配兼容多个设备的执行文件及资源文件合并一个文件，上传和下载的文件则包含了所有的这些文件，导致占用较多的存储空间。
+
+App Thinning是一个关于节省iOS设备存储空间的功能，它可以让iOS设备在安装、更新及运行App等场景中仅下载所需的资源，减少App的占用空间，从而节省设备的存储空间。
+
+根据Apple官方文档的介绍，App Thinning主要有三个机制：
+
+
+ 1. Slicing
+
+ 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)，当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。
+
+ 2. On-Demand Resources
+
+ ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。
+
+ 3. Bitcode
+ 开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。
+
+（喵大(@onevcat)在其博客 [《开发者所需要知道的 iOS 9 SDK 新特性》](http://onevcat.com/2015/06/ios9-sdk/) 中也描述了iOS 9中苹果在App瘦身中所做的一些改进，大家可以转场到那去研读一下。）
+
+
+其中，Bitcode的机制可以支持动态的进行App Slicing，而对于Apple未来进行硬件升级的措施，此机制可以保证在开发者不重新发布版本的情况下而兼容新的设备。
 
  Bitcode 是一种中间代码，那它是什么格式的呢？ LLVM 官方文档有介绍这种文件的格式：  [ ***LLVM Bitcode File Format*** ](http://llvm.org/docs/BitCodeFormat.html#llvm-bitcode-file-format) 。
 
+如果你的应用也准备启用 Bitcode 编译机制，就需要注意以下几点：
+
+ 1. Xcode 7默认开启 Bitcode ，如果应用开启 Bitcode，那么其集成的其他第三方库也需要是 Bitcode 编译的包才能真正进行 Bitcode 编译
+ 2. 开启 Bitcode 编译后，编译产生的  `.app`  体积会变大(中间代码，不是用户下载的包)，且  `.dSYM`  文件不能用来崩溃日志的符号化(用户下载的包是 Apple 服务重新编译产生的，有产生新的符号文件)
+ 3. 通过 Archive 方式上传 AppStore 的包，可以在Xcode的Organizer工具中下载对应安装包的新的符号文件
 
 
 如何适配？
@@ -843,7 +1136,7 @@ Xcode 7 + 会开启 Bitcode。
 
 也就是说，也两种方法适配：
 
-方法一：更新library使包含Bitcode，否则会出现以下中的警告；
+方法一：更新 library 使包含 Bitcode ，否则会出现以下中的警告；
 
 > (null): URGENT: all bitcode will be dropped because
 > '/Users/myname/Library/Mobile
@@ -881,9 +1174,28 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 
 
-如果我们开启了bitcode，在提交包时，下面这个界面也会有个 bitcode 选项：
+如果我们开启了 bitcode ，在提交包时，下面这个界面也会有个 bitcode 选项：
 
 ![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
+
+那么 SDK 厂商如何支持 bitcode 呢？答案是只要在 Xcode7上重新编译一下就 ok 了。（请确保默认开启的 bitcode 没有去主动关闭）
+
+但是如果仅仅是编译一下，则会出现下类似的如下警告：
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150928/17/1733887242015092817143106.jpg?1462x120_120
+)
+
+
+
+ > ld: warning: full bitcode bundle could not be generated because 'Lookback(Lookback.o)' was built only with bitcode marker. The library must be generated from Xcode archive build with bitcode enabled (Xcode setting ENABLE_BITCODE)
+
+
+
+警告的消除步骤：
+
+模拟器、真机分开打包，SDK在build的时候，让模拟器与真机分开build，模拟器不设置bitcode的参数，真机的加上，然后再合起来。（“合起来”指的是指令集，好比 x86_64 i386 跟 armv7 arm64合起来。）用命令行打包的话 加上这个参数OTHER_CFLAGS=“-fembed-bitcode”。
+
+详情可移步：[ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
 
 
 更多信息，请移步
@@ -901,6 +1213,8 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
+
+
 ##5.Demo3---iOS9 URL Scheme 适配_引入白名单概念
 
  [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) （ 时间在30：18左右）关于 `URL scheme` 的介绍，指出：
@@ -978,6 +1292,9 @@ Demo结构如下：
         <string>weixin</string>
     </array>
 
+（以上只是为了演示，实际开发中，你不仅需要添加“weixin”还需要“wechat”这两个。具体 ）
+
+
  <p><del>关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。（经测试：iOS9 beta5中已经修复）</del></p>
 
 
@@ -990,7 +1307,92 @@ Demo结构如下：
 
  <p><del>> If you call the “openURL” method on a URL that is not in your whitelist, it will fail silently. A “This app is not allowed to query for scheme xxx” syslog entry will appear.
 </del></p>
-###Q-A
+
+
+### 常见 URL Scheme
+
+如果想一次性集成最常用的微信、新浪微博、QQ、支付宝四者的白名单，则配置如下：
+
+ ```XML
+ <key>LSApplicationQueriesSchemes</key>
+<array>
+    <!-- 微信 URL Scheme 白名单-->
+    <string>wechat</string>
+    <string>weixin</string>
+
+    <!-- 新浪微博 URL Scheme 白名单-->
+    <string>sinaweibohd</string>
+    <string>sinaweibo</string>
+    <string>sinaweibosso</string>
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+
+    <!-- QQ、Qzone URL Scheme 白名单-->
+    <string>mqqapi</string>
+    <string>mqq</string>
+    <string>mqqOpensdkSSoLogin</string>
+    <string>mqqconnect</string>
+    <string>mqqopensdkdataline</string>
+    <string>mqqopensdkgrouptribeshare</string>
+    <string>mqqopensdkfriend</string>
+    <string>mqqopensdkapi</string>
+    <string>mqqopensdkapiV2</string>
+    <string>mqqopensdkapiV3</string>
+    <string>mqzoneopensdk</string>
+    <string>wtloginmqq</string>
+    <string>wtloginmqq2</string>
+    <string>mqqwpa</string>
+    <string>mqzone</string>
+    <string>mqzonev2</string>
+    <string>mqzoneshare</string>
+    <string>wtloginqzone</string>
+    <string>mqzonewx</string>
+    <string>mqzoneopensdkapiV2</string>
+    <string>mqzoneopensdkapi19</string>
+    <string>mqzoneopensdkapi</string>
+    <string>mqzoneopensdk</string>
+
+    <!-- 支付宝  URL Scheme 白名单-->
+    <string>alipay</string>
+    <string>alipayshare</string>
+
+</array>
+ ```
+plist 文件看起来会是这样的：
+
+![enter image description here](http://i58.tinypic.com/e5pyee.jpg)
+
+其他平台可在下面的列表中查询：
+各平台OpenURL白名单说明
+
+平台名称 | URL Schem  | 补充说明
+-------------|-------------|-------------
+微信 | wechat,</p> weixin
+支付宝 | alipay,</p>alipayshare
+QQ | mqqOpensdkSSoLogin, </p>mqqopensdkapiV2,</p>mqqopensdkapiV3,</p>wtloginmqq2,</p>mqq,</p>mqqapi |
+QZONE | mqzoneopensdk, </p>mqzoneopensdkapi,</p>mqzoneopensdkapi19,</p>mqzoneopensdkapiV2,</p>mqqOpensdkSSoLogin,</p>mqqopensdkapiV2,</p>mqqopensdkapiV3,</p>wtloginmqq2,</p>mqqapi,</p>mqqwpa，</p>mqzone，</p>mqq | [注:若同时使用QQ和QZONE,则直接添加本格即可]
+新浪微博 | sinaweibo,</p>sinaweibohd,</p>sinaweibosso,</p>sinaweibohdsso,</p>weibosdk,</p>weibosdk2.5 | [后两个若导入新浪SDK则需要]
+豆瓣 |  无需配置 |
+开心网 | 无需配置 |
+易信 | yixin,</p> yixinopenapi
+Google+ | googlechrome, </p>googlechrome-x-callback,</p>hasgplus4,</p>com.google.gppconsent,</p>com.google.gppconsent.2.2.0,</p>com.google.gppconsent.2.3.0,</p>com.google.gppconsent.2.4.0,</p>com.google.gppconsent.2.4.1 |
+人人网 |  renrenapi,</p>renrenios,</p>renreniphone,</p>renren, | 
+Facebook | fbauth2 |
+Twitter | 无需配置 |
+Pocket | pocket-oauth-v1|
+Pinterest | pinit |
+Instagram | instagram |
+WhatsApp |  whatsapp |
+Line | line |
+KakaoTalk | kakaolink |
+KaokaoStory | storylink |
+LinkedIn | 无需配置 |
+Tumblr | 无需配置 |
+非平台类 | 无需配置 | ( 如短信，复制，邮件等)
+
+
+
+### Q-A
 
 Q：我用xcode7编译的app，如果不在plist里面加scheme，ios9下qq就会不显示，因为我用了qqsdk里的判断是否安装qq的方法，我要是直接下载app store上的，没有加scheme，qq也是能显示。
 
@@ -1002,7 +1404,24 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
 ![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
 
- 
+ Q：我们自己的应用跳到微信、支付宝、微博等的URLScheme是固定几个，但是从微信、支付宝、微博跳回到我们的应用的URLScheme可能是成千上万个，那他们那些大厂是如何做这个白名单？
+
+A：白名单策略影响的仅仅是 canOpenURL: 接口，OpenURL: 不受影响，这些大厂只调用 openURL: 所以不受 iOS9 的影响。
+
+Q：文中提到了设置白名单的原因，然而，如果这些别有用心的APP在它自己的白名单列出它关心的APP, 然后依次调用canOpenURL来检测，照样可以监控用户都安装了哪些APP啊？所以我依然不明白苹果这样做得原因。
+
+A：白名单的数目上限是50个。苹果这样子做，使得最多只能检测50个App。
+
+Q：按照文中的适配方法，error原因就没有了的确没问题了，但是还是会打印如下信息：
+
+ ```Objective-C
+ -canOpenURL: failed for URL: "XXXXXXXXXX" - error: "(null)"。
+ ```
+
+A：这个模拟器的一个 bug，无论使用iOS9的真机还是模拟器均出现该问题，估计 Xcode 后续的升级中会修复掉。
+
+那如何判断日志究竟是 Xcode bug 造成的还是没有适配造成的？看error的值，如果是null，则是 bug。（2015-09-21更）
+
 
 ##6. iPad适配Slide Over 和 Split View
 
@@ -1022,11 +1441,471 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
+## 7.字体间隙变大导致 UI 显示异常
+
+iOS8中，字体是Helvetica，中文的字体有点类似于“华文细黑”。只是苹果手机自带渲染，所以看上去可能比普通的华文细黑要美观。iOS9中，中文系统字体变为了专为中国设计的“苹方” 有点类似于一种word字体“幼圆”。字体有轻微的加粗效果，并且最关键的是字体间隙变大了！
+
+所以很多原本写死了width的label可能会出现“...”的情况：
+
+情况 | 显示 |解释
+-------------|------------- |------------- 
+XIB |将 label 的 width 写死 | 下面这两张图也可以直观的看出同一个界面，同一个label的变化。
+iOS8 | ![enter image description here](http://images2015.cnblogs.com/blog/717809/201509/717809-20150919223903476-176844619.png) | 正常
+iOS9 | ![enter image description here](http://images2015.cnblogs.com/blog/717809/201509/717809-20150919223918101-1917717144.png) | 最后四位数字、、、
+
+如果不将 label 的 width 写死，仅仅添加左端约束则右端的四个数字会越界
+
+情况 | 显示 |解释
+-------------|------------- |------------- 
+XIB | ![enter image description here](http://i60.tinypic.com/292r428.jpg) |如果仅仅添加左端约束
+iOS8 | ![enter image description here](http://i58.tinypic.com/2vj92bn.jpg) | 正常
+iOS9 | ![enter image description here](http://i62.tinypic.com/2czaq1v.jpg) | “3199”这四个数字越界了
+
+所以为了在界面显示上不出错，就算是固定长度的文字也还是建议使用sizetofit 或者ios向上取整 ceilf() 或者提前计算：
+
+
+ ```Objective-C
+CGSize size = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]}];
+CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
+ ```
+
+
+## 8.升级 Xcode7 后的崩溃与警告
+
+### 旧版本新浪微博 SDK 在 iOS9 上会导致的 Crash
+
+ ```Objective-C
+ app was compiled with optimization - stepping may behave oddly; variables may not be available
+ ```
+
+打印出来这句话，然后崩溃。多是启动的过程中程序就崩溃。
+
+在iOS9下，新浪微博SDK里面使用的 JSONKit 在部分机型可能导致崩溃。崩溃信息如下图。
+
+![enter image description here](http://wiki.mob.com/wp-content/uploads/2015/09/4062130C-1138-4352-89AF-E518F189A851.png)
+
+解决：更新新浪微博SDK，新浪的SDK最新版做了对iOS9兼容。
+
+### iOS9 下使用 Masonry 会引起崩溃的一种情况
+ 
+我们在使用时候一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
+
+ ```Objective-C
+ make.left.equalTo(self.mas_leading).offset(15);
+ ```
+
+应该为：
+
+ ```Objective-C
+ make.left.equalTo(self.mas_left).offset(15);
+ ```
+
+同理 mas_training 也需要改为right
+
+### Xcode 升级后，旧的状态栏的样式设置方式会引起警告
+
+ ```Objective-C
+<Error>: CGContextSaveGState: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+<Error>: CGContextTranslateCTM: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+<Error>: CGContextRestoreGState: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
+ ```
+
+出错原因：设置 app 的状态栏样式的时候，使用了旧的方式，在 info.plist 里面的 `View controller-based status bar appearance` 默认会为 YES，即使不设置也是 YES，但一般 iOS6 的时候为了设置状态栏样式，需要将其设为NO，iOS7，8也兼容，但是到了iOS9 就会报警告。
+
+解决办法：
+
+删除原先的设置代码，通常老的设置方式是这样的：
+
+ ```Objective-C
+ //设置状态栏的白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+ ```
+
+删除的原因见下：
+
+ ```Objective-C
+ // Setting the statusBarStyle does nothing if your application is using the default UIViewController-based status bar system.
+@property(readwrite, nonatomic) UIStatusBarStyle statusBarStyle NS_DEPRECATED_IOS(2_0, 9_0, "Use -[UIViewController preferredStatusBarStyle]");
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle animated:(BOOL)animated NS_DEPRECATED_IOS(2_0, 9_0, "Use -[UIViewController preferredStatusBarStyle]");
+ ```
+
+
+修改方式是在 `Info.plist` 文件中做如下修改：
+
+将 `View controller-based status bar appearance` 删除（默认为 YES），或设置为YES：
+
+对应的 plist 里的 XML源码：
+
+ ```Objective-C
+ <key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+ ```
+看起来长这样：
+
+![enter image description here](http://i61.tinypic.com/jrsjnd.jpg)
+
+然后使用新的方式来实现状态栏的样式：
+
+
+ ```Objective-C
+- (UIStatusBarStyle)preferredStatusBarStyle;
+- (UIViewController *)childViewControllerForStatusBarStyle;
+- (void)setNeedsStatusBarAppearanceUpdate
+ ```
+
+比如，你想将状态栏设置为白色，就可以这样写：
+
+ ```Objective-C
+//设置状态栏的白色
+ -(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+ ```
+
+记得要 clean 下或者删除应用程序重新运行
+
+#### Demo4---navigationController状态栏样式新的设置方法
+
+如果你按照上面的方法设置了，但还是不行。八成是 rootViewController 设置的问题，你必须设置 rootViewController，编译器才会去 rootViewController 中重载 preferredStatusBarStyle 方法。
+
+另外当你在 appdelegate 中将 navigationController 设为 rootViewController 的时候：
+
+ ```Objective-C
+     self.window.rootViewController = self.navigationController;
+ ```
+
+因为 rootViewController 变为了 navigationController，你在 ViewController 里重写 preferredStatusBarStyle 方法是不会起作用的。所以最好的方法是
+
+
+
+ ```Objective-C
+ - (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"微博@iOS程序犭袁";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+}
+ ```
+
+
+如果你还是想重写 preferredStatusBarStyle 方法来达到作用，那最好使用分类来解决：
+
+.h文件：
+
+ ```Objective-C
+ //
+//  UINavigationController+StatusBarStyle.h
+//  微博@iOS程序犭袁
+//
+//  Created by  https://github.com/ChenYilong/iOS9AdaptationTips/ on 15/6/8.
+//  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UINavigationController (StatusBarStyle)
+
+@end
+
+ ```
+
+.m文件：
+
+
+ ```Objective-C
+ //
+//  UINavigationController+StatusBarStyle.m
+//  微博@iOS程序犭袁
+//
+//  Created by  https://github.com/ChenYilong/iOS9AdaptationTips/ on 15/6/8.
+//  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
+//
+
+#import "UINavigationController+StatusBarStyle.h"
+
+@implementation UINavigationController (StatusBarStyle)
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    //also you may add any fancy condition-based code here
+    return UIStatusBarStyleLightContent;
+}
+
+@end
+ ```
+
+我在仓库里给出了 navigation 的设置方法，见Demo4。
+
+参考链接： [preferredStatusBarStyle isn't called--For anyone using a UINavigationController:](http://stackoverflow.com/a/19513714/3395008) 
+
+### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
+
+Xcode6 的工程升级到 Xcode7上来，会报警告：
+
+![enter image description here](http://i57.tinypic.com/2a5zuia.jpg)
+
+这是 debug 编译时导出符号文件出现的告警，
+
+然而新建的Xcode7工程不会有该问题。
+
+解决方法是让 debug 编译的时候不生成符号文件：
+
+![enter image description here](http://i60.tinypic.com/2e23qyp.jpg)
+
+### Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 `there is an intenal API error` 
+
+
+![enter image description here](http://cdn.cocimg.com/bbs/attachment/Fid_21/21_296305_92094d6a71e587a.png)
+
+`Xcode7` 调试  `iOS8.x` 的真机，需要确保项目名改为英文，中间含有中文会报错  `there is an intenal API error`
+
+按照下面的步骤检查：
+
+bulid settings  ->    packaging  -> product name   
+
+### 使用了 HTML 的 iframe 元素可能导致无法从 Safari 跳转至 App 
+
+我们都知道，从网易新闻分享一条新闻到QQ，然后从QQ中打开链接再用safari打开链接，在iOS8上，这个时候会跳转到网易新闻App。但是现在（2015年09月23日）版本的网易新闻在 iOS9 就不能正常跳转，会跳转到 App Store 页面并提示要不要打开 App Store。
+
+
+这是很可能是因为使用了 HTML 的 iframe 元素，并将自定义的链接放进了该元素中
+
+举例说明：
+
+![enter image description here](http://i61.tinypic.com/2wbvok8.jpg)
+
+
+我之前写的一个 Demo： [模仿 《简书 App》 的效果:在html中跳转到App中的对应页面,并能从App跳转到原来的网址](https://github.com/ChenYilong/CYLExternalURL)，在例子中直接调用自定义链接在 iOS9上是可以跳转到 App 中的，然而，如果用 iframe 元素包起来就会变不可用。
+
+参考链接：
+
+
+ 1.  [HTML 的iframe 标签](http://www.w3school.com.cn/tags/tag_iframe.asp) 
+ 2.  [iOS 9 safari iframe src with custom url scheme not working](http://stackoverflow.com/questions/31891777/ios-9-safari-iframe-src-with-custom-url-scheme-not-working) 
+
+### iOS9锁屏控制台会打印警告 
+
+加入运行如下示例代码：
+
+ ```Objective-C
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^(void) {
+        //在这个10秒内锁屏
+         NSLog(@"准备休眠");
+        sleep(10);
+        NSLog(@"打印成功");
+    });
+}
+ ```
+
+应用运行过程中锁屏，总是会出现以下提示：
+
+
+ ```Objective-C
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+    handler = remote;
+    info = <BSSettings: 0x16d80e50> {
+        (1) = 5;
+    };
+}
+ ```
+
+
+当应用处于空闲状态时（无网络请求）锁屏对于用户而言并无较大影响，
+
+
+但是当应用在执行某个异步任务时（比如下拉刷新一下列表）锁屏，重新解锁进入就可能会发现异步任务失败，控制台也会提示 Error 信息：
+
+
+ ```Objective-C
+** -[UIApplication _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:] ** unhandled action -> <FBSSceneSnapshotAction: 0x16da76c0> {
+    handler = remote;
+    info = <BSSettings: 0x16d80e50> {
+        (1) = 5;
+    };
+}
+error in __connection_block_invoke_2: Connection interrupted
+ ```
+
+以上情况不易复现，但确有发生。
+
+在 iOS8 系统下测试并未发现此问题。
+
+对此并未找到合理的解释和对应的解决办法，如果你有解决方法，欢迎提 PR !
+
+### 在`didFinishLaunchingWithOptions`结束后还没有设置window的`rootViewController`会导致崩溃
+
+
+
+
+ iOS9 不允许在 `didFinishLaunchingWithOptions` 结束了之后，还没有设置 window 的 `rootViewController` 。 也许是 Xcode7 的编译器本身就不支持。
+
+崩溃时的控制台日志提示：
+
+ ```Objective-C
+*** Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3505.16/UIApplication.m:3294
+
+***  Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Application windows are expected to have a root view controller at the end of application launch'
+
+*** First throw call stack:
+/*省略*/
+libc++abi.dylib: terminating with uncaught exception of type NSException
+(lldb) 
+ ```
+
+解决的方法是先设初始化个值，之后再赋值替换掉：
+
+
+
+ ```Objective-C
+UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreenmainScreen].bounds];
+window.rootViewController = [[UIViewController alloc] init];
+ ```
+
+
+
+
+尤其注意一种情况，在 iOS8以前，我们有时候会通过在 AppDelegate 中添加另一个 UIWindow ，并修改其 Level 来达到 addSubview 的效果，因而也不设置 window 的 `rootViewController` ，而是把它直接以视图的形式展示了，则在 iOS8 上是警告，在 iOS9 上就崩溃了。
+
+ ```Objective-C
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor yellowColor];
+    [self.window makeKeyAndVisible];
+    
+    UIWindow *normalWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    normalWindow.backgroundColor = [UIColor blueColor];
+    normalWindow.windowLevel = UIWindowLevelAlert;
+    [normalWindow makeKeyAndVisible];
+    
+    return YES;
+}
+ ```
+
+
+这种情况，在 `didFinishLaunchingWithOptions` 需要修改原来的策略，将第二个 window 类型改为其他类型，比如 viewController 类型、navigation 类型、tabbarController 类型等。
+ 
+
+## 9.Demo5、Demo6--- 搜索 API
+
+导入两个 framework，
+
+然后像设置tableView 的 cell 一样设置下每一个“搜索元素”，搜索元素的组成如下：
+
+
+![enter image description here](http://i57.tinypic.com/144b22w.jpg)
+
+
+详情见 Demo6 代码。
+
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150923/21/17338872420150923214730010.gif?370x686_110
+)
+
+既然刚才说了搜索元素与 tableView 的 cell 非常相似：那么我们就展示一下如何让 tableView 与 CoreSpotlightSearch 进行结合：
+
+详见 Demo6，Demo6 与 Demo5 的主要差异在于：在点击搜索结果跳转到 App 后，还会进一步根据搜索的内容 push 到相应的详情页中：
+
+![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150924/00/17338872420150924001340035.gif?306x572_110
+)
+
+## 10.iOS国际化问题：当前设备语言字符串返回有变化。
+
+
+```
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+NSArray *allLanguage = [defaults objectForKey:@"AppleLanguages"];
+NSString *currentLanguage = [allLanguage objectAtIndex:0];
+NSLog(@"The current language is : %@", currentLanguage);
+```
+
+iOS 9 之前：以上返回结果：语言字符串代码。例如："zh-Hans"
+
+iOS 9:以上返回结果：语言字符串代码 + 地区代码。例如："zh-Hans-US"
+
+备注：  
+1.请注意判断当前语言类型，不要用以下形式的代码了，不然在iOS9上就会遇到坑。
+
+```
+if ([currentLanguage isEqualToString:@"zh-Hans"])
+```
+
+可以使用：
+
+```
+if ([currentLanguage hasPrefix:@"zh-Hans"])
+```
+
+另外：对于中文，语言有：
+
++ 简体中文:zh-Hans
++ 繁体中文:zh-Hant
++ 香港中文:zh-HK
++ 澳门中文:zh-MO
++ 台湾中文:zh-TW
++ 新加坡中文:zh-SG  
+
+**备注：以上iOS9 当前语言字符串返回结果：语言字符串代码 + 地区代码。在某些情况下不是这样，本人手机型号：大陆版电信iPhone5S/A1533/16GB测试结果：zh-HK/zh-TW，在地区为"中国"、"中国香港"、"中国台湾"的时候，显示的还是zh-HK/zh-TW，一旦切换到其它地区，设备语言会自动的切换到中文繁体。请开发人员注意中文的问题！**
+
+
+
+## 11.UITableView显示异常
+
+原本在 Xcode6 上完好的项目，在 Xcode7 上一编译， `tableView` 出了两个问题 ：
+
+
+ 1.  代码创建的 `tableView` 无法隐藏 cell 分割线
+ 2.  `reloadData` 刷新失效；
+
+
+### 代码创建的 `tableView` 无法隐藏 cell 分割线
+
+iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是在用xib创建的 tableview，就不存在这个问题
+
+解决方法是将设置分割线隐藏的方法 `self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;` 写在 `-layoutSubviews` 中：
+
+ ```Objective-C
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+ ```
+
+也有人发现另一种方法，就是每次 reloadData 之前都进行一次设置：设置分割线隐藏，这样也可以解决：
+
+
+
+ ```Objective-C
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+   [self.tableView reloadData]
+ ```
+
+虽然也可以解决但是不推荐，这样写会给其他人造成困扰：不知所云。
+
+
+### `reloadData` 刷新失效
+
+现象： `[tableView reloadData]` 无效，有一行 cell 明明改变了但是刷新不出来。
+
+
+ 感觉可能是这个方法和某种新加的特性冲突了，猜测可能是 `reloadData` 的操作被推迟到下一个 `RunLoop` 执行最终失效。
+
+解决的方法是，注释 `[tableView reloadData]` ，改用局部刷新：
+
+ ```Objective-C
+[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+ ```
+
+这两个推测均属 Xcode7 的bug，将来 Apple 肯定会修复。
+
+
 #结束语
-如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  交流。
+如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：141607754”中交流。
 
 疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
-
 
 ----------
 
