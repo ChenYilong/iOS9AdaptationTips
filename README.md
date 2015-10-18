@@ -1,4 +1,4 @@
-# iOS9AdaptationTips（iOS9开发学习交流群：146652529）
+# iOS9AdaptationTips（iOS9开发学习交流群：498865024）
 
 
 
@@ -1488,7 +1488,14 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
 
 ### iOS9 下使用 Masonry 会引起崩溃的一种情况
  
-我们在使用时候一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
+在 iOS8（及以前）我们有这样的经验：
+
+ >   `leading 与 left`  、 `trailing 与 right`  在正常情况下是等价的 但是当一些布局是从右至左时(比如阿拉伯文?没有类似的经验) 则会对调，换句话说就是基本可以不理不用，用left和right就好了
+
+（摘自 [《Masonry介绍与使用实践(快速上手Autolayout)》](http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/) ）
+
+
+但在概念里，还是一直将 leading 与 left 划为等号，这样做在 iOS8（及以前）上是正常的，但在 iOS9 上这样的观念可能会引起崩溃，比如：
 
  ```Objective-C
  make.left.equalTo(self.mas_leading).offset(15);
@@ -1501,6 +1508,40 @@ CGSize adjustedSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
  ```
 
 同理 mas_training 也需要改为right
+
+同时也有人反馈说也需要作如下调整否则也会崩溃：
+
+toplayoutGuide 替换成 mas_toplayoutguide
+bottomlayoutguide 替换成 mas_bottomlayoutguide
+
+而且使用类似 `make.top.equalTo(topView.mas_baseline).with.offset(5);` 涉及 `mas_baseline` 的语句也会引起崩溃。
+
+暂时的解决方案是
+
+使用 `make.top.equalTo(self.mas_topLayoutGuide).with.offset(5);` 来替换原来的  `self.topLayoutGuide.mas_baseline`  反正效果是一样的
+
+原来的代码：
+
+ ```Objective-C
+[self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *topView = (UIView *)self.topLayoutGuide;
+    make.top.equalTo(topView.mas_baseline).with.offset(5);
+    make.leading.equalTo(self.view.mas_leading).with.offset(10);
+    make.right.equalTo(self.view.mas_right).with.offset(-10);
+    make.height.equalTo(@34);
+}];
+ ```
+
+修改后：
+
+ ```Objective-C
+[self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.mas_topLayoutGuide).with.offset(5);
+    make.left.equalTo(self.view.mas_left).with.offset(10);
+    make.right.equalTo(self.view.mas_right).with.offset(-10);
+    make.height.equalTo(@34);
+}];
+ ```
 
 ### Xcode 升级后，旧的状态栏的样式设置方式会引起警告
 
