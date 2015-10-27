@@ -561,24 +561,30 @@ Invalid certificates result in a hard failure and no connection
 
 
  ```XML
-        <key>NSAppTransportSecurity</key>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
         <dict>
-            <key>NSExceptionDomains</key>
+            <key>api.insecuredomain.com</key>
             <dict>
-                <key>api.insecuredomain.com</key>
-                <dict>
-                    <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                    <false/>
-                </dict>
+                
+                <!--允许App进行不安全的HTTP请求-->
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                
+                <!--适用于这个特定域名下的所有子域-->
+                <key>NSIncludesSubdomains</key>
+                <true/>
             </dict>
         </dict>
+    </dict>
  ```
 
 
  在 plist 文件里显示如下：
 
 
- ![enter image description here](http://i60.tinypic.com/24y5q4l.jpg)
+ ![enter image description here](http://i59.tinypic.com/fxtk0j.jpg)
 
  我们定义的第一个“例外”（Exception）告诉ATS当与这个子域交互的时候撤销了必须使用HTTPS的要求。注意这个仅仅针对在“例外”（Exception）中声明了的子域。非常重要的一点是要理解NSExceptionAllowsInsecureHTTPLoads关键字并不仅仅只是与使用HTTPS相关。这个“例外”（Exception）指明了对于那个域名，所有的App Transport Security的要求都被撤销了。
 
@@ -1292,7 +1298,7 @@ Demo结构如下：
         <string>weixin</string>
     </array>
 
-（以上只是为了演示，实际开发中，你不仅需要添加“weixin”还需要“wechat”这两个。具体 ）
+（以上只是为了演示，实际开发中，你不仅需要添加“weixin”还需要“wechat”这两个。具体下文给出表格）
 
 
  <p><del>关于 `openURL:` 这个问题，可在 Demo3 中自行测试，如果该 bug 修复了的话，请私信[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)，我再来更新本文。（经测试：iOS9 beta5中已经修复）</del></p>
