@@ -1633,7 +1633,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
      self.window.rootViewController = self.navigationController;
  ```
 
-因为 rootViewController 变为了 navigationController，你在 ViewController 里重写 preferredStatusBarStyle 方法是不会起作用的。所以最好的方法是
+因为 rootViewController 变为了 navigationController，你在 ViewController 里重写 preferredStatusBarStyle 方法是不会起作用的。所以最好的方法是：
 
 
 
@@ -1648,6 +1648,8 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 
 
 如果你还是想重写 preferredStatusBarStyle 方法来达到作用，那最好使用分类来解决：
+
+第二种方法：
 
 .h文件：
 
@@ -1693,7 +1695,13 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 @end
  ```
 
-我在仓库里给出了 navigation 的设置方法，见Demo4。
+但最好不要通过 Category 重写 `preferredStatusBarStyle` 的方式来指定 status bar 样式。按照苹果官方的解释：
+
+ > If the name of a method declared in a category is the same as a method in the original class, or a method in another category on the same class (or even a superclass), the behavior is undefined as to which method implementation is used at runtime. This is less likely to be an issue if you’re using categories with your own classes, but can cause problems when using categories to add methods to standard Cocoa or Cocoa Touch classes.
+
+所以推荐第一种的方法，不推荐第二种。
+
+我在仓库里给出了 navigation 的两种设置方法，见Demo4。
 
 参考链接： [preferredStatusBarStyle isn't called--For anyone using a UINavigationController:](http://stackoverflow.com/a/19513714/3395008) 
 
