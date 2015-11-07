@@ -23,6 +23,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
  3.  [企业级分发](https://github.com/ChenYilong/iOS9AdaptationTips#3企业级分发) 
   1.  [iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”](https://github.com/ChenYilong/iOS9AdaptationTips#1-ios9以后企业级分发ipa包将遭到与mac上dmg安装包一样的待遇默认不能安装也不再出现信任按钮) 
   2.  [iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况](https://github.com/ChenYilong/iOS9AdaptationTips#2-ios9以后企业分发时可能存在下载的ipa包与网页两者的-bundle-id-无法匹配而导致下载失败的情况) 
+  3.  iOS9以后，企业APP安装之后，在网络情况为Wi-Fi环境的时候，可能会出现无法验证应用的情况
  4.  [Bitcode](https://github.com/ChenYilong/iOS9AdaptationTips#4bitcode) 
  5.  [iOS9 URL Scheme 适配_引入白名单概念（见Demo3）](https://github.com/ChenYilong/iOS9AdaptationTips#5demo3---ios9-url-scheme-适配_引入白名单概念) 
      1.   [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
@@ -1045,6 +1046,16 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 
  2. 使用fir.im等第三方分发平台：上述“ bundle id 不一致导致下载失败”这种情况只会出现在企业自己搭建网页分发的情形下，事实证明第三方的分发平台更加专业，已经很好地规避了该情况的发生。
+
+### 3. 企业APP安装之后，在网络情况为Wi-Fi环境的时候，可能会出现无法验证应用的情况。出现以下提示：
+
+**无法验证"**** Co.,Ltd"应用，需要网络连接以在这台iPhone上验证"**** Co.,Ltd"应用。接入互联网并重试。**
+
+![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterpise-app-verification.PNG)  
+![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterprise-app-trust.PNG)  
+![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterprise-app-can-not-be-verificated.PNG)
+
+而此时，Wi-Fi网络是接入互联网的。如果多次验证不通过的话，我们需要切换到非Wi-Fi网络环境下才能解决这个问题。
 
 ###Q-A
 
