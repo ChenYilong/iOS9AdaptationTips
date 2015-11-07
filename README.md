@@ -23,7 +23,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
  3.  [企业级分发](https://github.com/ChenYilong/iOS9AdaptationTips#3企业级分发) 
   1.  [iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”](https://github.com/ChenYilong/iOS9AdaptationTips#1-ios9以后企业级分发ipa包将遭到与mac上dmg安装包一样的待遇默认不能安装也不再出现信任按钮) 
   2.  [iOS9以后，企业分发时可能存在：下载的ipa包与网页两者的 bundle ID 无法匹配而导致下载失败的情况](https://github.com/ChenYilong/iOS9AdaptationTips#2-ios9以后企业分发时可能存在下载的ipa包与网页两者的-bundle-id-无法匹配而导致下载失败的情况) 
-  3.  iOS9以后，企业APP安装之后，在网络情况为Wi-Fi环境的时候，可能会出现无法验证应用的情况
+  3.   [iOS9以后，企业APP安装之后，在网络情况为Wi-Fi环境的时候，可能会出现无法验证应用的情况](https://github.com/ChenYilong/iOS9AdaptationTips#3-企业app安装之后在网络情况为wi-fi环境的时候可能会出现无法验证应用的情况出现以下提示) 
  4.  [Bitcode](https://github.com/ChenYilong/iOS9AdaptationTips#4bitcode) 
  5.  [iOS9 URL Scheme 适配_引入白名单概念（见Demo3）](https://github.com/ChenYilong/iOS9AdaptationTips#5demo3---ios9-url-scheme-适配_引入白名单概念) 
      1.   [常见 URL Scheme](https://github.com/ChenYilong/iOS9AdaptationTips#常见-url-scheme) 
@@ -1057,14 +1057,14 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 而此时，Wi-Fi网络是接入互联网的。如果多次验证不通过的话，我们需要切换到非Wi-Fi网络环境下才能解决这个问题。
 
-###Q-A
+### Q-A
 
 Q：企业分发，企业版证书在iOS9上安装应用报 ` Ignore manifest download, already have bundleID: com.mycom.MyApp`  只有我的手机无法安装，别人 iOS9 都可以安装
 
 A：这并非 iOS9的问题，iOS8及以前的系统也会出现，和缓存有关系，请尝试关机重启手机，然后就可以安装了。
 
 
-##4.Bitcode
+## 4.Bitcode
 
 【前言】未来， Watch 应用必须包含 bitcode ，iOS不强制，Mac OS不支持。
 但最坑的一点是： Xcode7 及以上版本会默认开启 bitcode 。
