@@ -1394,7 +1394,7 @@ QZONE | mqzoneopensdk, </p>mqzoneopensdkapi,</p>mqzoneopensdkapi19,</p>mqzoneope
 易信 | yixin,</p> yixinopenapi
 Google+ | googlechrome, </p>googlechrome-x-callback,</p>hasgplus4,</p>com.google.gppconsent,</p>com.google.gppconsent.2.2.0,</p>com.google.gppconsent.2.3.0,</p>com.google.gppconsent.2.4.0,</p>com.google.gppconsent.2.4.1 |
 人人网 |  renrenapi,</p>renrenios,</p>renreniphone,</p>renren, | 
-Facebook | fbauth2 |
+Facebook | 见下文 |
 Twitter | 无需配置 |
 Pocket | pocket-oauth-v1|
 Pinterest | pinit |
@@ -1407,6 +1407,50 @@ LinkedIn | 无需配置 |
 Tumblr | 无需配置 |
 非平台类 | 无需配置 | ( 如短信，复制，邮件等)
 
+
+
+
+另外， Facebook 的URL Scheme白名单需要注意：
+
+如果 SDK 版本低于 4.5 应补充
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbapi</string>
+    <string>fbapi20130214</string>
+    <string>fbapi20130410</string>
+    <string>fbapi20130702</string>
+    <string>fbapi20131010</string>
+    <string>fbapi20131219</string>    
+    <string>fbapi20140410</string>
+    <string>fbapi20140116</string>
+    <string>fbapi20150313</string>
+    <string>fbapi20150629</string>
+    <string>fbauth</string>
+    <string>fbauth2</string>
+    <string>fb-messenger-api20140430</string>
+</array>
+```
+
+如果使用 FBSDKMessengerShareKit，还要加上
+```
+<string>fb-messenger-platform-20150128</string>
+<string>fb-messenger-platform-20150218</string>
+<string>fb-messenger-platform-20150305</string>
+```
+
+如果使用SDK版本高于4.6，则只需要加上
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+</array>
+```
+
+ [参考链接](https://developers.facebook.com/docs/ios/ios9) 。
 
 
 ### Q-A
