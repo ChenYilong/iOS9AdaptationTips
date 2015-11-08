@@ -1051,9 +1051,9 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 **无法验证"**** Co.,Ltd"应用，需要网络连接以在这台iPhone上验证"**** Co.,Ltd"应用。接入互联网并重试。**
 
-![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterpise-app-verification.PNG)  
-![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterprise-app-trust.PNG)  
-![](https://raw.githubusercontent.com/ifeegoo/iOS9AdaptationTips/master/Resources/pictures/ios-enterprise-app-can-not-be-verificated.PNG)
+![](http://i63.tinypic.com/10ho85w.jpg)  
+![](http://i66.tinypic.com/30ucruo.jpg)  
+![](http://i66.tinypic.com/w14qi1.jpg)
 
 而此时，Wi-Fi网络是接入互联网的。如果多次验证不通过的话，我们需要切换到非Wi-Fi网络环境下才能解决这个问题。
 

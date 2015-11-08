@@ -12,13 +12,11 @@
 		025155091B3BF44400ABEEEA /* TestAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 025155081B3BF44400ABEEEA /* TestAViewController.m */; };
 		0251550C1B3BF44400ABEEEA /* TestAMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0251550A1B3BF44400ABEEEA /* TestAMain.storyboard */; };
 		0251550E1B3BF44400ABEEEA /* TestAAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0251550D1B3BF44400ABEEEA /* TestAAssets.xcassets */; };
-		025155111B3BF44400ABEEEA /* TestALaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0251550F1B3BF44400ABEEEA /* TestALaunchScreen.storyboard */; };
 		025155201B3BF48E00ABEEEA /* mainTestB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0251551F1B3BF48D00ABEEEA /* mainTestB.m */; };
 		025155231B3BF48E00ABEEEA /* TestBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 025155221B3BF48E00ABEEEA /* TestBAppDelegate.m */; };
 		025155261B3BF48E00ABEEEA /* TestBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 025155251B3BF48E00ABEEEA /* TestBViewController.m */; };
 		025155291B3BF48E00ABEEEA /* TestBMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 025155271B3BF48E00ABEEEA /* TestBMain.storyboard */; };
 		0251552B1B3BF48E00ABEEEA /* TestBAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0251552A1B3BF48E00ABEEEA /* TestBAssets.xcassets */; };
-		0251552E1B3BF48E00ABEEEA /* TestBLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0251552C1B3BF48E00ABEEEA /* TestBLaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +28,6 @@
 		025155081B3BF44400ABEEEA /* TestAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestAViewController.m; sourceTree = "<group>"; };
 		0251550B1B3BF44400ABEEEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TestAMain.storyboard; sourceTree = "<group>"; };
 		0251550D1B3BF44400ABEEEA /* TestAAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAAssets.xcassets; sourceTree = "<group>"; };
-		025155101B3BF44400ABEEEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TestALaunchScreen.storyboard; sourceTree = "<group>"; };
 		025155121B3BF44400ABEEEA /* TestAInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestAInfo.plist; sourceTree = "<group>"; };
 		0251551C1B3BF48D00ABEEEA /* testB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0251551F1B3BF48D00ABEEEA /* mainTestB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mainTestB.m; sourceTree = "<group>"; };
@@ -40,7 +37,6 @@
 		025155251B3BF48E00ABEEEA /* TestBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBViewController.m; sourceTree = "<group>"; };
 		025155281B3BF48E00ABEEEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TestBMain.storyboard; sourceTree = "<group>"; };
 		0251552A1B3BF48E00ABEEEA /* TestBAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestBAssets.xcassets; sourceTree = "<group>"; };
-		0251552D1B3BF48E00ABEEEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TestBLaunchScreen.storyboard; sourceTree = "<group>"; };
 		0251552F1B3BF48E00ABEEEA /* TestBInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestBInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +85,6 @@
 				025155081B3BF44400ABEEEA /* TestAViewController.m */,
 				0251550A1B3BF44400ABEEEA /* TestAMain.storyboard */,
 				0251550D1B3BF44400ABEEEA /* TestAAssets.xcassets */,
-				0251550F1B3BF44400ABEEEA /* TestALaunchScreen.storyboard */,
 				025155121B3BF44400ABEEEA /* TestAInfo.plist */,
 				025155011B3BF44400ABEEEA /* Supporting Files */,
 			);
@@ -113,7 +108,6 @@
 				025155251B3BF48E00ABEEEA /* TestBViewController.m */,
 				025155271B3BF48E00ABEEEA /* TestBMain.storyboard */,
 				0251552A1B3BF48E00ABEEEA /* TestBAssets.xcassets */,
-				0251552C1B3BF48E00ABEEEA /* TestBLaunchScreen.storyboard */,
 				0251552F1B3BF48E00ABEEEA /* TestBInfo.plist */,
 				0251551E1B3BF48D00ABEEEA /* Supporting Files */,
 			);
@@ -206,7 +200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				025155111B3BF44400ABEEEA /* TestALaunchScreen.storyboard in Resources */,
 				0251550E1B3BF44400ABEEEA /* TestAAssets.xcassets in Resources */,
 				0251550C1B3BF44400ABEEEA /* TestAMain.storyboard in Resources */,
 			);
@@ -216,7 +209,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0251552E1B3BF48E00ABEEEA /* TestBLaunchScreen.storyboard in Resources */,
 				0251552B1B3BF48E00ABEEEA /* TestBAssets.xcassets in Resources */,
 				025155291B3BF48E00ABEEEA /* TestBMain.storyboard in Resources */,
 			);
@@ -256,28 +248,12 @@
 			name = TestAMain.storyboard;
 			sourceTree = "<group>";
 		};
-		0251550F1B3BF44400ABEEEA /* TestALaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				025155101B3BF44400ABEEEA /* Base */,
-			);
-			name = TestALaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		025155271B3BF48E00ABEEEA /* TestBMain.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				025155281B3BF48E00ABEEEA /* Base */,
 			);
 			name = TestBMain.storyboard;
-			sourceTree = "<group>";
-		};
-		0251552C1B3BF48E00ABEEEA /* TestBLaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0251552D1B3BF48E00ABEEEA /* Base */,
-			);
-			name = TestBLaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -369,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/testA/TestAInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audanika.testA;
@@ -380,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/testA/TestAInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audanika.testA;
@@ -391,6 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/testB/TestBInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audanika.testB;
@@ -402,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/testB/TestBInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audanika.testB;
@@ -428,6 +408,7 @@
 				025155171B3BF44400ABEEEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		025155301B3BF48E00ABEEEA /* Build configuration list for PBXNativeTarget "testB" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +417,7 @@
 				025155321B3BF48E00ABEEEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

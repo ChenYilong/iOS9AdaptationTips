@@ -15,23 +15,23 @@
 		9ADFA3701BB2DB5E002C09FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA36E1BB2DB5E002C09FD /* LaunchScreen.storyboard */; };
 		9ADFA3791BB2DB82002C09FD /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADFA3771BB2DB82002C09FD /* CoreSpotlight.framework */; };
 		9ADFA37A1BB2DB82002C09FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADFA3781BB2DB82002C09FD /* MobileCoreServices.framework */; };
-		9ADFA38F1BB2DBCA002C09FD /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37D1BB2DBCA002C09FD /* 1.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3901BB2DBCA002C09FD /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37E1BB2DBCA002C09FD /* 10.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3911BB2DBCA002C09FD /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37F1BB2DBCA002C09FD /* 11.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3921BB2DBCA002C09FD /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3801BB2DBCA002C09FD /* 12.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3931BB2DBCA002C09FD /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3811BB2DBCA002C09FD /* 13.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3941BB2DBCA002C09FD /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3821BB2DBCA002C09FD /* 14.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3951BB2DBCA002C09FD /* 15.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3831BB2DBCA002C09FD /* 15.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3961BB2DBCA002C09FD /* 16.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3841BB2DBCA002C09FD /* 16.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3971BB2DBCA002C09FD /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3851BB2DBCA002C09FD /* 2.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3981BB2DBCA002C09FD /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3861BB2DBCA002C09FD /* 3.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA3991BB2DBCA002C09FD /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3871BB2DBCA002C09FD /* 4.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39A1BB2DBCA002C09FD /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3881BB2DBCA002C09FD /* 5.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39B1BB2DBCA002C09FD /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3891BB2DBCA002C09FD /* 6.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39C1BB2DBCA002C09FD /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38A1BB2DBCA002C09FD /* 7.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39D1BB2DBCA002C09FD /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38B1BB2DBCA002C09FD /* 8.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39E1BB2DBCA002C09FD /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38C1BB2DBCA002C09FD /* 9.png */; settings = {ASSET_TAGS = (); }; };
-		9ADFA39F1BB2DBCA002C09FD /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38E1BB2DBCA002C09FD /* data.plist */; settings = {ASSET_TAGS = (); }; };
+		9ADFA38F1BB2DBCA002C09FD /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37D1BB2DBCA002C09FD /* 1.png */; };
+		9ADFA3901BB2DBCA002C09FD /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37E1BB2DBCA002C09FD /* 10.png */; };
+		9ADFA3911BB2DBCA002C09FD /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA37F1BB2DBCA002C09FD /* 11.png */; };
+		9ADFA3921BB2DBCA002C09FD /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3801BB2DBCA002C09FD /* 12.png */; };
+		9ADFA3931BB2DBCA002C09FD /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3811BB2DBCA002C09FD /* 13.png */; };
+		9ADFA3941BB2DBCA002C09FD /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3821BB2DBCA002C09FD /* 14.png */; };
+		9ADFA3951BB2DBCA002C09FD /* 15.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3831BB2DBCA002C09FD /* 15.png */; };
+		9ADFA3961BB2DBCA002C09FD /* 16.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3841BB2DBCA002C09FD /* 16.png */; };
+		9ADFA3971BB2DBCA002C09FD /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3851BB2DBCA002C09FD /* 2.png */; };
+		9ADFA3981BB2DBCA002C09FD /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3861BB2DBCA002C09FD /* 3.png */; };
+		9ADFA3991BB2DBCA002C09FD /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3871BB2DBCA002C09FD /* 4.png */; };
+		9ADFA39A1BB2DBCA002C09FD /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3881BB2DBCA002C09FD /* 5.png */; };
+		9ADFA39B1BB2DBCA002C09FD /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA3891BB2DBCA002C09FD /* 6.png */; };
+		9ADFA39C1BB2DBCA002C09FD /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38A1BB2DBCA002C09FD /* 7.png */; };
+		9ADFA39D1BB2DBCA002C09FD /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38B1BB2DBCA002C09FD /* 8.png */; };
+		9ADFA39E1BB2DBCA002C09FD /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38C1BB2DBCA002C09FD /* 9.png */; };
+		9ADFA39F1BB2DBCA002C09FD /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADFA38E1BB2DBCA002C09FD /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -363,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = CYLCoreSpotlightSearchDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChenYilong.CYLCoreSpotlightSearchDemo;
@@ -374,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = CYLCoreSpotlightSearchDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChenYilong.CYLCoreSpotlightSearchDemo;
@@ -400,6 +402,7 @@
 				9ADFA3761BB2DB5E002C09FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

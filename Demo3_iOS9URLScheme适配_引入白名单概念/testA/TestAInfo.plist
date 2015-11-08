@@ -41,8 +41,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>TestAMain</string>
 	<key>UIRequiredDeviceCapabilities</key>

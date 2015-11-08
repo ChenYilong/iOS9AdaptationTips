@@ -420,9 +420,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.iOSChengXuYuan;
 				PRODUCT_NAME = "微博@iOS程序犭袁";
 			};
 			name = Debug;
@@ -431,9 +432,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.iOSChengXuYuan;
 				PRODUCT_NAME = "微博@iOS程序犭袁";
 			};
 			name = Release;
