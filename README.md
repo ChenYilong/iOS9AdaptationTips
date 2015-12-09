@@ -1749,6 +1749,28 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 
 参考链接： [preferredStatusBarStyle isn't called--For anyone using a UINavigationController:](http://stackoverflow.com/a/19513714/3395008) 
 
+第三種方法：
+
+```Objective-C
+- (UIViewController *)childViewControllerForStatusBarStyle;
+```
+
+按照苹果官方的解释：
+
+> If your container view controller derives its status bar style from one of its child view controllers, implement this method and return that child view controller. If you return nil or do not override this method, the status bar style for self is used. If the return value from this method changes, call the setNeedsStatusBarAppearanceUpdate method.
+
+調用`setNeedsStatusBarAppearanceUpdate`時，系統默認會去調用application.rootViewController的`preferredStatusBarStyle`方法，所以這時候當前自己的viewController的`preferredStatusBarStyle`方法根本不會被調用。
+
+這個接口很重要，這種情況下`childViewControllerForStatusBarStyle`就有用了。一般我們常用navigationController作為rootViewController，利用此接口便可以很方便自訂各個viewController的statusBarStyle。 子類化一個navigationController，並且override`childViewControllerForStatusBarStyle`
+
+```Objective-C
+- (UIViewController * _Nullable)childViewControllerForStatusBarStyle {
+    return self.topViewController;
+}
+```
+
+意思就是說不要調用我自己application.rootViewController（navigationController）的`preferredStatusBarStyle`方法，去調用｀childViewControllerForStatusBarStyle｀回傳的UIViewController的`preferredStatusBarStyle`。這裡回傳self.topViewController就可以保證當前顯示的viewController的`preferredStatusBarStyle`會被系統調用且正確的顯示。
+
 ### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
 
 Xcode6 的工程升级到 Xcode7上来，会报警告：
