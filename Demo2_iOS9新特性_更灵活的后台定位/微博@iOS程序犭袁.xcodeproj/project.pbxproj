@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A806F371BEEF09D00594847 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A806F361BEEF09D00594847 /* Images.xcassets */; };
 		9A87A29F1B2A920400CA0E9B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A87A2741B2A920400CA0E9B /* ViewController.m */; };
 		9ACCF88A1B27EF1C00CBEF4B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */; };
-		9ACCF88B1B27EF1C00CBEF4B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */; };
-		9ACCF88F1B27EF1C00CBEF4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */; };
 		9ACCF8911B27EF1C00CBEF4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCF8651B27EF1C00CBEF4B /* main.m */; };
 		9AEA75BC1B300E79002E4698 /* WGS84TOGCJ02.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA75BB1B300E79002E4698 /* WGS84TOGCJ02.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18EFF2C01B25746C00786CE1 /* 微博@iOS程序犭袁.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "微博@iOS程序犭袁.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A806F361BEEF09D00594847 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A87A2731B2A920400CA0E9B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9A87A2741B2A920400CA0E9B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9ACCF8591B27EF1C00CBEF4B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9ACCF85C1B27EF1C00CBEF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9ACCF8641B27EF1C00CBEF4B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ACCF8651B27EF1C00CBEF4B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9AEA75BA1B300E79002E4698 /* WGS84TOGCJ02.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGS84TOGCJ02.h; sourceTree = "<group>"; };
@@ -97,8 +95,7 @@
 				9A87A2711B2A920400CA0E9B /* Classes */,
 				9ACCF8591B27EF1C00CBEF4B /* AppDelegate.h */,
 				9ACCF85A1B27EF1C00CBEF4B /* AppDelegate.m */,
-				9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */,
-				9ACCF8631B27EF1C00CBEF4B /* Images.xcassets */,
+				9A806F361BEEF09D00594847 /* Images.xcassets */,
 				9ACCF8641B27EF1C00CBEF4B /* Info.plist */,
 				9ACCF8651B27EF1C00CBEF4B /* main.m */,
 			);
@@ -162,8 +159,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ACCF88F1B27EF1C00CBEF4B /* Images.xcassets in Resources */,
-				9ACCF88B1B27EF1C00CBEF4B /* LaunchScreen.xib in Resources */,
+				9A806F371BEEF09D00594847 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,17 +178,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9ACCF85B1B27EF1C00CBEF4B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9ACCF85C1B27EF1C00CBEF4B /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		18EFF2E11B25746C00786CE1 /* Debug */ = {
@@ -280,11 +265,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.iOSChengXuYuan;
 				PRODUCT_NAME = "微博@iOS程序犭袁";
 			};
 			name = Debug;
@@ -293,11 +279,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "微博@iOS程序犭袁/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.iOS程序犭袁";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.iOSChengXuYuan;
 				PRODUCT_NAME = "微博@iOS程序犭袁";
 			};
 			name = Release;
