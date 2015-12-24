@@ -484,6 +484,7 @@ SSL/TLS的作用，打个比方来讲：
 也别担心，Apple都替你考虑好了：
 
  ![enter image description here](http://i61.tinypic.com/ae9tgj.jpg)
+ 
  正如你在上图中看到的：苹果官方提供了一些可选配置项来决定是否开启ATS模式，也就是可以选择开启或者不开启。
 
  开发者可以针对某些确定的URL不使用ATS，这需要在工程中的info.plist中标记NSExceptionDomains。在NSExceptionDomains字典中，可以显式的指定一些不使用ATS的URL。这些你可以使用的例子可以是:
@@ -521,10 +522,10 @@ SSL/TLS的作用，打个比方来讲：
 
 |--| 分类名|解释|
 -------------|-------------|-------------
-1.|HTTPS Only （只有HTTPS，所有情况下都使用ATS）|如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。
-2.|Mix & Match（混合）|你的应用与一个不符合ATS要求的服务器工作是很有可能的。在这种情况下，你需要告诉操作系统哪些站点是涉及到的然后在你的应用的 Info.plist文件中指明哪些要求没有达到。
-3.|Opt Out（禁用ATS）|如果你在创建一个网页浏览器，那么你有一个更大的麻烦。因为你不可能知道你的用户将要访问那个网页，你不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，除了全部撤销 App Transport Security 没有其它办法。
-4.|Opt Out With Exceptions（除特殊情况外，都不使用ATS）|当你的应用撤消了App Transport Security,，但同时定义了一些例外。这非常有用就是当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个例外来表明哪些是必须要求 App Transport Security的。
+1.|HTTPS Only （只有HTTPS，所有情况下都使用ATS）|如果你的应用只基于支持HTTPS的服务器，你的应用不需要做任何改变。但是，注意App Transport Security要求TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求。
+2.|Mix & Match（混合）|如果你的服务器不符合ATS要求，你需要在你的应用的 Info.plist 文件中说明哪些地址是不符合ATS要求的。
+3.|Opt Out（禁用ATS）|如果你在创建一个网页浏览器，因为你不能确定用户将要访问哪个网页，也就不可能指明这些网页是否支持ATS要求且在HTTPS上传输。在这种情况下，只能配置为禁用ATS。
+4.|Opt Out With Exceptions（除特殊情况外，都不使用ATS）|如果想禁用ATS的同时又想定义一些例外。这个应用场景是当你的应用需要从很多不符合ATS要求的服务器上取数据，但是也要与一个你可控的API(符合ATS要求)交互。在这种情况下，需要在应用的 Info.plist 文件中配置为允许所有请求，但是你也指定了一个或多个例外来表明哪些请求是必须符合ATS的要求。
 
 下面分别做一下介绍：
 
@@ -536,7 +537,7 @@ SSL/TLS的作用，打个比方来讲：
 但也有人遇到过这样的疑惑：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
 
 
-那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
+那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对CA颁发的证书要求：
 
@@ -546,9 +547,10 @@ Invalid certificates result in a hard failure and no connection
 
 
 ####2.Mix & Match（混合）	
-你的应用与一个不符合ATS要求的服务器工作是很有可能的，
 
-当你遇到以下三个不符合 ATS 要求的服务器的域名时：
+如果你的服务器不符合ATS要求。
+
+比如当你遇到以下三个不符合 ATS 要求的服务器的域名时：
 
  1. api.insecuredomain.com
  2. cdn.domain.com
@@ -706,7 +708,7 @@ Invalid certificates result in a hard failure and no connection
 
 上面已经介绍了三种情景，还有一种可能你也会遇到：
 
-当你的应用撤消了App Transport Security,，但同时定义了一些“例外”（Exception）。当你的应用从很多的服务器上取数据，但是也要与一个你可控的API交互。在这种情况下，在应用的Info.plist文件中指定任何加载都是被允许的，但是你也指定了一个或多个“例外”（Exception）来表明哪些是必须要求 App Transport Security的。下面是Info.plist文件应该会有的内容：
+当你禁用ATS的同时又想定义一些“例外”（Exception）。这个应用场景是当你的应用需要从很多不符合ATS要求的服务器上取数据，但是也要与一个你可控的API(符合ATS要求)交互。在这种情况下，在应用的Info.plist文件中配置为允许所有请求，但是你也指定了一个或多个“例外”（Exception）来表明哪些地址是必须符合 App Transport Security 要求的。下面是Info.plist文件应该会有的内容：
 
 
  ```XML
@@ -819,6 +821,7 @@ A：
  1. Transport Layer Security协议版本要求TLS1.2以上
  2. 服务的Ciphers配置要求支持Forward Secrecy等
  3. 证书签名算法符合ATS要求等
+
 
 ##2.Demo2_iOS9新特性_更灵活的后台定位
 
@@ -1063,6 +1066,14 @@ Q：企业分发，企业版证书在iOS9上安装应用报 ` Ignore manifest do
 
 A：这并非 iOS9的问题，iOS8及以前的系统也会出现，和缓存有关系，请尝试关机重启手机，然后就可以安装了。
 
+ 
+ Q：为什么用微信扫描二维码不能直接下载？
+ 
+ A：部分市场支持直接扫描二维码下载（如蒲公英，fir.im等）,但是用微信扫描二维码不能直接。因为安装app所在页面必须要符合苹果`itms-services`协议，在不符合该协议的页面点击安装会没有反应。比如使用微信、QQ扫描点击安装会没有反应。
+
+此时需要在微信或QQ安装页面点击右上角按钮，在弹出框里找到使用Safari浏览器打开选项，点击跳转到系统浏览器Safari里后再点击“安装”按钮进行安装。
+
+部分第三分浏览器支持`itms-services`协议，可以直接点击安装。
 
 ## 4.Bitcode
 
