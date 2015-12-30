@@ -1758,6 +1758,29 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 
 我在仓库里给出了 navigation 的两种设置方法，见Demo4。
 
+
+ 第三种方法：
+ 
+ ```Objective-C
+ - (UIViewController *)childViewControllerForStatusBarStyle;
+ ```
+ 
+ 按照苹果官方的解释：
+ 
+ > If your container view controller derives its status bar style from one of its child view controllers, implement this method and return that child view controller. If you return nil or do not override this method, the status bar style for self is used. If the return value from this method changes, call the setNeedsStatusBarAppearanceUpdate method.
+ 
+ 调用 `setNeedsStatusBarAppearanceUpdate` 时，系统默认会去调用application.rootViewController的 `preferredStatusBarStyle` 方法，所以这时候当前自己的 viewController 的 `preferredStatusBarStyle` 方法根本不会被调用。
+ 
+ 这个接口很重要，这种情况下 `childViewControllerForStatusBarStyle` 就有用了。一般我们常用 navigationController 作为 rootViewController，利用此接口便可以很方便自订各个 viewController 的 statusBarStyle。 子类化一个 navigationController，并且 override `childViewControllerForStatusBarStyle`
+ 
+ ```Objective-C
+ - (UIViewController * _Nullable)childViewControllerForStatusBarStyle {
+     return self.topViewController;
+ }
+ ```
+ 
+ 意思就是说不要调用我自己 `application.rootViewController（navigationController）` 的 `preferredStatusBarStyle` 方法，去调用｀childViewControllerForStatusBarStyle｀ 回传的 UIViewController 的 `preferredStatusBarStyle`。这裡回传 self.topViewController 就可以保证当前显示的 viewController 的 `preferredStatusBarStyle` 会被系统调用且正确的显示。
+
 参考链接： [preferredStatusBarStyle isn't called--For anyone using a UINavigationController:](http://stackoverflow.com/a/19513714/3395008) 
 
 ### Xcode7 在 debug 状态下也生成 .dSYM 文件引起的警告
