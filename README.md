@@ -54,15 +54,14 @@ controller会导致崩溃)
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
 
-## 1. Demo1_You'd better Convert HTTP to HTTPS 
+## 1. Demo1_You'd Better Convert HTTP to HTTPS 
 
 
+How to deal with the SSL in iOS9，One solution is as follows:
 
-
-How to deal with the SSL in iOS9，One solution is to  do like:
 ![enter image description here](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/Demo1_iOS9网络适配_改用更安全的HTTPS/微博%40iOS程序犭袁/http问题.gif)
 
-As the  [Apple](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) say :
+As  [Apple](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-DontLinkElementID_13) say :
 
 
   ![enter image description here](https://i.imgur.com/eTgSHZY.png)
@@ -71,7 +70,7 @@ As the  [Apple](https://developer.apple.com/library/prerelease/ios/releasenotes/
 
 ![enter image description here](https://i.imgur.com/v2Tskwh.jpg)
   
-iOS 9 and OSX 10.11 require TLSv1.2 SSL for all hosts you plan to request data from unless you specify exception domains in your app's Info.plist file.
+iOS 9 and OSX 10.11 require TLSv1.2 SSL for all hosts you plan to request data from, unless you specify exception domains in your app's Info.plist file.
 
 The syntax for the Info.plist configuration looks like this:
 
@@ -103,18 +102,19 @@ If your application (a third-party web browser, for instance) needs to connect t
 	    <true/>
     </dict>
 
-If you're having to do this, it's probably best to update your servers to use TLSv1.2 and SSL, if they're not already doing so. This should be considered a temporary workaround.
+If you have to do this, it's probably best to update your servers to support TLSv1.2 and SSL. This should be considered a temporary workaround.
 
 As of today, the prerelease documentation makes no mention of any of these configuration options in any specific way. Once it does, I'll update the answer to link to the relevant documentation.
 
-If your server is support  TLSv1.2 ,but you also have to do what I say just now if you want to connect success in iOS9:
+Even though your sever supports TLSv1.2, you may also have to follow what I wrote above to ensure connecting successfully in iOS 9:
 
 After some discussion with Apple Support, the issue is due to the self signed certificate.
 
-ATS trusts only certificate signed by a well known CA, all others are rejected. As a consequence the only solution with a Self signed certificate is to set an exception with NSExceptionDomains.
+ATS only trusts certificate signed by a well known CA, all others are rejected. As a consequence, the only solution with a Self signed certificate is to set an exception with NSExceptionDomains.
 
-##2.Demo2_iOS9 new feature  in CoreLocation :  background only when you need
-If you're using CoreLocation framework in your app in Xcode7(pre-released),and you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
+## 2.Demo2_iOS9 new feature  in CoreLocation : backgroud when needed
+
+If you're using CoreLocation framework in your app in Xcode7(pre-released), you may notice that there is a newly added property called allowsBackgroundLocationUpdates in CLLocationManager class.
 
 This new property is explained in the WWDC session ["What's New in Core Location"][6].
  ![enter image description here][7]
@@ -122,9 +122,9 @@ This new property is explained in the WWDC session ["What's New in Core Location
   [7]: https://i.imgur.com/pvVh1fx.png
 The default value is `NO` if you link against iOS 9.
 
-If your app uses location in the background (without showing the blue status bar) you have to set `allowsBackgroundLocationUpdates` to `YES` in addition to setting the background mode capability in Info.plist. Otherwise location updates are only delivered in foreground. The advantage is that you can now have location managers with background location updates and other location managers with only foreground location updates in the same app. You can also reset the value to `NO` to change the behavior.
+If your app uses location in the background without showing the blue status bar, you have to set `allowsBackgroundLocationUpdates` to `YES` in addition to setting the background mode capability in Info.plist. Otherwise location updates are only delivered in foreground. The advantage is that, in the same app, you can now have some of the location managers update locations in background, while others at foreground. You can also reset the value to `NO` to change the behavior.
 
-The documentation is pretty clear about it:
+The documentation makes it pretty clear:
  
 > By default, this is NO for applications linked against iOS 9.0 or
 > later, regardless of minimum deployment target.
@@ -148,7 +148,7 @@ The documentation is pretty clear about it:
 
 
   [6]: https://developer.apple.com/videos/wwdc/2015/?id=714
-Set  Info.plist like：
+Set  Info.plist like this：
  ![enter image description here][8]
 
   [8]:https://i.imgur.com/MAoKbUe.png
@@ -175,10 +175,11 @@ Use like:
         _locationManager.allowsBackgroundLocationUpdates = YES;
     }
     [_locationManager startUpdatingLocation];
-##3.iOS9 Untrusted Enterprise Developer with no option to trust
+## 3.iOS 9 Dealing With Untrusted Enterprise Developer
 
-Since iOS9 there is no option to trust an enterprise build. 
-Before iOS9，it's very easy to use:if you touch the app,it'll apear this :
+Since iOS 9, there is no more “trust” option for an enterprise build. 
+
+Before iOS 9, there used to have an alert popped like this: 
 
  ![enter image description here][10]
 
@@ -190,7 +191,7 @@ Now:
 
   [11]: https://i.imgur.com/Skn9iXk.png
   
-You have to let the user  do like:
+Users have to do the configuration themselves:
 Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
 
   ![enter image description here][12]
@@ -198,8 +199,8 @@ Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
   [12]: https://i.imgur.com/AdGNYHe.gif
 
 
-##4.bitcode optional 
-After Xcode 7,bitcode option will be enabled by default,If your library was compiled without bitcode but the bitcode option is enabled in your project settings.You can
+## 4.bitcode option 
+After Xcode 7, bitcode option is set enabled by default. If your library is complied without bitcode while the bitcode option is enabled in your project setting, you can
 
 
 
@@ -245,10 +246,10 @@ For more information,go to
  ![enter image description here][18]
 
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
-##5.Privacy and Your App【URL scheme changes】
-iOS 9 has made a small change to the handling of URL scheme. You must whitelist the url's that your app will call out to using the `LSApplicationQueriesSchemes` key in your `Info.plist`. 
+## 5.Privacy and Your App【URL scheme changes】
+iOS 9 has made a small change to the handling of URL scheme. You must whitelist the url's that your app will call out by using the `LSApplicationQueriesSchemes` key in your `Info.plist`. 
 
-Please see post here: http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes
+Please see the post here: http://awkwardhare.com/post/121196006730/quick-take-on-ios-9-url-scheme-changes
 
 The main conclusion is that:
 
@@ -264,7 +265,7 @@ This is a new security feature of iOS 9. Watch [WWDC 2015 Session 703][19] for m
 
   [20]: https://i.imgur.com/2HxWQqq.png
  
-Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry in its plist file, declaring which schemes it attempts to query.
+Any app built with SDK 9 needs to provide an `LSApplicationQueriesSchemes` entry in its plist file, declaring which scheme it attempts to query.
 
     <key>LSApplicationQueriesSchemes</key>
     <array>
@@ -276,7 +277,7 @@ Any app built with SDK 9 needs to provide a `LSApplicationQueriesSchemes` entry 
 
   [19]: https://developer.apple.com/videos/wwdc/2015/?id=703
 
-Assuming two apps TestA and TestB. TestB wants to query if TestA is installed. "TestA" defines the following URL scheme in its info.plist file:
+Assuming that we have two apps: Test A and Test B. TestB wants to check whether TestA is installed or not. "TestA" defines the following URL scheme in its info.plist file:
 
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -293,7 +294,7 @@ The second app "TestB" tries to find out if "TestA" is installed by calling:
     [[UIApplication sharedApplication]
                         canOpenURL:[NSURL URLWithString:@"TestA://"]];
 
-But this will normally return NO in iOS9 because "TestA" needs to be added to the LSApplicationQueriesSchemes entry in TestB's info.plist file. This is done by adding the following code to TestB's info.plist file:
+But this will generally return NO in iOS9, because "TestA" needs to be added to the LSApplicationQueriesSchemes entry in TestB's info.plist file. This is done by adding the following code to TestB's info.plist file:
 
     <key>LSApplicationQueriesSchemes</key>
     <array>
@@ -303,16 +304,16 @@ But this will normally return NO in iOS9 because "TestA" needs to be added to th
 A working implementation can be found here:
 https://github.com/gatzsche/LSApplicationQueriesSchemes-Working-Example
 
-##6. Support Slide Over and Split View of iOS 9
+## 6. Support Slide Over and Split View of iOS 9
 
 ![enter image description here](http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/06/ew-.gif)
-How to transition an an older project to support Slide Over and Split View of iOS 9？
-You may find that all the demo projects was written by storyboard or xib,
+How to make an old project support Slide Over and Split View in iOS 9?
+You may find all the demo projects was written by storyboard or xib,
 but the older project's UI is written by code！
 
 I would suggest switching to storyboards to make your life easy.
 
-I would highly recommend you watch the following WWDC videos and then think about what exactly you need to do in order to support multi tasking.
+I would highly recommend you to watch the following WWDC videos and then think about what exactly you need to do in order to support multi tasking.
 
 
  1. [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/wwdc/2015/?id=218)
@@ -324,6 +325,36 @@ I would highly recommend you watch the following WWDC videos and then think abou
  4. [Getting Started with Multitasking on iPad in iOS 9](https://developer.apple.com/videos/wwdc/2015/?id=205)
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
+
+## ￼7. UI Display Problem Due to Enlarged Character Space
+iOS 9 introduced a new font of Chinese characters. The enlarged character space may cause display problems of text labels, especially for fixed label width.
+To avoid this, we prefer to use ‘sizeToFit’ and ‘ceilf’ methods to calculate label size dynamically.
+## 8. Crash and Warnings
+Sina SDK crashes on iOS 9 with the following information: Solution: update SDK.
+A case of Masonry crashing on iOS 9
+left & leading, trailing & right: not equivalent any more. Some other modifications to make:
+Old way of setting status bar style lead to errors. Solution: delete ‘View controller-based status bar appearance’ key in ‘Info.plist’, apply new methods to set status bay style.
+Demo4 — set status bar style of navigationController
+If it still does not work after using the above method, the problem is probably on your rootViewController.
+Xcode 7 generates .dSYM file under debug circumstance and causes warnings. Solution: change debug setting. Prevent Xcode from generating .dSYM.
+Xcode 7 cannot debugging on 8.x devices.
+Solution: ensure the project name not including Chinese character.
+Problem of jumping between Safari and other apps.
+This is probably caused by using ‘iframe’ element in HTML.
+Warning when locking screen while executing tasks in apps. Haven’t found a solution.
+Crash when rootViewController not set in didFinishLaunchingWithOptions
+Solution: initialize rootViewController in didFinishLaunchingWithOptions and replace it afterwards.
+## 9. Search API
+Import related frameworks, and configure ‘search elements’ just as configuring tableview cells: Demo 6 shows how to combine CoreSpotlightSearch and tableView:
+## 10. Change of Device Language Return String
+Before iOS 9: the above code returns language string code (e.g. “zh-Hans”).
+￼iOS 9: returns language string code + area code (e.g. “zh-Hans-US"). Be careful when checking current language.
+##11. UITableView Display Problem
+A project running well on Xcode 6 may encounter the following problems on Xcode 7:
+ 1. Tableview created by code cannot hide cell separators.
+ 2.  reloadData does not work.
+For cell separators, we provide two solutions (the first one preferred):
+As for reloadData, we assume this may conflict with some new features. We can use local reload as an alternative:
 
 ##License
 
