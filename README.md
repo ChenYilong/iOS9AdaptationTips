@@ -1,4 +1,4 @@
-# iOS9AdaptationTips（iOS9开发学习交流群：523070828）
+# iOS9AdaptationTips（iOS9开发学习交流群：465239521）
 
 
 
@@ -2078,7 +2078,7 @@ iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是
 
 
 #结束语
-如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：523070828”中交流。
+如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：465239521”中交流。
 
 疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
 
