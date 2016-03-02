@@ -1709,6 +1709,8 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 
 记得要 clean 下或者删除应用程序重新运行
 
+参考链接： [**How to change Status Bar text color in iOS 7**]( http://stackoverflow.com/a/17768797/3395008 ) 
+
 #### Demo4---navigationController状态栏样式新的设置方法
 
 如果你按照上面的方法设置了，但还是不行。八成是 rootViewController 设置的问题，你必须设置 rootViewController，编译器才会去 rootViewController 中重载 preferredStatusBarStyle 方法。
