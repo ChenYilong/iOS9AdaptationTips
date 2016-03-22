@@ -1237,7 +1237,15 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 ![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
 
-那么 SDK 厂商如何支持 bitcode 呢？答案是只要在 Xcode7上重新编译一下就 ok 了。（请确保默认开启的 bitcode 没有去主动关闭）
+这里有一个坑，目前 Xcode 处理 Embedded Binaries 时还有些问题，解决办法是，上图中左下角的两个选项不要同时勾选：
+
+相关讨论见： [ ***Missing BCSymbolMap for AppStore Submission - Xcode7B5*** ](https://forums.developer.apple.com/thread/14729)  
+
+用 AD_HOC 打测试包时，也有相应的 bitcode 选项：
+
+![enter image description here](http://i64.tinypic.com/8vospi.jpg)
+
+那么 SDK 厂商如何支持 bitcode 呢？需要在 Xcode7上重新编译，确保默认开启的 bitcode 没有去主动关闭。
 
 但是如果仅仅是编译一下，则会出现下类似的如下警告：
 
