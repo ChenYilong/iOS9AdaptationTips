@@ -1254,8 +1254,18 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 模拟器、真机分开打包，SDK在build的时候，让模拟器与真机分开build，模拟器不设置bitcode的参数，真机的加上，然后再合起来。（“合起来”指的是指令集，好比 x86_64 i386 跟 armv7 arm64合起来。）用命令行打包的话 加上这个参数OTHER_CFLAGS=“-fembed-bitcode”。
 
+![enter image description here](https://cdn-images-1.medium.com/max/800/1*RHLu74QyT4DNqKY-7lo_6g.png =320x568)
+
 详情可移步：[ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
 
+同时切记，为 release 状态设置 `BITCODE_GENERATION_MODE=bitcode` ，开启 `full bitcode` 模式，否则会报错误：`Failed to verify bitcode in  XXX.framework`
+
+![enter image description here](https://cdn-images-1.medium.com/max/800/1*cd9mvJ7BJCW51zXSglwhBQ.png =320x568)
+
+详见：
+ 
+ 1.  [**Static Libraries, Frameworks, and Bitcode**]( https://medium.com/@heitorburger/static-libraries-frameworks-and-bitcode-6d8f784478a9#.eq7rl2msf ) 。
+ 2.  [ *** Failed to verify bitcode in Alamofire *** ](https://github.com/Alamofire/Alamofire/issues/835) 
 
 更多信息，请移步
 
