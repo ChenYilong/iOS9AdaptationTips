@@ -1254,7 +1254,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 模拟器、真机分开打包，SDK在build的时候，让模拟器与真机分开build，模拟器不设置bitcode的参数，真机的加上，然后再合起来。（“合起来”指的是指令集，好比 x86_64 i386 跟 armv7 arm64合起来。）用命令行打包的话 加上这个参数OTHER_CFLAGS=“-fembed-bitcode”。
 
-![enter image description here](https://cdn-images-1.medium.com/max/800/1*RHLu74QyT4DNqKY-7lo_6g.p)
+![enter image description here](https://cdn-images-1.medium.com/max/800/1*RHLu74QyT4DNqKY-7lo_6g.png)
 
 详情可移步：[ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
 
