@@ -1274,6 +1274,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
  
  1.  [**Static Libraries, Frameworks, and Bitcode**]( https://medium.com/@heitorburger/static-libraries-frameworks-and-bitcode-6d8f784478a9#.eq7rl2msf ) 。
  2.  [ ***Failed to verify bitcode in Alamofire*** ](https://github.com/Alamofire/Alamofire/issues/835) 
+ 3.  用 xcodebuild 添加 bitcode 支持 [ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
 
 更多信息，请移步
 
