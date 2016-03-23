@@ -1266,7 +1266,11 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 详情可移步：[ ***How do I xcodebuild a static library with Bitcode enabled?*** ](http://stackoverflow.com/a/31486233/3395008) 
 
-同时切记，为 release 状态设置 `BITCODE_GENERATION_MODE=bitcode` ，开启 `full bitcode` 模式，否则会报错误：`Failed to verify bitcode in  XXX.framework`
+同时切记，为 release 状态设置 `BITCODE_GENERATION_MODE=bitcode` ，开启 `full bitcode` 模式，否则会报错误：`Failed to verify bitcode in  XXX.framework` :
+
+
+![enter image description here](http://i64.tinypic.com/2cxukix.jpg)
+
 
 ![enter image description here](https://cdn-images-1.medium.com/max/800/1*cd9mvJ7BJCW51zXSglwhBQ.png)
 
