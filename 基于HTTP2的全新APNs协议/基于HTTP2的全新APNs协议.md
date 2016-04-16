@@ -1,3 +1,16 @@
+导航：
+ 
+ 1.  [对 APNs 的吐槽](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#对APNs的吐槽) 
+ 2.  [APNs新闻一栏](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#apns新闻一栏)
+ 3.  [新旧 APNs 协议工作示意图对比](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#新旧-apns-协议工作示意图对比) 
+ 4.  [反人类的旧APNs协议设计](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#反人类的旧apns协议设计) 
+ 5.  [基于 HTTP/2 的全新 APNs 协议](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#基于-http2-的全新-apns-协议) 
+ 6.  [改进了，但仍需改进。还是有坑](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#改进了但仍需改进还是有坑) 
+ 7.  [如何创建 Universal Push Notification Client SSL 证书](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#如何创建-universal-push-notification-client-ssl-证书) 
+
+
+## 对 APNs 的吐槽
+
  
  APNs 是 Apple Push Notification service 的简称（注意 APNs 的大小写, s不需要大写）。
  
@@ -101,7 +114,9 @@ Apple 对于 HTTP/2 的态度也非常积极，2015年5月 HTTP/2 正式发表�
  
  在开发中，往往一条内容，需要向多个终端进行推送，终端有：iOS、tvOS、 and OS X devices, 和借助iOS来实现推送的 Apple Watch。在以往的开发中，不同的推送，需要配置不同的推送证书：我们需要配置：dev证书、prod证书、VOIP证书、等等。而从2015年12月17日起，只使用一种证书就可以了，不再需要那么多证书，这种证书就叫做Universal Push Notification Client SSL 证书（下文统一简称：Universal推送证书）。
 
-## 改进了，但仍需改进。还是有坑。
+## 改进了，但仍需改进。还是有坑
+
+APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 除了获取TLS证书比较复杂未解决外，还有一些坑：
 

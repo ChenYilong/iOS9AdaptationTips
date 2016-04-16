@@ -1,13 +1,10 @@
 # iOS9AdaptationTips（iOS9开发学习交流群：541317935）
 
-
-
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
 
-（截至2015年9月26日共有10篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
+（截至2016年4月17日共有12篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
 #中文快速导航：
-
 
  1.  [iOS9网络适配_ATS：改用更安全的HTTPS（见Demo1）](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https) 
   1. [WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）](https://github.com/ChenYilong/iOS9AdaptationTips#what什么是ssltls跟http和https有什么关系) 
@@ -46,7 +43,7 @@ controller会导致崩溃)
  11.  [UITableView显示异常](https://github.com/ChenYilong/iOS9AdaptationTips#11uitableview显示异常) 
   1.  [代码创建的 tableView 无法隐藏 cell 分割线](https://github.com/ChenYilong/iOS9AdaptationTips#代码创建的-tableview-无法隐藏-cell-分割线) 
   2. [reloadData 刷新失效](https://github.com/ChenYilong/iOS9AdaptationTips#reloaddata-刷新失效)
-
+ 12.  [基于 HTTP/2 的新 APNs 协议](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#如何创建-universal-push-notification-client-ssl-证书) 
 
 
 
