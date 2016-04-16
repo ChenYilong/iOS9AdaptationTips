@@ -7,7 +7,8 @@
  5.  [基于 HTTP/2 的全新 APNs 协议](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#基于-http2-的全新-apns-协议) 
  6.  [改进了，但仍需改进。还是有坑](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#改进了但仍需改进还是有坑) 
  7.  [如何创建 Universal Push Notification Client SSL 证书](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#如何创建-universal-push-notification-client-ssl-证书) 
-
+ 8.  [结束语](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#结束语) 
+ 
 
 ## 对 APNs 的吐槽
 
@@ -177,6 +178,9 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
    ![enter image description here](http://i64.tinypic.com/dc9289.jpg)
 
+## 结束语
+
+对于 APNs 而言，iOS9 的这一更新是有划时代意义的，请即刻敦促你们公司的服务端进行升级，或者使用支持新 APNs 协议的 SDK 进行推送服务。 文中如有错误，并请帮忙指正，反馈请发往[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)。
 
 参考链接： 
 
