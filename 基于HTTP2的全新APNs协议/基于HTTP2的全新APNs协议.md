@@ -139,9 +139,6 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 但Google Cloud Messaging就有这些特性。而且 GCM 现在也支持iOS设备了，那么 APNs 和 GCM 现在就形成了竞争关系。让我共同期待 APNs 在2016年6月的 WWDC 的能有新的改进吧。
 
- [**HTTP/2 Protocol for iOS Push Notification Server(APNs)**]( https://dblog.laulkar.com/http2-protocol-for-apns.html ) 
-
-
 ## 如何创建 Universal Push Notification Client SSL 证书
 
  现在你知道什么是 Universal Push Notification Client SSL 证书了，那么如何创建它？
