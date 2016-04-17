@@ -30,7 +30,7 @@
 
 ## APNs新闻一栏
 
-时间 | 新闻 | 参考文旦
+时间 | 新闻 | 参考文档
 -------------|-------------|-------------
 2014年6月 | 2014年6月份WWDC搭载iOS8及以上系统的iOS设备，能够接收的最大playload大小提升到2KB。低于iOS8的设备以及OS X设备维持256字节。 | [**What's New in Notifications - WWDC 2014 - Session 713 - iOS**]( https://developer.apple.com/videos/play/wwdc2014/713/)  ![enter image description here](http://i.stack.imgur.com/UW3ex.png)
 2015年6月 | 2015年6月份WWDC宣布将在不久的将来发布 “基于 HTTP/2 的全新 APNs 协议”，并在大会上发布了仅仅支持测试证书的版本。| [**What's New in Notifications - WWDC 2015 - Session 720 - iOS, OS X**]( https://developer.apple.com/videos/play/wwdc2015/720/ )  ![enter image description here](http://i63.tinypic.com/2cy2ka0.jpg)
@@ -93,6 +93,10 @@
  - 可以通过 “HTTP/2 PING ” 心跳包功能检测当前 APNs 连接是否可用，并能维持当前长链接。
  - 支持为不同的推送类型定义 “topic” 主题
  - 不同推送类型，只需要一种推送证书 Universal Push Notification Client SSL 证书。
+
+示意图：
+
+ ![enter image description here](http://i64.tinypic.com/szajom.jpg)
 
 其中最大的变化就是基于了 HTTP/2 协议，采用了长链接设计，并提供 “HTTP/2 PING ” 心跳包功能检测、维持当前 APNs 连接，解决了老 APNs 无法维持连接的问题。
 而且新增到状态码特性，也解决了这个问题：无法获知消息是否成功地从你们到推送系统投递到了 APNs 上。理论上，你们可以保证消息是100%投递到了APNs的，因为你可以准确的知道哪条消息到达了APNs，哪些没到。重发特定失败消息成为可能。
