@@ -6,8 +6,9 @@
  4.  [反人类的旧APNs协议设计](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#反人类的旧apns协议设计) 
  5.  [基于 HTTP/2 的全新 APNs 协议](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#基于-http2-的全新-apns-协议) 
  6.  [改进了，但仍需改进。还是有坑](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#改进了但仍需改进还是有坑) 
- 7.  [如何创建 Universal Push Notification Client SSL 证书](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#如何创建-universal-push-notification-client-ssl-证书) 
- 8.  [结束语](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#结束语) 
+ 7.  [对App开发的影响](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#对App开发的影响) 
+ 8.  [如何创建 Universal Push Notification Client SSL 证书](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#如何创建-universal-push-notification-client-ssl-证书) 
+ 9.  [结束语](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE/%E5%9F%BA%E4%BA%8EHTTP2%E7%9A%84%E5%85%A8%E6%96%B0APNs%E5%8D%8F%E8%AE%AE.md#结束语) 
  
 
 ## 对 APNs 的吐槽
@@ -142,6 +143,12 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 所以上文开头的吐槽中第一条，也有一句是“到位的”，因为现在SDK的提供商依然无法保证，消息推到了APNs，APNs能推倒App那里。
 
 但Google Cloud Messaging就有这些特性。而且 GCM 现在也支持iOS设备了，那么 APNs 和 GCM 现在就形成了竞争关系。让我共同期待 APNs 在2016年6月的 WWDC 的能有新的改进吧。
+
+## 对App开发的影响
+
+想使用新协议，如果你用的第三方推送，这里最明显的操作，就是你必须更新到支持新协议的SDK版本。因为新协议需要SDK上传你app的bundle id ,生成各个平台推送用的topic。如果你们自己搭建的服务，则需要你自己上传。老协议不用上传。
+
+新APNs支持iOS6等全版本推送内容达4096字节，旧APNs是14年6月之前只支持256字节，在此之后支持iOS8以上2048字节。以前受限于推送字节，比如推文章url，开发者选择超出256后推送id，甚至不判断直接推id，接收后再请求完整url。一旦请求错误，推送内容可能丢失。现在可以避免了。
 
 ## 如何创建 Universal Push Notification Client SSL 证书
 
