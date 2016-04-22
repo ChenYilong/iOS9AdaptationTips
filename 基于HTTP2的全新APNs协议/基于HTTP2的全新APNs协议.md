@@ -91,7 +91,7 @@
   - APNs推送成功时 Response 将返回状态码200，远程通知是否发送成功再也不用靠猜了！
   - APNs推送失败时，Response 将返回 JSON 格式的 Error 信息。
  - 最大推送长度提升到4096字节（4Kb）
- - 可以通过 “HTTP/2 PING ” 心跳包功能检测当前 APNs 连接是否可用，并能维持当前长链接。
+ - 可以通过 “HTTP/2 PING ” 心跳包功能检测当前 APNs 连接是否可用，并能维持当前长连接。
  - 支持为不同的推送类型定义 “topic” 主题
  - 不同推送类型，只需要一种推送证书 Universal Push Notification Client SSL 证书。
 
@@ -99,8 +99,8 @@
 
  ![enter image description here](http://i64.tinypic.com/szajom.jpg)
 
-其中最大的变化就是基于了 HTTP/2 协议，采用了长链接设计，并提供 “HTTP/2 PING ” 心跳包功能检测、维持当前 APNs 连接，解决了老 APNs 无法维持连接的问题。
-而且新增到状态码特性，也解决了这个问题：无法获知消息是否成功地从你们到推送系统投递到了 APNs 上。理论上，你们可以保证消息是100%投递到了APNs的，因为你可以准确的知道哪条消息到达了APNs，哪些没到。重发特定失败消息成为可能。
+其中最大的变化就是基于了 HTTP/2 协议，采用了长连接设计，并提供 “HTTP/2 PING ” 心跳包功能检测、维持当前 APNs 连接，解决了老 APNs 无法维持连接的问题。
+而且新增的状态码特性，也解决了这个问题：无法获知消息是否成功地从你们的推送系统投递到了 APNs 上。理论上，你们可以保证消息是100%投递到了APNs的，因为你可以准确的知道哪条消息到达了APNs，哪些没到。重发特定失败消息成为可能。
 
 
 所以上文开头的吐槽中第一条，有一句是“不到位的”，因为现在SDK的提供商能够准确地告诉你哪些消息推送到APNs了，哪些没有。
@@ -116,7 +116,7 @@ Apple 对于 HTTP/2 的态度也非常积极，2015年5月 HTTP/2 正式发表�
 
 我们都知道 HTTP/2 是复用 TCP 管道连接的，而且 HTTP/2 也以高复用著称，这也使新的 APNs 协议更加高性能。（题外话：这点也同样体现在 NSURLSession 底层对于每个 session 是对多个 task 进行连接的复用。）
 
- ## Universal Push Notification Client SSL 证书
+## Universal Push Notification Client SSL 证书
  
  在开发中，往往一条内容，需要向多个终端进行推送，终端有：iOS、tvOS、 and OS X devices, 和借助iOS来实现推送的 Apple Watch。在以往的开发中，不同的推送，需要配置不同的推送证书：我们需要配置：dev证书、prod证书、VOIP证书、等等。而从2015年12月17日起，只使用一种证书就可以了，不再需要那么多证书，这种证书就叫做Universal Push Notification Client SSL 证书（下文统一简称：Universal推送证书）。
 
@@ -136,25 +136,23 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 当 APNs 向你发送了4条推送，但是你的设备网络状况不好，在 APNs 那里下线了，这时 APNs 到你的手机的链路上有4条任务堆积，APNs 的处理方式是，只保留最后一条消息推送给你，然后告知你推送数。那么其他三条消息呢？会被APNs丢弃。
 
-有一些 App 的 IM 功能没有维持长链接，是完全通过推送来实现到，通常情况下，这些 App 也已经考虑到了这种丢推送的情况，这些 App 的做法都是，每次收到推送之后，然后向自己的服务器查询当前用户的未读消息。但是APNs也同样无法保证这四条推送能至少有一条到达你的 App。很遗憾的告诉这些App，这次的更新对你们所遭受对这些坑，没有改善。
+有一些 App 的 IM 功能没有维持长连接，是完全通过推送来实现到，通常情况下，这些 App 也已经考虑到了这种丢推送的情况，这些 App 的做法都是，每次收到推送之后，然后向自己的服务器查询当前用户的未读消息。但是APNs也同样无法保证这四条推送能至少有一条到达你的 App。很遗憾的告诉这些App，这次的更新对你们所遭受对这些坑，没有改善。
 
 为什么这么设计？APNs的存储-转发能力太弱，大量的消息存储和转发将消耗Apple服务器的资源，可能是出于存储成本考虑，也可能是因为 Apple 转发能力太弱。总之结果就是 APNs 从来不保证消息的达到率。并且设备上线之后也不会向服务器上传信息。
 
-所以上文开头的吐槽中第一条，也有一句是“到位的”，因为现在SDK的提供商依然无法保证，消息推到了APNs，APNs能推倒App那里。
+所以上文开头的吐槽中第一条，也有一句是“到位的”，因为现在SDK的提供商依然无法保证，消息推到了 APNs，APNs能推到 App 那里。
 
 但Google Cloud Messaging就有这些特性。而且 GCM 现在也支持iOS设备了，那么 APNs 和 GCM 现在就形成了竞争关系。让我共同期待 APNs 在2016年6月的 WWDC 的能有新的改进吧。
 
 ## 对App开发的影响
 
-想使用新协议，如果你用的第三方推送，这里最明显的操作，就是你必须更新到支持新协议的SDK版本。因为新协议需要SDK上传你app的bundle id ,生成各个平台推送用的topic。如果你们自己搭建的服务，则需要你自己上传。老协议不用上传。
+想使用新协议，如果你用的第三方推送，这里最明显的操作，就是你必须更新到支持新协议的SDK版本。因为新协议需要 SDK 上传你 app 的 bundle id ,生成各个平台推送用的 topic。如果你们自己搭建的服务，则需要你自己上传。老协议不用上传。
 
-新APNs支持iOS6等全版本推送内容达4096字节，旧APNs是14年6月之前只支持256字节，在此之后支持iOS8以上2048字节。以前受限于推送字节，比如推文章url，开发者选择超出256后推送id，甚至不判断直接推id，接收后再请求完整url。一旦请求错误，推送内容可能丢失。现在可以避免了。
+新 APNs 支持 iOS6 等全版本推送内容达4096字节，旧 APNs 是14年6月之前只支持256字节，在此之后支持 iOS8 以上2048字节。以前受限于推送字节，比如推文章 url，开发者选择超出256后推送id，甚至不判断直接推 id，接收后再请求完整 url。一旦请求错误，推送内容可能丢失。现在可以避免了。
 
 ## 如何创建 Universal Push Notification Client SSL 证书
 
  现在你知道什么是 Universal Push Notification Client SSL 证书了，那么如何创建它？
-
-
  
   ![what is Universal Push Notification Client SSL Certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
   
@@ -162,7 +160,7 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
   
   ![what is not Universal Push Notification Client SSL Certificate](http://i68.tinypic.com/dpg6jd.jpg)
 
-这里也推荐使用 Universal 推送证书来进行推送服务。
+这里也推荐使用 Universal 推送证书来进行推送服务。详细的创建步骤如下所示：
 
  1.  前往[苹果开发者中心](https://developer.apple.com/account/)进行登录，并点击 “Certificates, Identifiers & Profiles”。
  ![enter Certificates, Identifiers & Profiles](http://i65.tinypic.com/xkyr0y.jpg)
@@ -177,13 +175,14 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
   ![guide to create a CSR](https://leancloud.cn/docs/images/ios_cert/cer2.png)
 
   根据它的说明创建 Certificate Signing Request。
+  
   ![how to create a CSR](http://i67.tinypic.com/213hzc6.jpg)
  7. 点击下图中的 “Choose File” 按钮：
   ![upload CSR File](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_3_2x.png)
  8. 上传刚刚生成的 .certSigningRequest 文件 生成 APNs Push Certificate。
  9. 下载证书。
- 10. 双击打开证书，证书打开时会启动 钥匙串访问工具。
-  在 钥匙串访问 中你的证书会显示在 “证书” 中，注意选择左下角的 “证书” 和左上角 “登录”。
+ 10. 双击打开证书，证书打开时会启动钥匙串访问工具。
+  在钥匙串访问工具中，你的证书会显示在 “证书” 中，注意选择左下角的 “证书” 和左上角 “登录”。
 
    ![confirm create cer success](http://i64.tinypic.com/dc9289.jpg)
 
@@ -193,6 +192,6 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 参考链接： 
 
- 1. [***Configuring Push Notifications***](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW11) 
+ 1. [**Configuring Push Notifications**](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW11) 
  2. [**APNs Provider API**](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html)
  3. [**HTTP/2 Protocol for iOS Push Notification Server(APNS)**]( https://dblog.laulkar.com/http2-protocol-for-apns.html ) 
