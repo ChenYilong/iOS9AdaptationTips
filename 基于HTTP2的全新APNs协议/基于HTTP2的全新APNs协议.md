@@ -148,36 +148,37 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
  现在你知道什么是 Universal Push Notification Client SSL 证书了，那么如何创建它？
 
 
- 通过下图中红框标注的 “Apple Push Notification service SSL (Sandbox & Production)”这种方式创建的推送证书就是 Universal 推送证书
  
-  ![enter image description here](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
+  ![what is Universal Push Notification Client SSL Certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
   
-  图中其他方式，就叫做非 Universal 方式（下文简称：非 Universal 推送证书）。
+  图中其他方式，就叫做非 Universal 方式（下文简称：非 Universal 推送证书）：
   
-  ![enter image description here](http://i68.tinypic.com/dpg6jd.jpg)
+  ![what is not Universal Push Notification Client SSL Certificate](http://i68.tinypic.com/dpg6jd.jpg)
 
+这里也推荐使用 Universal 推送证书来进行推送服务。
 
- 1. 前往苹果开发者中心 https://developer.apple.com 点击 “Certificates, Identifiers & Profiles”。
- ![enter image description here](http://i65.tinypic.com/xkyr0y.jpg)
+ 1.  前往[苹果开发者中心](https://developer.apple.com/account/)进行登录，并点击 “Certificates, Identifiers & Profiles”。
+ ![enter Certificates, Identifiers & Profiles](http://i65.tinypic.com/xkyr0y.jpg)
  2. 选择在 Certificates 栏下的“All”。
  3. 点击下图中红色边框内的加号按钮。
-  ![enter image description here](http://i64.tinypic.com/2z4y2q0.jpg)
+  ![Create SSL certificate](http://i64.tinypic.com/2z4y2q0.jpg)
  4. 选择 “Production” 栏下的 “Apple Push Notification service SSL (Sandbox & Production)” 勾选后，点击下一步。
- ![enter image description here](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
+ ![Select push certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
  5. 从 App ID 下拉菜单中选择你需要的 App ID ，点击下一步。
- ![enter image description here](http://i64.tinypic.com/sql3pg.jpg)
+ ![select App ID](http://i64.tinypic.com/sql3pg.jpg)
  6. 这时会出现 **About Creating a Certificate Signing Request (CSR)**。
-  ![enter image description here](https://leancloud.cn/docs/images/ios_cert/cer2.png)
+  ![guide to create a CSR](https://leancloud.cn/docs/images/ios_cert/cer2.png)
+
   根据它的说明创建 Certificate Signing Request。
-  ![enter image description here](http://i67.tinypic.com/213hzc6.jpg)
- 7. 点击下图中的 “Choose File” 按钮
-  ![enter image description here](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_3_2x.png)
+  ![how to create a CSR](http://i67.tinypic.com/213hzc6.jpg)
+ 7. 点击下图中的 “Choose File” 按钮：
+  ![upload CSR File](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_3_2x.png)
  8. 上传刚刚生成的 .certSigningRequest 文件 生成 APNs Push Certificate。
- 9. 下载证书
- 10. 双击打开证书，证书打开时会启动 钥匙串访问 工具。
+ 9. 下载证书。
+ 10. 双击打开证书，证书打开时会启动 钥匙串访问工具。
   在 钥匙串访问 中你的证书会显示在 “证书” 中，注意选择左下角的 “证书” 和左上角 “登录”。
 
-   ![enter image description here](http://i64.tinypic.com/dc9289.jpg)
+   ![confirm create cer success](http://i64.tinypic.com/dc9289.jpg)
 
 ## 结束语
 
