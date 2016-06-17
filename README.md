@@ -824,7 +824,7 @@ Project -> Your Target —>info－> Custom iOS target properties－> 添加禁�
 
 ![enter image description here](http://i60.tinypic.com/zvbt7b.jpg)
 
-还有一种可能性是：禁用 ATS 的代码粘贴进 plist 时，位置不对，可以尝试放在 diwuhang
+还有一种可能性是：禁用 ATS 的代码粘贴进 plist 时，位置不对，可以尝试放在第5行.
 
 
 Q：我的项目是“一个 Project 多 Target ”，按照本文禁用 ATS 的方法，是不是每个 Info.plist 都要修改？
@@ -2100,6 +2100,8 @@ iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是
 
 这两个推测均属 Xcode7 的bug，将来 Apple 肯定会修复。
 
+### 基于HTTP/2的全新APNs协议
+文章较长，单独成篇: [《基于HTTP/2的全新APNs协议》](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/基于HTTP2的全新APNs协议/基于HTTP2的全新APNs协议.md#如何创建-universal-push-notification-client-ssl-证书) 。
 
 #结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：561873398”中交流。
