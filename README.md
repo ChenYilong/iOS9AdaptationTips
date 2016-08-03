@@ -1,6 +1,10 @@
 # iOS9AdaptationTips（iOS9开发学习交流群：529753706）
 
+
+
 iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https)】
+
+相关链接：[iOS10适配系列教程](https://github.com/ChenYilong/iOS10AdaptationTips)。
 
 （截至2016年4月17日共有12篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
@@ -50,6 +54,8 @@ controller会导致崩溃)
 # English⬇️⬇️
 
 For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
+
+Reference：[iOS 10 Adaptation Tips](https://github.com/ChenYilong/iOS10AdaptationTips)。
 
 ## 1. Demo1_You'd Better Convert HTTP to HTTPS 
 
