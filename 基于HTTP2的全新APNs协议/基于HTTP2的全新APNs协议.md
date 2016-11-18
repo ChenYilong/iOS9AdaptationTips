@@ -21,7 +21,7 @@
  -- | 被吐槽的内容 | 吐槽
  -------------|-------------|-------------
  1 | 使用第三方SDK接入推送服务，SDK提供商却告诉我，他们无法获知哪条消息成功发送给了APNs，哪些失败了，而且即使APNs接收了，APNs是否能保证投递成功，他们也无能为力。| 我把消息交给你了，你告诉什么都保证不了？推送成功与否”基本靠猜“？
- 2 | ![enter image description here](http://i67.tinypic.com/5cfuao.jpg) | 为什么我推了四条消息，APNs就只给我最后一条？！
+ 2 | ![](http://ww1.sinaimg.cn/large/006tNbRwjw1f9w23sj9gsj30yg07jq3v.jpg)![](http://ww1.sinaimg.cn/large/006tNbRwjw1f9w23sltkhj30yi07naay.jpg) | 为什么我推了四条消息，APNs就只给我最后一条？！
  3 | 推送内容只能是 256 字节 | 这也太小了，根本不够用啊！
  4 | 生产环境推送证书、测试环境推送证书、tvOS推送证书、watchOS推送证书、VOIP推送证书。。 | 证书太多了，制作、切换证书太麻烦！
  
@@ -128,7 +128,9 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 文章开头提到过以下这种情况：
 
-![enter image description here](http://i67.tinypic.com/5cfuao.jpg)
+![](http://ww1.sinaimg.cn/large/006tNbRwjw1f9w23sj9gsj30yg07jq3v.jpg)
+
+![](http://ww1.sinaimg.cn/large/006tNbRwjw1f9w23sltkhj30yi07naay.jpg)
 
 很遗憾的告诉你，你的吐槽是“到位的”：你以后还得忍受这种反人类的设计。
 
