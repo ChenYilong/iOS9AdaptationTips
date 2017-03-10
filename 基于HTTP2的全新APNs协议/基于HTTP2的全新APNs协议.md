@@ -35,7 +35,7 @@
 -------------|-------------|-------------
 2014年6月 | 2014年6月份WWDC搭载iOS8及以上系统的iOS设备，能够接收的最大playload大小提升到2KB。低于iOS8的设备以及OS X设备维持256字节。 | [**What's New in Notifications - WWDC 2014 - Session 713 - iOS**]( https://developer.apple.com/videos/play/wwdc2014/713/)  ![enter image description here](http://i.stack.imgur.com/UW3ex.png)
 2015年6月 | 2015年6月份WWDC宣布将在不久的将来发布 “基于 HTTP/2 的全新 APNs 协议”，并在大会上发布了仅仅支持测试证书的版本。| [**What's New in Notifications - WWDC 2015 - Session 720 - iOS, OS X**]( https://developer.apple.com/videos/play/wwdc2015/720/ )  ![enter image description here](http://i63.tinypic.com/2cy2ka0.jpg)
-2015年12月17日 | 2015年12月17日起，发布 “基于 HTTP/2 的全新 APNs 协议”,iOS 系统以及 OS X 系统，统一将最大 playload 大小提升到4KB。  | [**Apple Push Notification Service Update 12-17 2015**]( https://developer.apple.com/news/?id=12172015b )
+2015年12月17日 | 2015年12月17日起，发布 “基于 HTTP/2 的全新 APNs 协议”,iOS 系统以及 OS X 系统，统一将最大 payload 大小提升到4KB。  | [**Apple Push Notification Service Update 12-17 2015**]( https://developer.apple.com/news/?id=12172015b )
  
  
 ## 新旧 APNs 协议工作示意图对比
@@ -106,13 +106,13 @@
 所以上文开头的吐槽中第一条，有一句是“不到位的”，因为现在SDK的提供商能够准确地告诉你哪些消息推送到APNs了，哪些没有。
 
 
-顺便介绍下 HTTP/2：
+顺便介绍下 HTTP/2 在客户端开发上的应用：
 
  > HTTP/2 是 HTTP 协议发布后的首个更新，于2015年2月17日被批准。它采用了一系列优化技术来整体提升 HTTP 协议的传输性能，如异步连接复用、头压缩等等，可谓是当前互联网应用开发中，网络层次架构优化的首选方案之一。
 
-Apple 对于 HTTP/2 的态度也非常积极，2015年5月 HTTP/2 正式发表后不久，便在紧接着6月召开的WWDC 2015大会中，向全球开发者宣布，iOS 9 开始支持HTTP/2。
+虽然服务端使用 HTTP/2 进行推送，对客户端的协议选择并没有要求。但是我们还是推荐在客户端的开发中，使用 HTTP/2 协议进行通讯。
 
-而且如果我们要使用 HTTP/2，那么在网络库的选择上必然要使用 NSURLSession。
+Apple 对于 HTTP/2 的态度也非常积极，2015年5月 HTTP/2 正式发表后不久，便在紧接着6月召开的WWDC 2015大会中，向全球开发者宣布，iOS 9 开始支持HTTP/2。如果我们要在客户端上也使用 HTTP/2，那么在网络库的选择上必然要使用 NSURLSession。
 
 我们都知道 HTTP/2 是复用 TCP 管道连接的，而且 HTTP/2 也以高复用著称，这也使新的 APNs 协议更加高性能。（题外话：这点也同样体现在 NSURLSession 底层对于每个 session 是对多个 task 进行连接的复用。）
 
@@ -151,6 +151,11 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 想使用新协议，如果你用的第三方推送，这里最明显的操作，就是你必须更新到支持新协议的SDK版本。因为新协议需要 SDK 上传你 app 的 bundle id ,生成各个平台推送用的 topic。如果你们自己搭建的服务，则需要你自己上传。老协议不用上传。
 
 新 APNs 支持 iOS6 等全版本推送内容达4096字节，旧 APNs 是14年6月之前只支持256字节，在此之后支持 iOS8 以上2048字节。以前受限于推送字节，比如推文章 url，开发者选择超出256后推送id，甚至不判断直接推 id，接收后再请求完整 url。一旦请求错误，推送内容可能丢失。现在可以避免了。
+
+
+## 补充说明
+
+文中强调了 HTTP2 的长连接特性，HTTP1 也是可以有类似的 “长连接” 感念，但两个概念还是有区别的，详情可以参考[这里](https://github.com/ChenYilong/iOSBlog/blob/master/Tips/基于Websocket的IM即时通讯技术/IM%20即时通讯技术在多应用场景下的技术实现，以及性能调优（iOS视角）.md#重连机制)。 
 
 ## 如何创建 Universal Push Notification Client SSL 证书
 
@@ -197,3 +202,4 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
  1. [**Configuring Push Notifications**](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW11) 
  2. [**APNs Provider API**](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html)
  3. [**HTTP/2 Protocol for iOS Push Notification Server(APNS)**]( https://dblog.laulkar.com/http2-protocol-for-apns.html ) 
+
