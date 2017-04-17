@@ -8,7 +8,7 @@ iOS9适配系列教程【中文在[页面下方](https://github.com/ChenYilong/i
 
 （截至2016年4月17日共有12篇，后续还将持续更新。更多iOS开发干货，欢迎关注  [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) ）
 
-#中文快速导航：
+# 中文快速导航：
 
  1.  [iOS9网络适配_ATS：改用更安全的HTTPS（见Demo1）](https://github.com/ChenYilong/iOS9AdaptationTips#1-demo1_ios9网络适配_ats改用更安全的https) 
   1. [WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）](https://github.com/ChenYilong/iOS9AdaptationTips#what什么是ssltls跟http和https有什么关系) 
@@ -352,14 +352,14 @@ Import related frameworks, and configure ‘search elements’ just as configuri
 ## 10. Change of Device Language Return String
 Before iOS 9: the above code returns language string code (e.g. “zh-Hans”).
 ￼iOS 9: returns language string code + area code (e.g. “zh-Hans-US"). Be careful when checking current language.
-##11. UITableView Display Problem
+## 11. UITableView Display Problem
 A project running well on Xcode 6 may encounter the following problems on Xcode 7:
  1. Tableview created by code cannot hide cell separators.
  2.  reloadData does not work.
 For cell separators, we provide two solutions (the first one preferred):
 As for reloadData, we assume this may conflict with some new features. We can use local reload as an alternative:
 
-##License
+## License
 
 Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) 
 
@@ -399,7 +399,7 @@ Invalid certificates result in a hard failure and no connection
 
 在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：
 
-###跟我有毛关系？需要我加班吗？！
+### 跟我有毛关系？需要我加班吗？！
 
 首先咱们来看下业内对Apple这一做法的评论：
 
@@ -417,7 +417,7 @@ Invalid certificates result in a hard failure and no connection
  2. WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？！Apple是不是又在反人类？）
  3. HOW（如何适配？---弱弱地问下：加班要多久？）
 
-###WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
+### WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）
 
 什么是SSL/TLS？
 SSL你一定知道，在此不做赘述。主要说下什么是TLS，还有跟HTTP和HTTPS有什么关系。
@@ -455,7 +455,7 @@ SSL 3.0版本之后的迭代版本被重新命名为TLS 1.0：**TLS 1.0＝SSL 3.
 
 > Apple让你的HTTP采用SSL/TLS协议，就是让你从HTTP转到HTTPS。而这一做法，官方文档称为ATS，全称为App Transport Security。
 
-###WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？Apple是不是又在反人类？）
+### WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？Apple是不是又在反人类？）
 
 > 不使用SSL/TLS的HTTP通信，就是不加密的通信！
 
@@ -563,7 +563,7 @@ SSL/TLS的作用，打个比方来讲：
 
 下面分别做一下介绍：
 
-####1.HTTPS Only （只有HTTPS，所有情况下都使用ATS）
+#### 1.HTTPS Only （只有HTTPS，所有情况下都使用ATS）
 如果你的应用只基于支持HTTPS的服务器，那么你太幸运了。你的应用不需要做任何改变。
 
 唯一需要做的事情就是使用  `NSURLSession` 。如果你的开发目标是iOS 9或者 OS X EI Capitan之后，ATS 的最佳实践将会应用到所有基于 `NSURLSession` 的网络。
@@ -580,7 +580,7 @@ Invalid certificates result in a hard failure and no connection
 
 
 
-####2.Mix & Match（混合）	
+#### 2.Mix & Match（混合）	
 
 如果你的服务器不符合ATS要求。
 
@@ -768,13 +768,13 @@ Invalid certificates result in a hard failure and no connection
 
  <p><del>【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】（官方文档已经有阐述）</del></p>
 
-####Certificate Transparency
+#### Certificate Transparency
 
 虽然ATS大多数安全特性都是默认可用的，Certificate Transparency 是必须设置的。如果你有支持Certificate Transparency的证书，你可以检查NSRequiresCertificateTransparency关键字来使用Certificate Transparency。再次强调，如果你的证书不支持Certificate Transparency，此项需要设置为不可用。
 
 如果需要调试一些由于采用了ATS而产生的问题，需要设置CFNETWORK_DIAGNOSTICS为1，这样就会打印出包含被访问的URL和ATS错误在内的NSURLSession错误信息。要确保处理了遇到的所有的错误消息，这样才能使ATS易于提高可靠性和扩展性。
 
-####Q-A
+#### Q-A
 
 Q：我用xcode7编译的app，如果不在plist里面加关键字说明，ios9下不能进行网络请求，因为我们服务器并不支持 TLS 1.2 ，我要是直接下载app store上的，什么也没有做，也是能正常网络请求。
 
@@ -857,7 +857,7 @@ A：
  3. 证书签名算法符合ATS要求等
 
 
-##2.Demo2_iOS9新特性_更灵活的后台定位
+## 2.Demo2_iOS9新特性_更灵活的后台定位
 
 【iOS9在定位的问题上，有一个坏消息一个好消息】坏消息：如果不适配iOS9，就不能偷偷在后台定位（不带蓝条，见图）！好消息：将允许出现这种场景：同一App中的多个location manager：一些只能在前台定位，另一些可在后台定位，并可随时开启或者关闭特定location manager的后台定位。
 
@@ -919,7 +919,7 @@ A：
 
 
 
-##3.企业级分发
+## 3.企业级分发
 
 有两处变化：
 
@@ -1300,7 +1300,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
   [18]: http://mobileforward.net/wp-content/uploads/2015/06/Screen-Shot-2015-06-12-at-6.57.54-PM-697x351.png
 
 
-##5.Demo3---iOS9 URL Scheme 适配_引入白名单概念
+## 5.Demo3---iOS9 URL Scheme 适配_引入白名单概念
 
  [ ***WWDC 2015 Session 703: "Privacy and Your App*** ](https://developer.apple.com/videos/wwdc/2015/?id=703) （ 时间在30：18左右）关于 `URL scheme` 的介绍，指出：
 
@@ -1552,7 +1552,7 @@ A：这个模拟器的一个 bug，无论使用iOS9的真机还是模拟器均�
 那如何判断日志究竟是 Xcode bug 造成的还是没有适配造成的？看error的值，如果是null，则是 bug。（2015-09-21更）
 
 
-##6. iPad适配Slide Over 和 Split View
+## 6. iPad适配Slide Over 和 Split View
 
  ![enter image description here](http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/06/ew-.gif)
  
@@ -1776,7 +1776,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 //  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+# import <UIKit/UIKit.h>
 
 @interface UINavigationController (StatusBarStyle)
 
@@ -1796,7 +1796,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 //  Copyright (c) 2015年   http://weibo.com/luohanchenyilong/  . All rights reserved.
 //
 
-#import "UINavigationController+StatusBarStyle.h"
+# import "UINavigationController+StatusBarStyle.h"
 
 @implementation UINavigationController (StatusBarStyle)
 
@@ -2109,7 +2109,7 @@ iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是
 ### 基于HTTP/2的全新APNs协议
 文章较长，单独成篇: [《基于HTTP/2的全新APNs协议》](https://github.com/ChenYilong/iOS9AdaptationTips/blob/master/基于HTTP2的全新APNs协议/基于HTTP2的全新APNs协议.md#如何创建-universal-push-notification-client-ssl-证书) 。
 
-#结束语
+# 结束语
 如果你在开发中遇到什么新的 iOS9 的坑，或者有什么适配细节本文没有提及，欢迎给本仓库提 pull request。也欢迎在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)  或在“iOS9开发学习交流群：515295083”中交流。
 
 疏漏之处，可前往阅读下[这个网站](http://asciiwwdc.com)，这里有每年 WWDC 演讲的英文记录。
