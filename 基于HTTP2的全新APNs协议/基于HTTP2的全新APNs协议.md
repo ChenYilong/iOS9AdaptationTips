@@ -114,6 +114,8 @@
 
 Apple 对于 HTTP/2 的态度也非常积极，2015年5月 HTTP/2 正式发表后不久，便在紧接着6月召开的WWDC 2015大会中，向全球开发者宣布，iOS 9 开始支持HTTP/2。如果我们要在客户端上也使用 HTTP/2，那么在网络库的选择上必然要使用 NSURLSession。
 
+对于 iOS 8 和之前的版本，你需要自己实现 HTTP/2 ，或者也可以使用第三方库，比如 Twitter 的 [CocoaSPDY](https://github.com/twitter/CocoaSPDY)。
+
 我们都知道 HTTP/2 是复用 TCP 管道连接的，而且 HTTP/2 也以高复用著称，这也使新的 APNs 协议更加高性能。（题外话：这点也同样体现在 NSURLSession 底层对于每个 session 是对多个 task 进行连接的复用。）
 
 ## Universal Push Notification Client SSL 证书
@@ -144,7 +146,7 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
 所以上文开头的吐槽中第一条，也有一句是“到位的”，因为现在SDK的提供商依然无法保证，消息推到了 APNs，APNs能推到 App 那里。
 
-但Google Cloud Messaging就有这些特性。而且 GCM 现在也支持iOS设备了，那么 APNs 和 GCM 现在就形成了竞争关系。让我共同期待 APNs 在2016年6月的 WWDC 的能有新的改进吧。
+但Google Cloud Messaging就有这些特性。而且 GCM 现在也支持iOS设备了，那么 APNs 和 GCM 现在就形成了竞争关系。让我共同期待 APNs 在之后的 WWDC 的能有新的改进吧。
 
 ## 对App开发的影响
 
