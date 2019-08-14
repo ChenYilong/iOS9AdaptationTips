@@ -53,7 +53,7 @@ controller会导致崩溃)
 
 # English⬇️⬇️
 
-For more infomation ，welcome to follow [my twitter](https://twitter.com/stevechen1010)
+For more infomation ，welcome to follow [my twitter](https://twitter.com/iOSChenYilong)
 
 Reference：[iOS 10 Adaptation Tips](https://github.com/ChenYilong/iOS10AdaptationTips)。
 
