@@ -1,6 +1,6 @@
 # iOS9AdaptationTips（ [iOS开发学习交流群]( https://github.com/ChenYilong/iOSBlog/issues/21 ) ）
---------------------------------------------
 
+<hr />
 
 <!--- 
 
@@ -17,13 +17,15 @@
 <a href="https://github.com/ChenYilong/iOSBlog/releases.atom"><img src="https://img.shields.io/badge/RSS feed (full text feed)-订阅我的博客更新-yellow.svg"></a>
 </p>
 <p align="center">
-<a href="https://github.com/ChenYilong/iOSBlog/issues/21"><img src="https://img.shields.io/static/v1.svg?label=QQ%E3%80%81Telegram%20Group&color=blue&message=%E7%82%B9%E5%87%BB%E8%8E%B7%E5%8F%96QQ%E3%80%81Telegram%E7%BE%A4%E4%BF%A1%E6%81%AF&color=green"></a>
+<a href=""><img src="https://img.shields.io/static/v1.svg?label=QQ%E3%80%81Telegram%20Group&color=blue&message=%E7%82%B9%E5%87%BB%E8%8E%B7%E5%8F%96QQ%E3%80%81Telegram%E7%BE%A4%E4%BF%A1%E6%81%AF&color=green"></a>
 </p>
 
 
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5zsnmaw40g30go04ck08.gif"></a></p>
+
 <p align="center">
  <a href="http://ww2.sinaimg.cn/large/006tNc79ly1g5et6q6sm5j30go0goaar.jpg"><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5esb5j4oaj300w00rdfn.jpg"></a>
-<a href="http://weibo.com/luohanchenyilong"><img src="http://i67.tinypic.com/wbulbr.jpg"></a>
+<a href="http://weibo.com/luohanchenyilong"><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6um2edt3jj300w00q3y9.jpg"></a>
 <a href="https://twitter.com/iOSChenYilong"><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5erhikv2kj300w00wgld.jpg"></a>
 <a href="https://github.com/ChenYilong"><img src="http://ww3.sinaimg.cn/large/006tNc79gy1g5ercvzgxzj300w00wmwx.jpg"></a> 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=SEdIYBh52YzquCEo8cmPwgkko1VgSAlw&authKey=sGcG%2BGB81DW%2Ba8v3dCufFSNoxhykAU61Uz%2B%2BqDiKQN2BGHP2xHYVI2tc0Cah2lpu"><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5euf38fedj300w00wjr5.jpg"></a>
@@ -31,8 +33,7 @@
 <a href="http://s.zhihu.com/BU5Mp"><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5eu9melwaj300w00w3ya.jpg"></a>
 </p>
 
-
---------------------------------------------
+<hr />
 
 
 
@@ -222,13 +223,16 @@ Before iOS 9, there used to have an alert popped like this:
  ![enter image description here][10]
 
   [10]: http://i.stack.imgur.com/WwF76.png
+  
+  
 
 Now:
 
- ![enter image description here][11]
-
-  [11]: https://i.imgur.com/Skn9iXk.png
   
+  
+  <p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71nef0imoj30hg0e0jtg.jpg"></a></p>
+
+
 Users have to do the configuration themselves:
 Go to Settings - General - Profiles - tap on your Profile - tap on Trust button.
 
@@ -364,7 +368,7 @@ I would highly recommend you to watch the following WWDC videos and then think a
 
  5. [Optimizing Your App for Multitasking on iPad in iOS](https://developer.apple.com/videos/wwdc/2015/?id=212)
 
-## ￼7. UI Display Problem Due to Enlarged Character Space
+## 7. UI Display Problem Due to Enlarged Character Space
 iOS 9 introduced a new font of Chinese characters. The enlarged character space may cause display problems of text labels, especially for fixed label width.
 To avoid this, we prefer to use ‘sizeToFit’ and ‘ceilf’ methods to calculate label size dynamically.
 ## 8. Crash and Warnings
@@ -386,7 +390,7 @@ Solution: initialize rootViewController in didFinishLaunchingWithOptions and rep
 Import related frameworks, and configure ‘search elements’ just as configuring tableview cells: Demo 6 shows how to combine CoreSpotlightSearch and tableView:
 ## 10. Change of Device Language Return String
 Before iOS 9: the above code returns language string code (e.g. “zh-Hans”).
-￼iOS 9: returns language string code + area code (e.g. “zh-Hans-US"). Be careful when checking current language.
+iOS 9: returns language string code + area code (e.g. “zh-Hans-US"). Be careful when checking current language.
 ## 11. UITableView Display Problem
 A project running well on Xcode 6 may encounter the following problems on Xcode 7:
  1. Tableview created by code cannot hide cell separators.
@@ -418,7 +422,7 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 官方文档 [ ***App Transport Security Technote*** ](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240) 对ATS 的介绍：
 
-![enter image description here](http://i58.tinypic.com/ajsf0j.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71ovqawdnj30jk0hx41m.jpg"></a></p>
 
 
 注：有童鞋反映：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
@@ -552,7 +556,8 @@ SSL/TLS的作用，打个比方来讲：
 
 也别担心，Apple都替你考虑好了：
 
- ![enter image description here](http://i61.tinypic.com/ae9tgj.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71ni5cwm3j30jx0sdwiz.jpg"></a></p>
+
  
  正如你在上图中看到的：苹果官方提供了一些可选配置项来决定是否开启ATS模式，也就是可以选择开启或者不开启。
 
@@ -656,7 +661,9 @@ Invalid certificates result in a hard failure and no connection
  在 plist 文件里显示如下：
 
 
- ![enter image description here](http://i59.tinypic.com/fxtk0j.jpg)
+ <p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71nje7l2dj30em02kmxk.jpg"></a></p>
+
+
 
  我们定义的第一个“例外”（Exception）告诉ATS当与这个子域交互的时候撤销了必须使用HTTPS的要求。注意这个仅仅针对在“例外”（Exception）中声明了的子域。非常重要的一点是要理解NSExceptionAllowsInsecureHTTPLoads关键字并不仅仅只是与使用HTTPS相关。这个“例外”（Exception）指明了对于那个域名，所有的App Transport Security的要求都被撤销了。
 
@@ -683,7 +690,8 @@ Invalid certificates result in a hard failure and no connection
 
  在 plist 文件里显示如下：
 
-  ![enter image description here](http://i58.tinypic.com/29atm5k.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71nknmvc1j30ep02mgm0.jpg"></a></p>
+
 
  很可能你的应用是与一个支持HTTPS传输数据的服务器交互，但是并没有使用TLS 1.2或更高。在这种情况下，你定义一个“例外”（Exception），它指明应该使用的最小的TLS的版本。这比完全撤销那个域名的App Transport Security要更好更安全。
 
@@ -718,7 +726,7 @@ Invalid certificates result in a hard failure and no connection
  在 plist 文件里显示如下：
 
 
- ![enter image description here](http://i61.tinypic.com/w6xn43.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww3.sinaimg.cn/large/006y8mN6gy1g71nl1sku3j30g8041gmc.jpg"></a></p>
 
  `NSIncludesSubdomains` 关键字告诉 App Transport Security 这个“例外”（Exception）适用于这个特定域名的所有子域。这个“例外”（Exception）还进一步通过扩展可接受的密码列表来定义这个域名可以使用不支持forward secrecy( `NSExceptionRequiresForwardSecrecy` )  协议的密码。想了解更多关于forward secrecy的信息，推荐去看官方文档  [ ***Apple's technote*** ](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/index.html) 。
 
@@ -750,7 +758,7 @@ Invalid certificates result in a hard failure and no connection
         </dict>
  ```
 
-![enter image description here](http://i61.tinypic.com/13ynggk.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww3.sinaimg.cn/large/006y8mN6gy1g71nly7mcrj30fo0530tn.jpg"></a></p>
 
 #### 3. Opt Out（禁用ATS）
 上面是比较严谨的做法，指定了能访问哪些特定的HTTP。当然也有暴力的做法：
@@ -771,7 +779,9 @@ Invalid certificates result in a hard failure and no connection
 
 在 plist 文件里显示如下：
 
-![enter image description here](http://i57.tinypic.com/9uq2c7.jpg)
+
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww1.sinaimg.cn/large/006y8mN6gy1g71nn8omczj30ce01mglt.jpg"></a></p>
+
 
 #### 4. Opt Out With Exceptions（除特殊情况外，都不使用ATS）
 
@@ -798,7 +808,9 @@ Invalid certificates result in a hard failure and no connection
 
  在 plist 文件里显示如下：
 
-![enter image description here](http://i62.tinypic.com/de1rw9.jpg)
+
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71nnovhxej30e5032mxl.jpg"></a></p>
+
 
 
  <p><del>【注：以上在Info.plist配置中的做法已经验证可行，但目前Apple的prerelease版本的官方文档并未提及Info.plist中配置的代码，我将密切关注官方文档，如有提及，再来更新[本文](https://github.com/ChenYilong/iOS9AdaptationTips) .你若发现官方文档有提及了，也可在[微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)通知下我。】（官方文档已经有阐述）</del></p>
@@ -819,7 +831,7 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
 
 
-![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71no5rfv4j30kt064t9m.jpg"></a></p>
 
 Q：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。
 
@@ -857,13 +869,13 @@ A：遇到这类问题，90%是出现在“一个 Project 多 Target ”的情�
 
 Project -> Your Target -> Build Settings -> Info.plist File
 
-![enter image description here](http://i60.tinypic.com/sbrfrl.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src=""></a></p>
 
 或者更直截了当一点，直接修改：
 
 Project -> Your Target —>info－> Custom iOS target properties－> 添加禁用 ATS 的属性
 
-![enter image description here](http://i60.tinypic.com/zvbt7b.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71nov0pjfj30kj0bmtag.jpg"></a></p>
 
 还有一种可能性是：禁用 ATS 的代码粘贴进 plist 时，位置不对，可以尝试放在第5行.
 
@@ -932,9 +944,8 @@ A：
 第一种：
 
 要将  Info.plist 配置如下：
- ![enter image description here][8]
 
-  [8]:https://i.imgur.com/MAoKbUe.png
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src=""></a></p>
 
 对应的 Info.plist 的XML源码是：
 
@@ -950,7 +961,7 @@ A：
 
 在对应 target 的 Capabilities -> Background Modes -> 开启 Location Updates 
 
-![enter image description here](http://cdn2.raywenderlich.com/wp-content/uploads/2014/12/background_modes.png)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71ntpc81gj31l60mqjwe.jpg"></a></p>
 
 
 
@@ -973,9 +984,8 @@ iOS9之前，企业级分发十分方便：点击App出现“信任按钮”，
 
 iOS9以后，企业级分发ipa包将遭到与Mac上dmg安装包一样的待遇：默认不能安装，也不再出现“信任按钮”
 
- ![enter image description here][11]
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71nuw3itnj30dw0b50u8.jpg"></a></p>
 
-  [11]: http://i58.tinypic.com/2zecm83.jpg
 
 必须让用户进行gif图中的设置：
 
@@ -990,7 +1000,10 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 错误提示如下：
 
-![enter image description here](http://i57.tinypic.com/28jckus.jpg)
+
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww1.sinaimg.cn/large/006y8mN6gy1g71nwixoxqj308w04tt8y.jpg"></a></p>
+
+
 
 网页中的 plist 文件中的 bundle ID 的作用可参考 [《iOS:苹果企业证书通过网页分发安装app》](http://blog.sina.com.cn/s/blog_6afb7d800101fa16.html) 。
 
@@ -1123,9 +1136,12 @@ iOS9升级后众多企业分发的 app 已经出现了不能安装的情况，�
 
 **无法验证"**** Co.,Ltd"应用，需要网络连接以在这台iPhone上验证"**** Co.,Ltd"应用。接入互联网并重试。**
 
-![](http://i63.tinypic.com/10ho85w.jpg)  
-![](http://i66.tinypic.com/30ucruo.jpg)  
-![](http://i66.tinypic.com/w14qi1.jpg)
+
+图1 | 图2 | 图3
+:-------------:|:-------------:|:-------------:
+![https://github.com/ChenYilong](http://ww3.sinaimg.cn/large/006y8mN6gy1g71nxwgo8nj30ku112tbe.jpg)| ![https://github.com/ChenYilong](http://ww1.sinaimg.cn/large/006y8mN6gy1g71nyd9d2ej30ku112tbh.jpg) |![https://github.com/ChenYilong](http://ww4.sinaimg.cn/large/006y8mN6gy1g71nyouxb0j30ku112ju1.jpg)
+
+
 
 而此时，Wi-Fi网络是接入互联网的。如果多次验证不通过的话，我们需要切换到非Wi-Fi网络环境下才能解决这个问题。
 
@@ -1253,7 +1269,7 @@ Xcode 7 + 会开启 Bitcode。
  > ld: -undefined and -bitcode_bundle (Xcode setting  `ENABLE_BITCODE` =YES) cannot be used together
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
-![enter image description here](http://i62.tinypic.com/330vhug.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71o4vnuwpj30kv03wt9i.jpg"></a></p>
 
 无论是警告还是错误，得到的信息是：我们引入的一个第三方库不包含bitcode。
 
@@ -1273,7 +1289,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 如果我们开启了 bitcode ，在提交包时，下面这个界面也会有个 bitcode 选项：
 
-![enter image description here](http://i60.tinypic.com/5b2q7m.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww3.sinaimg.cn/large/006y8mN6gy1g71o1xljd2j30lm0awabf.jpg"></a></p>
 
 这里有一个坑，目前 Xcode 处理 Embedded Binaries 时还有些问题，解决办法是，上图中左下角的两个选项不要同时勾选：
 
@@ -1281,14 +1297,12 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 用 AD_HOC 打测试包时，也有相应的 bitcode 选项：
 
-![enter image description here](http://i64.tinypic.com/8vospi.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71o5f0fc5j30g409qaaw.jpg"></a></p>
 
 那么 SDK 厂商如何支持 bitcode 呢？需要在 Xcode7上重新编译，确保默认开启的 bitcode 没有去主动关闭。
 
 但是如果仅仅是编译一下，则会出现下类似的如下警告：
 
-![enter image description here](http://image17-c.poco.cn/mypoco/myphoto/20150928/17/1733887242015092817143106.jpg?1462x120_120
-)
 
 
 
@@ -1306,11 +1320,12 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 同时切记，为 release 状态设置 `BITCODE_GENERATION_MODE=bitcode` ，开启 `full bitcode` 模式，否则会报错误：`Failed to verify bitcode in  XXX.framework` :
 
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww3.sinaimg.cn/large/006y8mN6gy1g71o6grcg7j30bo0620t8.jpg"></a></p>
 
-![enter image description here](http://i64.tinypic.com/2cxukix.jpg)
+
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71o80p1pdj30m80a475g.jpg"></a></p>
 
 
-![enter image description here](https://cdn-images-1.medium.com/max/800/1*cd9mvJ7BJCW51zXSglwhBQ.png)
 
 详见：
  
@@ -1369,7 +1384,9 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 iOS9中 `openURL:` 方法没有什么实质性的变化，仅仅多了一个确认动作：
 
-![enter image description here](http://i57.tinypic.com/8zjh35.jpg)
+
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="iOS9中 openURL: 方法没有什么实质性的变化，仅仅多了一个确认动作："></a></p>
+
 
 苹果为什么要这么做？
 
@@ -1381,7 +1398,8 @@ iOS9中 `openURL:` 方法没有什么实质性的变化，仅仅多了一个确�
 
 Demo结构如下：
 
-![enter image description here](http://i61.tinypic.com/2hyyuqv.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww1.sinaimg.cn/large/006y8mN6gy1g71ol26dewj30bm0cb0u8.jpg"></a></p>
+
 
 主要演示的情景是这样的：
 
@@ -1480,7 +1498,8 @@ Demo结构如下：
  ```
 plist 文件看起来会是这样的：
 
-![enter image description here](http://i58.tinypic.com/e5pyee.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71olvcvnkj30yo0lq0xu.jpg"></a></p>
+
 
 其他平台可在下面的列表中查询：
 各平台OpenURL白名单说明
@@ -1566,7 +1585,7 @@ A：本文中所罗列的新特性，多数情况下指的是 iOS9.X-SDK 新特�
 那么，如何确认自己项目所使用的 SDK？在Targets->Build Setting-->Architectures
 
 
-![enter image description here](http://i58.tinypic.com/amsa9u.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71omtgqa8j30kt064t9m.jpg"></a></p>
 
  Q：我们自己的应用跳到微信、支付宝、微博等的URLScheme是固定几个，但是从微信、支付宝、微博跳回到我们的应用的URLScheme可能是成千上万个，那他们那些大厂是如何做这个白名单？
 
@@ -1621,9 +1640,9 @@ iOS9 | ![enter image description here](http://images2015.cnblogs.com/blog/717809
 
 情况 | 显示 |解释
 -------------|------------- |------------- 
-XIB | ![enter image description here](http://i60.tinypic.com/292r428.jpg) |如果仅仅添加左端约束
-iOS8 | ![enter image description here](http://i58.tinypic.com/2vj92bn.jpg) | 正常
-iOS9 | ![enter image description here](http://i62.tinypic.com/2czaq1v.jpg) | “3199”这四个数字越界了
+XIB | ![enter image description here](http://ww1.sinaimg.cn/large/006y8mN6gy1g71oqj85gij30as06caae.jpg) |如果仅仅添加左端约束
+iOS8 | ![enter image description here](http://ww3.sinaimg.cn/large/006y8mN6gy1g71oqw01s7j309i035t8t.jpg) | 正常
+iOS9 | ![enter image description here](http://ww4.sinaimg.cn/large/006y8mN6gy1g71orgxpzaj308s035jrh.jpg) | “3199”这四个数字越界了
 
 所以为了在界面显示上不出错，就算是固定长度的文字也还是建议使用sizetofit 或者ios向上取整 ceilf() 或者提前计算：
 
@@ -1747,7 +1766,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
  ```
 看起来长这样：
 
-![enter image description here](http://i61.tinypic.com/jrsjnd.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71os34s3cj30ff00fweg.jpg"></a></p>
 
 然后使用新的方式来实现状态栏的样式：
 
@@ -1883,7 +1902,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide
 
 Xcode6 的工程升级到 Xcode7上来，会报警告：
 
-![enter image description here](http://i57.tinypic.com/2a5zuia.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71ot7ljg9j30sc0i7tim.jpg"></a></p>
 
 这是 debug 编译时导出符号文件出现的告警，
 
@@ -1891,7 +1910,7 @@ Xcode6 的工程升级到 Xcode7上来，会报警告：
 
 解决方法是让 debug 编译的时候不生成符号文件：
 
-![enter image description here](http://i60.tinypic.com/2e23qyp.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww3.sinaimg.cn/large/006y8mN6gy1g71otrzktcj31hr0rhjvd.jpg"></a></p>
 
 ### Xcode7 无法使用 8.x 系统的设备调试，一运行就报错 `there is an intenal API error` 
 
@@ -1913,7 +1932,7 @@ bulid settings  ->    packaging  -> product name
 
 举例说明：
 
-![enter image description here](http://i61.tinypic.com/2wbvok8.jpg)
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww2.sinaimg.cn/large/006y8mN6gy1g71ou848saj30s800r74j.jpg"></a></p>
 
 
 我之前写的一个 Demo： [模仿 《简书 App》 的效果:在html中跳转到App中的对应页面,并能从App跳转到原来的网址](https://github.com/ChenYilong/CYLExternalURL)，在例子中直接调用自定义链接在 iOS9上是可以跳转到 App 中的，然而，如果用 iframe 元素包起来就会变不可用。
@@ -2035,8 +2054,8 @@ window.rootViewController = [[UIViewController alloc] init];
 
 然后像设置tableView 的 cell 一样设置下每一个“搜索元素”，搜索元素的组成如下：
 
+<p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww1.sinaimg.cn/large/006y8mN6gy1g71ousf6pwj30xc0g1wg9.jpg"></a></p>
 
-![enter image description here](http://i57.tinypic.com/144b22w.jpg)
 
 
 详情见 Demo6 代码。
@@ -2155,3 +2174,5 @@ iOS9 里面用到 tableView 突然跑出来了很多 cell 的分割线， 但是
 Posted by Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) & [公众号@iTeaTime技术清谈]( https://github.com/ChenYilong/iOSBlog/issues/21 ) 
 原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)
 <p align="center"><a href="http://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"/></a></a>
+
+

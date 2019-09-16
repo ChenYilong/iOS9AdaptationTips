@@ -33,8 +33,8 @@
 
 时间 | 新闻 | 参考文档
 -------------|-------------|-------------
-2014年6月 | 2014年6月份WWDC搭载iOS8及以上系统的iOS设备，能够接收的最大playload大小提升到2KB。低于iOS8的设备以及OS X设备维持256字节。 | [**What's New in Notifications - WWDC 2014 - Session 713 - iOS**]( https://developer.apple.com/videos/play/wwdc2014/713/)  ![enter image description here](http://i.stack.imgur.com/UW3ex.png)
-2015年6月 | 2015年6月份WWDC宣布将在不久的将来发布 “基于 HTTP/2 的全新 APNs 协议”，并在大会上发布了仅仅支持测试证书的版本。| [**What's New in Notifications - WWDC 2015 - Session 720 - iOS, OS X**]( https://developer.apple.com/videos/play/wwdc2015/720/ )  ![enter image description here](http://i63.tinypic.com/2cy2ka0.jpg)
+2014年6月 | 2014年6月份WWDC搭载iOS8及以上系统的iOS设备，能够接收的最大playload大小提升到2KB。低于iOS8的设备以及OS X设备维持256字节。 | [**What's New in Notifications - WWDC 2014 - Session 713 - iOS**]( https://developer.apple.com/videos/play/wwdc2014/713/)  <hr /> ![](http://ww3.sinaimg.cn/large/006y8mN6gy1g71p2h3ol8j308c058aa3.jpg)
+2015年6月 | 2015年6月份WWDC宣布将在不久的将来发布 “基于 HTTP/2 的全新 APNs 协议”，并在大会上发布了仅仅支持测试证书的版本。| [**What's New in Notifications - WWDC 2015 - Session 720 - iOS, OS X**]( https://developer.apple.com/videos/play/wwdc2015/720/ ) <hr /> ![](http://ww1.sinaimg.cn/large/006y8mN6gy1g71ozo5aqsj30me0dudg2.jpg)
 2015年12月17日 | 2015年12月17日起，发布 “基于 HTTP/2 的全新 APNs 协议”,iOS 系统以及 OS X 系统，统一将最大 payload 大小提升到4KB。  | [**Apple Push Notification Service Update 12-17 2015**]( https://developer.apple.com/news/?id=12172015b )
  
  
@@ -42,7 +42,7 @@
 
  基于 HTTP/2 的新 APNs 协议 | 基于二进制的旧 APNs 协议
 -------------|-------------
- ![enter image description here](http://i64.tinypic.com/szajom.jpg)| ![enter image description here](http://i68.tinypic.com/5wcxnr.jpg)
+ ![enter image description here](http://ww4.sinaimg.cn/large/006y8mN6gy1g71ox4rn16j30g90o60sw.jpg)| ![enter image description here](http://ww2.sinaimg.cn/large/006y8mN6gy1g71oyumg53j30gd0pm3yo.jpg)
 
 
 接下来我们分别对新旧协议进行一下介绍：
@@ -58,7 +58,7 @@
 
 示意图：
 
-![enter image description here](http://i68.tinypic.com/5wcxnr.jpg)
+![enter image description here](http://ww2.sinaimg.cn/large/006y8mN6gy1g71oyumg53j30gd0pm3yo.jpg)
 
 
 图中的 PN2 去哪里了？它被放到了 feedback 列表里，等待下次你调用 feedback 服务，然后重发。
@@ -97,7 +97,10 @@
 
 示意图：
 
- ![enter image description here](http://i64.tinypic.com/szajom.jpg)
+ 
+ <p align="center"><a href="https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw"><img src="http://ww4.sinaimg.cn/large/006y8mN6gy1g71ox4rn16j30g90o60sw.jpg"></a></p>
+
+
 
 其中最大的变化就是基于了 HTTP/2 协议，采用了长连接设计，并提供 “HTTP/2 PING ” 心跳包功能检测、维持当前 APNs 连接，解决了老 APNs 无法维持连接的问题。
 而且新增的状态码特性，也解决了这个问题：无法获知消息是否成功地从你们的推送系统投递到了 APNs 上。理论上，你们可以保证消息是100%投递到了APNs的，因为你可以准确的知道哪条消息到达了APNs，哪些没到。重发特定失败消息成为可能。
@@ -163,37 +166,37 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
 
  现在你知道什么是 Universal Push Notification Client SSL 证书了，那么如何创建它？
  
-  ![what is Universal Push Notification Client SSL Certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
+  ![what is Universal Push Notification Client SSL Certificate](http://ww1.sinaimg.cn/large/006y8mN6gy1g71p3spx46j30wj0u0qb4.jpg)
   
   图中其他方式，就叫做非 Universal 方式（下文简称：非 Universal 推送证书）：
   
-  ![what is not Universal Push Notification Client SSL Certificate](http://i68.tinypic.com/dpg6jd.jpg)
+  ![what is not Universal Push Notification Client SSL Certificate](http://ww4.sinaimg.cn/large/006y8mN6gy1g71pb7qek8j30u00u7dlr.jpg)
 
 这里也推荐使用 Universal 推送证书来进行推送服务。详细的创建步骤如下所示：
 
  1.  前往[苹果开发者中心](https://developer.apple.com/account/)进行登录，并点击 “Certificates, Identifiers & Profiles”。
- ![enter Certificates, Identifiers & Profiles](http://i65.tinypic.com/xkyr0y.jpg)
+ ![enter Certificates, Identifiers & Profiles](http://ww1.sinaimg.cn/large/006y8mN6gy1g71p4wep1dj30y40nygm7.jpg)
  2. 选择在 Certificates 栏下的“All”。
  3. 点击下图中红色边框内的加号按钮。
-  ![Create SSL certificate](http://i64.tinypic.com/2z4y2q0.jpg)
+  ![Create SSL certificate](http://ww4.sinaimg.cn/large/006y8mN6gy1g71p5mcyu6j30wa0dzaag.jpg)
  4. 选择 “Production” 栏下的 “Apple Push Notification service SSL (Sandbox & Production)” 勾选后，点击下一步。
- ![Select push certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_2_2x.png)
+ ![Select push certificate](http://ww1.sinaimg.cn/large/006y8mN6gy1g71p3spx46j30wj0u0qb4.jpg)
  5. 从 App ID 下拉菜单中选择你需要的 App ID ，点击下一步。
- ![select App ID](http://i64.tinypic.com/sql3pg.jpg)
+ ![select App ID](http://ww2.sinaimg.cn/large/006y8mN6gy1g71p7f6ispj30wa0optc1.jpg)
  6. 这时会出现 **About Creating a Certificate Signing Request (CSR)**。
-  ![guide to create a CSR](https://leancloud.cn/docs/images/ios_cert/cer2.png)
+  ![guide to create a CSR](http://ww4.sinaimg.cn/large/006y8mN6gy1g71p84r7nij30kj0g1taf.jpg)
 
   根据它的说明创建 Certificate Signing Request。
   
-  ![how to create a CSR](http://i67.tinypic.com/213hzc6.jpg)
+  ![how to create a CSR](http://ww3.sinaimg.cn/large/006y8mN6gy1g71p8id864j30df07t40q.jpg)
  7. 点击下图中的 “Choose File” 按钮：
-  ![upload CSR File](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/12_ios_apns_certificate_3_2x.png)
+  ![upload CSR File](http://ww4.sinaimg.cn/large/006y8mN6gy1g71p8wk03wj30we0u0te0.jpg)
  8. 上传刚刚生成的 .certSigningRequest 文件 生成 APNs Push Certificate。
  9. 下载证书。
  10. 双击打开证书，证书打开时会启动钥匙串访问工具。
   在钥匙串访问工具中，你的证书会显示在 “证书” 中，注意选择左下角的 “证书” 和左上角 “登录”。
 
-   ![confirm create cer success](http://i64.tinypic.com/dc9289.jpg)
+   ![confirm create cer success](http://ww3.sinaimg.cn/large/006y8mN6gy1g71p9fv8qlj30tw0dvdib.jpg)
 
 ## 结束语
 
@@ -204,4 +207,10 @@ APNs的确改进来不少，但仍有需要改进对地方。还是有坑：
  1. [**Configuring Push Notifications**](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW11) 
  2. [**APNs Provider API**](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html)
  3. [**HTTP/2 Protocol for iOS Push Notification Server(APNS)**]( https://dblog.laulkar.com/http2-protocol-for-apns.html ) 
+
+
+<hr />
+Posted by Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/) & [公众号@iTeaTime技术清谈](https://mp.weixin.qq.com/s/A4e5h3xgIEh6PInf1Rjqsw) 
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)
+<p align="center"><a href="http://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"/></a></p>
 
